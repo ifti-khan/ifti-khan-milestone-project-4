@@ -132,17 +132,17 @@ JavaScript Validation -> [Visit Site](https://esprima.org/demo/validate.html)
 
 Python Validation -> [Visit Site](http://pep8online.com/)
 
-### Validation Document -> [Visit Document](#)
+### Validation Document -> [Visit Document](writeup_files/validation/validation.md)
 
 # Testing
 
 # UX - User Story Testing
 
-### UX User Story Testing Document -> [Visit Document](#)
+### UX User Story Testing Document -> [Visit Document](writeup_files/uxstories/user_story_testing.md)
 
 # Further Testing
 
-### Further Testing Document -> [Visit Document](#)
+### Further Testing Document -> [Visit Document](writeup_files/testing/further_testing.md)
 
 # Known Issues And Solutions
 
@@ -158,6 +158,6 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 
 ## Code 
 
-### External URL Document -> [Visit Document](#)
+### External URL Document -> [Visit Document](writeup_files/documents/ext_url_document.md)
 
 ## Acknowledgements
