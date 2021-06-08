@@ -56,12 +56,23 @@ Here is a list of programming languages that I used to create this project along
     * Python and Django were used to create the backend server side logic of the web application.
 
 ### Database, Frameworks, Libraries, Software & Tools Used
+* sqlite3 Local Storage -> [Visit Site](https://docs.python.org/3/library/sqlite3.html)
+    * This was the default database installed once Django was installed. THis Database was used in the development stage of the project and then all data was migrated to Postgres. 
 
-* Font Awesome v5.15.1 CDN -> [Visit Site](https://cdnjs.com/libraries/font-awesome)
-    * The Font Awesome CDN will be used for the icons that i use within my project to help give the project good visual elements and a good user experience.
+* Postgresql Heroku Storage -> [Visit Site](https://elements.heroku.com/addons/heroku-postgresql)
+    * This database tool was used once my project was deployed to Heroku, this is a addon that Heroku provides once your Heroku project is created. Once this addon is chosen and a unique database URL is automatically generated within the setting of the Heroku app.
+
+* Django v3.2.4 ->[Visit Site](https://www.djangoproject.com/download/) 
+    * This version of Django was used within my project to help create it. The reason I chose Django because of it rapids development, secuirty and flexibility. 
+
+* Bootstrap CSS/JS v5.0.1 CDN -> [Visit Site](https://getbootstrap.com/docs/5.0/getting-started/download/)
+    * Bootstrap will be used for the responsive side of my project and for the interactive visual elements as well.
 
 * JQuery v3.6.0 -> [Visit Site](https://cdnjs.com/libraries/jquery)
     * JQuery will be used to manipulate the Document Object Model (DOM), create animations and events.
+
+* Font Awesome v5.15.3 CDN -> [Visit Site](https://cdnjs.com/libraries/font-awesome)
+    * The Font Awesome CDN will be used for the icons that i use within my project to help give the project good visual elements and a good user experience.
 
 * Google Fonts -> [Visit Site](https://fonts.google.com/)
     * Google fonts has been used to import the font i have chosen directly from google into my main CSS file.
@@ -70,7 +81,10 @@ Here is a list of programming languages that I used to create this project along
     * I used GitHub to store my project files by creating a repository for it and then using the Git terminal and its commands to version control and store my files.
 
 * Heroku -> [Visit Site](https://www.heroku.com/)
-    * I used Heroku to deploy my web application because GitHub can only deploy static websites where as Heroku can deploy websites with backend server side capabilities. So GitHub this time is only being used for storage but linked to my Heroku, so when I push to my GitHub it automatically deploys to my Heroku. See deployment section for more info. 
+    * Heroku was used to deploy my web application because GitHub can only deploy static websites where as Heroku can deploy websites with backend server side capabilities. My GitHub repo is linked to my Heroku app, so when I push changes to my repo Heroku will also update and deploy the latest changes.
+
+* Amazon Web Service (AWS) -> [Visit Site](https://aws.amazon.com/?nc2=h_lg)
+    * AWS was used during the deployment stage of my project, I used AWS to store and host my static files and media content for my project. 
 
 * Gitpod -> [Visit Site](https://www.gitpod.io/)
     * I used this online development environment because of its integration within GitHub. With a click of a button within any repo or browser extension, Gitpod will open up and I am ready to code without installing any physical programs on my laptop.  
@@ -90,11 +104,20 @@ Here is a list of programming languages that I used to create this project along
 * Markdown Table Generator -> [Visit Site](https://www.tablesgenerator.com/markdown_tables)
     * This online tool helped me to create the markdown tables for testing section of my readme file.
 
-* Online Random Keygen -> [Visit](https://randomkeygen.com/)
-    * This online tool was used to help generate a secure key for my secret key variable within my project.
+* Django Secret Key Generator -> [Visit Site](https://miniwebtool.com/django-secret-key-generator/)
+    * This online tool was used to help generate a secure key for django secret key variable within my project.
+
+* Temporary Email Address -> [Visit Site](https://temp-mail.org/en/)
+    * This online tool was used to create test users during the development of my project, to test my projects registration, login and emails.
+
+* JSON Formatter -> [Visit Site](https://jsonformatter.org/)
+    * This online tool was used to help format my JSON files for my categories and products that were then imported into my database to populate it with data to display. 
 
 * Python Tutor -> [Visit Site](http://pythontutor.com/)
     * I used this online tool to help me be better understand my python code because it allowed me to see my code visually run step by step.
+
+* Bootstrap Cheatsheet -> [Visit Site](https://hackerthemes.com/bootstrap-cheatsheet/)
+    * This website was used to help with the calling of my bootstrap classes within my HTML and CSS. 
 
 # Validation
 In this section I have used a few different validation tools to thoroughly check and make sure my project code is fully compliant and accessible. If there is any non-compliant code or warnings within the project I will document it and then fix it and this will be the first step of my testing and debugging.
