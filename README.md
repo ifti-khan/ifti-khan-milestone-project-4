@@ -13,14 +13,19 @@ For this project I have chosen to do an ecommerce website for a gym that I have 
 
 The reason I have chosen to do this as my fourth and final milestone project is that it will allow me to showcase the new Django skills learnt from The Code Institute and my previous skills from other projects. The key skills being showcased here are the Django framework, MySQL database and the Bootstrap framework 
 
-
 # UX – User Experience
-
-## The Who? 
+## The Who?
+The project will be designed for enthusiastic gym users who want to find and purchase gym merchandise online as well as gym memberships and seeking advice from other gym users. 
 
 ## The What?
+The project will be aimed users who want to find and purchase a gym membership ranging from one month to twelve months. It will also allow them to find and purchase gym merchandise which will include clothing items, supplements, and protein powders. 
+
+Once they have found what they are looking for, the user can then purchase items by filling in the relevant information and make the purchase. The Project will also allow users to connect with other gym users by allowing them to create posts asking other users for advice on certain subject, which will create an online social community. 
 
 ## The How?
+I will be using a variety of different technologies and techniques to create this project, the first is the Django framework, along with the Bootstrap framework and a MySQL database to store product information. 
+
+The web application will allow all users to find and make a purchase, but registered user will have the ability to view order history and store personal information. Also a registered user will be able to ask a question to other users by creating a post, as well as leaving a review on a certain product. A website admin role will be present, the admin will have full CRUD (create, read, update, delete) functionality over products and posts.
 
 # User Stories
 
