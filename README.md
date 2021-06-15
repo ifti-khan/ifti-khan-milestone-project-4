@@ -88,8 +88,16 @@ The web application will allow all users to find and make a purchase, but regist
 
 # Design 
 ## Framework
+The design framework I have chosen to use for this project is Bootstrap, the reason I have chosen to use bootstrap is because of it is flexibility and that it’s easy to work with. Also because of its responsive design capabilities, wide range of built in components that can be called within the HTML and its browser compatibility.  
 
 ## Colour Scheme
+The colour scheme of the entire website will consist of web safe colours, it will have a mixture of white, black and different shades of blue. All colours selected will be validated first to check if they compliant and pass web accessibility standards. 
+
+* White - Hex: #000000
+* Black - Hex: #FFFFFF
+* Blue Colour 1 - Hex: #003366
+* Blue Colour 2 - Hex: #003399
+
 
 ## Typography 
 
