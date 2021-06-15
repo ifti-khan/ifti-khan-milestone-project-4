@@ -20,14 +20,71 @@ The project will be designed for enthusiastic gym users who want to find and pur
 ## The What?
 The project will be aimed users who want to find and purchase a gym membership ranging from one month to twelve months. It will also allow them to find and purchase gym merchandise which will include clothing items, supplements, and protein powders. 
 
-Once they have found what they are looking for, the user can then purchase items by filling in the relevant information and make the purchase. The Project will also allow users to connect with other gym users by allowing them to create posts asking other users for advice on certain subject, which will create an online social community. 
+Once they have found what they are looking for, the user can then purchase items by filling in the relevant information and make the purchase. The Project will also allow users to connect with other gym users by allowing them to create posts on a message board asking other users for advice on certain subject, which will create an online social community. 
 
 ## The How?
 I will be using a variety of different technologies and techniques to create this project, the first is the Django framework, along with the Bootstrap framework and a MySQL database to store product information. 
 
-The web application will allow all users to find and make a purchase, but registered user will have the ability to view order history and store personal information. Also a registered user will be able to ask a question to other users by creating a post, as well as leaving a review on a certain product. A website admin role will be present, the admin will have full CRUD (create, read, update, delete) functionality over products and posts.
+The web application will allow all users to find and make a purchase, but registered user will have the ability to view order history and store personal information. Also a registered user will be able to ask a question to other users by creating a posts on a message board, as well as leaving a review on a certain product. A website admin role will be present, the admin will have full CRUD (create, read, update, delete) functionality over products and posts.
 
 # User Stories
+## As a shopper:
+* As a user, I want to able to easily identify what the website is selling, so that I can make a purchase.
+
+* As a user I want to be able to easily navigate the website, so that I can find what I am looking for quickly and not get confused. 
+
+* As a user, I want to be able to access the website from multiple devices, so that I can view and make purchases anytime and anywhere. 
+
+* As a user, I want to be able to view a list of all product on the website, so that I can purchase one or more. 
+
+* As a user, I want to able to view a products full details, so that I can see the product description, product price, available product sizes, and product image.
+
+* As a user, I want to be able to see product reviews and ratings, so that I can see other user’s feedback before purchasing.
+
+* As a user, I want to be able to search for products, so that I find a specific product and see a list of results in regards to my search request. 
+
+* As a user, I want to be look for products using categories, so that I can see a list of product in that category.  
+
+* As a user, I want to be able refine and sort all product list, so that I can find products which are priced lowest to highest, on sale, or alphabetically. 
+
+* As a user, I want to be able to select product sizes if available, so that I can choose the correct size before purchase. 
+
+* As a user, I want the option to specify product quantity, so that I can choose the exact product quantity I want before purchasing. 
+
+## As a site user:
+* As a user, I want to be able to register for an account, so that I can have personal profile and a place to store and view my personal information. 
+
+* As a user, I want to be able to edit my personal information, so that I keep it up to date and have the option to do so if a mistake is made. 
+
+* As a user, I want to be able to easily login and logout of the website.
+
+* As a user, I want to the option to recover my password, so that I can change it if forgotten. 
+
+* As a user, I want to be able view my order history, so that I can see a record of what I have ordered from the website.
+
+* As a user, I want to be able to view the total number of items in my shopping bag, so that I can how much money I am about to spend on product.
+
+* As a user, I want to have the option to amend my shopping bag, so that I can decide whether I would like to remove or update the product quantity of a certain item before purchasing. 
+
+* As a user, I want to be able to enter my card details, so that I can purchase the said items in my shopping bag. 
+* As a user, I want to be able to see an order confirmation once a purchase has been made, so that I can see a visual confirmation of my purchase order. 
+
+* As a user, I want there to be some kind of contact form, so that I can get in contact with the site owner in regard to an issue, product or order.
+
+* As a user, I want there to be a review form, so that I can leave a review for a product for other users to see. 
+
+* As a user, I want to there to be a question form, so that I can ask and seek advice from other users in regards to a certain subject. 
+
+## As a site owner:
+* As a user, I want to be able to add new products to the online store, so that online store can grow. 
+
+* As a user, I want to be able to update a products information, so that if a mistake is made it can be fixed. 
+
+* As a user, I want to be able to delete a product, so that I can remove it from the store if no stock is available.
+
+* As a user, I want the ability to delete messages, so that I can remove rude or offensive messages from the message board. 
+
+* As a user, I want to be able to receive emails from other users when they fill out the contact form, so that I can reply to them in regards to their message subject. 
 
 # Design 
 ## Framework
