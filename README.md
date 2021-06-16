@@ -87,21 +87,26 @@ The web application will allow all users to find and make a purchase, but regist
 * As a user, I want to be able to receive emails from other users when they fill out the contact form, so that I can reply to them in regards to their message subject. 
 
 # Design 
+The overall look of the entire project will be simple and sleek, drawing the user’s attention to the products for sale and not bombarding the user with too much information and images. 
+
 ## Framework
 The design framework I have chosen to use for this project is Bootstrap, the reason I have chosen to use bootstrap is because of it is flexibility and that it’s easy to work with. Also because of its responsive design capabilities, wide range of built in components that can be called within the HTML and its browser compatibility.  
 
 ## Colour Scheme
 The colour scheme of the entire website will consist of web safe colours, it will have a mixture of white, black and different shades of blue. All colours selected will be validated first to check if they compliant and pass web accessibility standards. 
 
-* White - Hex: #000000
-* Black - Hex: #FFFFFF
-* Blue Colour 1 - Hex: #003366
-* Blue Colour 2 - Hex: #003399
+White - Hex: #000000
+Black - Hex: #FFFFFF
+Blue Colour 1 - Hex: #003366
+Blue Colour 2 - Hex: #003399
+ 
+## Typography
+For this project I have chosen two fonts from Google Fonts, the first font I have chosen is called [Poiret One](https://fonts.google.com/specimen/Poiret+One). I have chosen this font because of it sleek and simple design and stylish look and it will be used in the navigation and headings. 
 
-
-## Typography 
+The second font I have chosen is also from Google Fonts and it is called [Nunito](https://fonts.google.com/specimen/Nunito). This font will be used for the main descriptions and bulk text areas.
 
 ## Imagery
+All the images for this project will be relevant to the website, the images will consist gym clothing, supplements and powders as well as other supporting gym images. Icons will also be used in the appropriate locations and Font awesome will be used for this.
 
 # Wireframes
 
