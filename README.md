@@ -95,10 +95,10 @@ The design framework I have chosen to use for this project is Bootstrap, the rea
 ## Colour Scheme
 The colour scheme of the entire website will consist of web safe colours, it will have a mixture of white, black and different shades of blue. All colours selected will be validated first to check if they compliant and pass web accessibility standards. 
 
-White - Hex: #000000
-Black - Hex: #FFFFFF
-Blue Colour 1 - Hex: #003366
-Blue Colour 2 - Hex: #003399
+* White - Hex: #000000
+* Black - Hex: #FFFFFF
+* Blue Colour 1 - Hex: #003366
+* Blue Colour 2 - Hex: #003399
  
 ## Typography
 For this project I have chosen two fonts from Google Fonts, the first font I have chosen is called [Poiret One](https://fonts.google.com/specimen/Poiret+One). I have chosen this font because of it sleek and simple design and stylish look and it will be used in the navigation and headings. 
@@ -109,6 +109,20 @@ The second font I have chosen is also from Google Fonts and it is called [Nunito
 All the images for this project will be relevant to the website, the images will consist gym clothing, supplements and powders as well as other supporting gym images. Icons will also be used in the appropriate locations and Font awesome will be used for this.
 
 # Wireframes
+### Home Page -> [View PDF](/writeup_files/wireframes/home-page-all-devices.pdf)
+### Registration Page -> [View PDF](/writeup_files/wireframes/registration-page-all-devices.pdf)
+### Login Page -> [View PDF](/writeup_files/wireframes/login-page-all-devices.pdf)
+### Profile Page -> [View PDF](/writeup_files/wireframes/profile-page-all-devices.pdf)
+### All Products Page -> [View PDF](/writeup_files/wireframes/allproducts-page-all-devices.pdf)
+### Product Detail Page -> [View PDF](/writeup_files/wireframes/productdetail-page-all-devices.pdf)
+### Trolley Page -> [View PDF](/writeup_files/wireframes/trolley-page-all-devices.pdf)
+### Checkout Page -> [View PDF](/writeup_files/wireframes/checkout-page-all-devices.pdf)
+### Order Confirmation Page -> [View PDF](/writeup_files/wireframes/orderconfirmation-page-all-devices.pdf)
+### Message Board Page -> [View PDF](/writeup_files/wireframes/messageboard-page-all-devices.pdf)
+### View Message Page -> [View PDF](/writeup_files/wireframes/viewmessage-page-all-devices.pdf)
+### Add Message Page -> [View PDF](/writeup_files/wireframes/addmessage-page-all-devices.pdf)
+### Contact Page -> [View PDF](/writeup_files/wireframes/contact-page-all-devices.pdf)
+### About Page -> [View PDF](/writeup_files/wireframes/about-page-all-devices.pdf)
 
 # Features
 
