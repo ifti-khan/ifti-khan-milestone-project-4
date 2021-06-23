@@ -135,7 +135,7 @@ Coming soon
 # Database Structure
 Here you will find my database structure for my entire project. During the development stage of my project I used sqlite3 for my database storage, but when came time to fully deploy my project I then used a postgres addon within Heroku for my database.
 
-### Database Structure Document -> [Visit Document](writeup_files/database/database_structure)
+### Database Structure Document -> [Visit Document](/writeup_files/database/database_structure.md)
 
 ## Technologies Used
 Here is a list of programming languages that I used to create this project along with a list of database storage, software, frameworks, libraries and tools I also used to create this project.
