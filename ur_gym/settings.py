@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import environ
 from pathlib import Path
 
-# This initialises the environment variables 
+# This initialises the environment variables
 # which I have set as myenv
 myenv = environ.Env()
 environ.Env.read_env()
@@ -42,6 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # These apps copied from the allauth documentation
+    # To allow users to login and out and signup with
+    # socail media accounts
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -64,6 +72,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                # line below is required by allauth to access
+                # http request objects from the templates
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -71,6 +81,35 @@ TEMPLATES = [
         },
     },
 ]
+
+# This code was taken from the allauth documentation website
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+# This line of code logs new account confirmation emails to the console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+"""
+This block of code allows users to login via username or email
+Also making sure that an email address is required to register
+also making email verification mandatory and confirm email address
+twice during registartion. This also set a min username char length,
+login url and a login redirect to the homepage after successful login.
+"""
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'ur_gym.wsgi.application'
 
