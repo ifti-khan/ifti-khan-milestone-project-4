@@ -1,7 +1,39 @@
+/* Global CSS */
 body {
     font-family: 'Nunito', sans-serif;
+    height: calc(100vh - 164px);
 }
 
-.custom-heading-font {
+.custom-font-head {
     font-family: 'Poiret One', sans-serif;
+}
+
+.black-text {
+    color: #000000 !important;
+}
+
+.white-text {
+    color: #ffffff !important;
+}
+
+/* from Bulma */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+}
+
+/* base.html */
+.main-heading {
+    background-color: #003366;
+}
+
+.site-logo {
+    letter-spacing: 10px;
+    font-weight: bold;
+}
+
+.nav-link {
+    letter-spacing: 3px;
+    font-weight: bold;
 }
