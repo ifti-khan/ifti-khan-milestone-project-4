@@ -1,0 +1,14 @@
+/* Medium Smartphones */
+@media (max-width: 375px) {
+    .nav-link {
+        padding: 6px;
+    }
+}
+
+/* Small Smartphones */
+@media (max-width: 320px) {
+    .nav-link {
+        padding: 0px, 4px;
+        font-size: 13px;
+    }
+}

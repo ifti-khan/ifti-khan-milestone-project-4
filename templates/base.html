@@ -22,8 +22,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <!-- Google Font Link For Font Poiret One -->
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
-    <!-- Project Base CSS File Link -->
+    <!-- Project Base CSS and Responsive CSS File Link -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     {% endblock %}
 
     {% block extra_css %}
@@ -77,7 +78,7 @@
             <div class="col-12 col-lg-4 my-auto">
                 <ul class="nav custom-font-head text-uppercase justify-content-center justify-content-lg-end">
                     <ul class="list-inline list-unstyled my-0"></ul>
-                    <!-- Account dropdown list -->
+                    <!-- Account dropdown-->
                     <li class="list-inline-item dropdown mx-0">
                         <a class="text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -86,9 +87,13 @@
                                 <p class="my-0 white-text">Account</p>
                             </div>
                         </a>
-                        <!-- Account dropdown menu -->
+                        <!-- This block of code is the dropdown menu for my user account options -->
                         <div class="dropdown-menu border-0 text-center rounded-0" 
                         aria-labelledby="account-options">
+                            <!-- Django if statement checking if the user is authenticated, meaning logged in and
+                            will display the appropriate account links. Also another Django if statement checking 
+                            to see if the logged in user is a super user meaning an admin and will display the 
+                            appropriate account links. -->
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
                             <a href="" class="dropdown-item">Product Management</a>
@@ -103,7 +108,7 @@
                         </div>
                     </li>
 
-                    <!-- Community nav link -->
+                    <!-- Community navigation link to message board -->
                     <li class="list-inline-item mx-0">
                         <a class="white-text nav-link" href="#">
                             <div class="text-center">
@@ -113,7 +118,7 @@
                         </a>
                     </li>
 
-                    <!-- Shopping trolley icon and trolley price -->
+                    <!-- Shopping trolley icon, trolley price and link to the trolley page -->
                     <li class="list-inline-item">
                         <a class="{% if final_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link"
                             href="#">
@@ -132,6 +137,31 @@
                 </ul>
             </div>
         </div>
+
+        <!-- This block of code is for the smaller screen device top header -->
+        <div class="row custom-font-head">
+            <!-- Website logo -->
+            <a class="navbar-brand text-center white-text my-0 custom-font-head 
+            text-uppercase site-logo d-block d-lg-none fs-1" href="{% url 'home' %}">ur-gym</a>
+
+            <!-- This block of code is for the user product search -->
+            <div class="col-12 col-lg-4 mx-auto my-auto py-1 py-lg-4 d-block d-lg-none">
+                <form method="GET" action="">
+                    <div class="input-group w-75 mx-auto">
+                        <input class="form-control border border-white rounded-0 fw-bold" type="text" name="search"
+                            placeholder="Search for a product">
+                        <div class="input-group-icon">
+                            <button class="form-control btn btn-white border border-white rounded-0" type="submit">
+                                <span class="icon white-text"><i class="fas fa-search"></i></span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- This include is for my mobile top header for smaller screen sizes -->
+            {% include 'includes/mobile-header-nav.html' %}
+            
     </header>
 
     {% if messages %}
