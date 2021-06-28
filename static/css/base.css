@@ -1,6 +1,11 @@
 /* Global CSS */
+html {
+    height: 100%;
+}
+
 body {
     font-family: 'Nunito', sans-serif;
+    color: #000000;
     height: calc(100vh - 164px);
 }
 
@@ -25,7 +30,7 @@ body {
 
 /* base.html */
 .main-heading {
-    background-color: #003366;
+    background-color: #595959;
 }
 
 .site-logo {
@@ -34,6 +39,15 @@ body {
 }
 
 .nav-link {
-    letter-spacing: 3px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    background-color: #e6e6e6;
+}
+
+.dropdown-item {
+    letter-spacing: 1px;
     font-weight: bold;
 }
