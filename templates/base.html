@@ -159,8 +159,18 @@
                 </form>
             </div>
 
-            <!-- This include is for my mobile top header for smaller screen sizes -->
-            {% include 'includes/mobile-header-nav.html' %}
+            <!-- This block of code is for the collapsible navigation for smaller screen devices  -->
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <button class="navbar-toggler border-white rounded-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#product-nav" aria-controls="product-nav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-icon white-text"><i class="fas fa-bars"></i></span>
+                </button>
+                <!-- Include files are for my mobile top hear and product navigation -->
+                {% include 'includes/mobile-header-nav.html' %}
+                {% include 'includes/product-nav.html' %}
+            </nav>
+        </div>
             
     </header>
 

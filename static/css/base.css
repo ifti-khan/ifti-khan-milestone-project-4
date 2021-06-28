@@ -51,3 +51,18 @@ body {
     letter-spacing: 1px;
     font-weight: bold;
 }
+
+/* Mobile Navigation */
+.navbar-icon {
+    font-size: 30px;
+}
+
+/* Stops box shadow around 
+mobile toggle btn */
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0;
+}
+
+.mobile-nav-head {
+    letter-spacing: 4px;
+}

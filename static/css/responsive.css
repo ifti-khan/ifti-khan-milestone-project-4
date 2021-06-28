@@ -1,8 +1,22 @@
+/* Large Smartphones */
+@media (max-width: 425px) {
+    .nav-link {
+        font-size: 16px;
+    }    
+}
+
 /* Medium Smartphones */
 @media (max-width: 375px) {
     .nav-link {
         padding: 6px;
+        font-size: 14px;
     }
+
+    /* Mobile Toggler */
+    .navbar-icon {
+    font-size: 26px;
+    }
+    
 }
 
 /* Small Smartphones */
@@ -10,5 +24,14 @@
     .nav-link {
         padding: 0px, 4px;
         font-size: 13px;
+    }
+
+    /* Mobile Toggler */
+    .navbar-toggler {
+        padding: 4px 8px;
+    }
+
+    .navbar-icon {
+    font-size: 24px;
     }
 }
