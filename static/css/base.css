@@ -81,3 +81,7 @@ mobile toggle btn */
     background-color: #e6e6e6;
     letter-spacing: 1px;
 }
+
+.social-icons a {
+    font-size: 18px;
+}
