@@ -1,12 +1,45 @@
-<!-- This block of code is for the main product navigation as well as the collapsible mobile nav -->
-<div class="collapse navbar-collapse text-center" id="product-nav">
+<!-- This block of code is for the main product navigation as well as the collapsible mobile navigation -->
+<div class="collapse navbar-collapse text-center justify-content-lg-end" id="product-nav">
     <ul class="navbar-nav">
+        <!-- Products dropdown list navigation -->
         <li class="nav-item dropdown mobile-nav-head pt-1">
-            <a class="white-text text-decoration-none text-uppercase fw-bold" href="#" id="all-products-link" 
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Products
-            </a>
-            
+            <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="all-products-link"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+            <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="all-products-link">
+                <a href="" class="dropdown-item">All Products</a>
+                <a href="" class="dropdown-item">By Price</a>
+                <a href="" class="dropdown-item ">By Rating</a>
+                <a href="" class="dropdown-item ">By Category</a>
+            </div>
+        </li>
+
+        <!-- Clothing dropdown list navigation -->
+        <li class="nav-item dropdown mobile-nav-head pt-1">
+            <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="clothing-link"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clothing</a>
+            <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="clothing-link">
+                <a href="" class="dropdown-item">All Clothing</a>
+                <a href="" class="dropdown-item">Hoodies &amp; Tops</a>
+                <a href="" class="dropdown-item ">T-Shirts</a>
+                <a href="" class="dropdown-item ">Trousers</a>
+            </div>
+        </li>
+
+        <!-- Supplements dropdown list navigation -->
+        <li class="nav-item dropdown mobile-nav-head pt-1">
+            <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="supplements-link"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Supplements</a>
+            <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="supplements-link">
+                <a href="" class="dropdown-item">All Supplements</a>
+                <a href="" class="dropdown-item">Powders</a>
+                <a href="" class="dropdown-item ">Tablets</a>
+                <a href="" class="dropdown-item ">Snacks</a>
+            </div>
+        </li>
+
+        <!-- Membership navigation link -->
+        <li class="nav-item mobile-nav-head pt-1">
+            <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#">Memberships</a>
         </li>
     </ul>
 </div>
