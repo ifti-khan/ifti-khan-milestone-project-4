@@ -65,7 +65,7 @@
 
             <!-- About us nav link -->
             <li class="list-inline-item">
-            <a href="#" class="nav-link black-text custom-font-head 
+                <a href="#" class="nav-link black-text custom-font-head 
             text-uppercase py-0 px-0">About Us</a>
             </li>
         </div>
@@ -106,8 +106,7 @@
                             </div>
                         </a>
                         <!-- This block of code is the dropdown menu for my user account options -->
-                        <div class="dropdown-menu border-0 text-center rounded-0" 
-                        aria-labelledby="account-options">
+                        <div class="dropdown-menu border-0 text-center rounded-0" aria-labelledby="account-options">
                             <!-- Django if statement checking if the user is authenticated, meaning logged in and
                             will display the appropriate account links. Also another Django if statement checking 
                             to see if the logged in user is a super user meaning an admin and will display the 
@@ -189,7 +188,7 @@
                 {% include 'includes/product-nav.html' %}
             </nav>
         </div>
-            
+
     </header>
 
     {% if messages %}
@@ -201,6 +200,26 @@
 
     {% block content %}
     {% endblock %}
+
+    <!-- This block of code is for the main footer for the website -->
+    <footer class="footer fixed-bottom main-footer text-center px-3 py-2 
+    custom-font-head fw-bold text-uppercase py-2 shadow-lg">
+        <div class="row">
+            <!-- About us footer link -->
+            <div class="col-12 col-md-4 py-1 pb-md-2">About Us</div>
+            <!-- Contact us footer link -->
+            <div class="col-12 col-md-4 py-1 pb-md-2">Contact Us</div>
+            <!-- Social footer link -->
+            <div class="col-12 col-md-4 py-1 pb-md-2">Social Links</div>
+        </div>
+
+        <!-- This block of code is for the copyright and link to personal portfolio -->
+        <div class="row">
+            <div class="col-12 pt-1 copyright"> 
+                <span>&copy; Ifti Khan 2021</span>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     {% endblock %}

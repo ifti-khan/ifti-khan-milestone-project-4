@@ -1,8 +1,14 @@
 /* Large Smartphones */
 @media (max-width: 425px) {
+    /* Main Nav */
     .nav-link {
         font-size: 16px;
-    }    
+    }
+    
+    /* Main Footer */
+    .main-footer {
+        font-size: 14px;
+    }
 }
 
 /* Medium Smartphones */

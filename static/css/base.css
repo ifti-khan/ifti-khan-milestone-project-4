@@ -75,3 +75,9 @@ mobile toggle btn */
 .mobile-nav-head {
     letter-spacing: 4px;
 }
+
+/* Main footer */
+.main-footer {
+    background-color: #e6e6e6;
+    letter-spacing: 1px;
+}
