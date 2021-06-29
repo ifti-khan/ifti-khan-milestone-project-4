@@ -9,6 +9,12 @@
     .main-footer {
         font-size: 14px;
     }
+
+    /*Back To Top Button*/
+    #back-to-top-btn {
+        bottom: 125px;
+        right: 5px;
+    }
 }
 
 /* Medium Smartphones */
@@ -21,6 +27,12 @@
     /* Mobile Toggler */
     .navbar-icon {
     font-size: 26px;
+    }
+
+    /*Back To Top Button*/
+    #back-to-top-btn {
+        bottom: 120px;
+        right: 5px;
     }
     
 }
@@ -39,5 +51,11 @@
 
     .navbar-icon {
     font-size: 24px;
+    }
+
+    /*Back To Top Button*/
+    #back-to-top-btn {
+        bottom: 115px;
+        right: 5px;
     }
 }
