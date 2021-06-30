@@ -200,13 +200,17 @@
     {% block page_header %}
     {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+    <!-- This is for the main block content located in every page -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
 
     <!-- This block of code is for the main footer for the website -->
-    <footer class="footer fixed-bottom main-footer text-center 
+    <footer class="footer main-footer text-center 
     custom-font-head fw-bold text-uppercase">
-        <div class="row">
+        <div class="row g-0">
             <!-- About us footer link, that will only display 
             on smaller screen sizes and hidden on larger screens -->
             <div class="col-12 col-md-4 py-1 px-0 d-block d-lg-none">
@@ -234,7 +238,7 @@
         </div>
 
         <!-- This block of code is for the copyright and link to personal portfolio -->
-        <div class="row">
+        <div class="row g-0">
             <div class="col-12 copyright">
                 <a href="https://ifti-khan.github.io/ifti-khan-milestone-project-1/" target="_blank"
                 class="nav-link p-0 black-text">
@@ -247,7 +251,7 @@
     </footer>
 
     <!--Back to top button-->
-    <a id="back-to-top-btn" class="black-text text-center">
+    <a id="back-to-top-btn" class="white-text text-center">
         <i class="fas fa-angle-double-up" aria-hidden="true"></i>
     </a>
 

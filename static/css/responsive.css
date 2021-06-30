@@ -1,3 +1,25 @@
+/* This media query has been added
+for the top header container located
+in index.html */
+@media (min-width: 992px) {
+    .top-head-container {
+        padding-top: 200px;
+    }
+}
+
+/* This media query has been added
+for the top header container located
+in index.html */
+@media (max-width: 991px) {
+    body {
+        height: calc(100vh - 190px);
+    }
+
+    .top-head-container {
+        padding-top: 190px;
+    }
+}
+
 /* Large Smartphones */
 @media (max-width: 425px) {
     /* Main Nav */
