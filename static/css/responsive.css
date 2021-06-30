@@ -45,6 +45,11 @@ in index.html */
     .top-head-container {
         padding-top: 182px;
     }
+
+    /* Carousel captions */
+    .carousel-caption {
+        bottom: 15rem;
+    }
 }
 
 /* Medium Smartphones */
