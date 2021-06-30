@@ -5,18 +5,21 @@ in index.html */
     .top-head-container {
         padding-top: 200px;
     }
+
 }
 
 /* This media query has been added
 for the top header container located
 in index.html */
 @media (max-width: 991px) {
-    body {
-        height: calc(100vh - 190px);
-    }
-
+    /* Header container in index.html */
     .top-head-container {
         padding-top: 190px;
+    }
+
+    .carousel img {
+        height: calc(94vh - 190px);
+        object-fit: cover;
     }
 }
 
@@ -37,6 +40,11 @@ in index.html */
         bottom: 125px;
         right: 5px;
     }
+
+    /* Header container in index.html */
+    .top-head-container {
+        padding-top: 182px;
+    }
 }
 
 /* Medium Smartphones */
@@ -55,6 +63,11 @@ in index.html */
     #back-to-top-btn {
         bottom: 120px;
         right: 5px;
+    }
+
+    /* Header container in index.html */
+    .top-head-container {
+        padding-top: 167px;
     }
     
 }
@@ -79,5 +92,10 @@ in index.html */
     #back-to-top-btn {
         bottom: 115px;
         right: 5px;
+    }
+
+    /* Header container in index.html */
+    .top-head-container {
+        padding-top: 162px;
     }
 }

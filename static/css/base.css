@@ -153,3 +153,21 @@ and add a hover style */
     cursor: pointer;
 }
 
+.carousel img {
+    height: calc(94vh - 204px);
+    object-fit: cover; 
+}
+
+.shop-btn {
+    background-color: #595959;
+    letter-spacing: 3px;
+}
+
+.carousel-caption {
+    bottom: 18rem;
+}
+
+.custom-captions {
+    letter-spacing: 5px;
+}
+

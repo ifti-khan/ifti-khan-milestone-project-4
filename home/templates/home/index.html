@@ -2,34 +2,79 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-12 my-auto text-center">
-                <h1 class="display-4 logo-font black-text custom-font-head">
-                    UR-GYM Online Store
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                    </h4>
+
+<div class="container-fluid h-100 px-0 index-con">
+    <div class="row h-100 g-0">
+        <div class="col-12">
+            <div id="carouselWithCaptions" class="carousel slide carousel-fade pointer-event" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="0" 
+                    class="active border border-dark"></li>
+                    <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="1" 
+                    class="border border-dark"></li>
+                    <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="2" 
+                    class="border border-dark"></li>
+                    <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="3" 
+                    class="border border-dark"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/media/carousel-img1.jpg" class="d-block w-100" alt="Image 1">
+                        <div class="carousel-caption">
+                            <h2 class="custom-captions custom-font-head text-uppercase fw-bold">Look For Something?</h2>
+                            <div class="mb-2">
+                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                    <h6 class="m-0 white-text fw-bold">Shop All Products</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/media/carousel-img2.jpg" class="d-block w-100" alt="Image 2">
+                        <div class="carousel-caption">
+                            <h2 class="custom-captions custom-font-head text-uppercase fw-bold black-text">Need New Gym Clothes?</h2>
+                            <div class="mb-2">
+                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                    <h6 class="m-0 white-text fw-bold">Shop All Clothing</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/media/carousel-img3.jpg" class="d-block w-100" alt="Image 3">
+                        <div class="carousel-caption">
+                            <h2 class="custom-captions custom-font-head text-uppercase fw-bold">Need That Extra Boost?</h2>
+                            <div class="mb-2">
+                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                    <h6 class="m-0 white-text fw-bold">Shop All Supplements</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/media/carousel-img4.jpg" class="d-block w-100" alt="Image 4">
+                        <div class="carousel-caption">
+                            <h2 class="custom-captions custom-font-head text-uppercase fw-bold">Sign Up Today</h2>
+                            <div class="mb-2">
+                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                    <h6 class="m-0 white-text fw-bold">Shop All Memberships</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="row h-50">
-            <div class="col-12 my-auto text-center">
-                <h1 class="display-4 logo-font black-text custom-font-head">
-                    Under Construction
-                </h1>
-            </div>
-        </div>
     </div>
+</div>
+
+
 {% endblock %}
