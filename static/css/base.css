@@ -154,8 +154,8 @@ and add a hover style */
 }
 
 .carousel img {
-    height: calc(94vh - 204px);
-    object-fit: cover; 
+    height: calc(100vh - 204px);
+    object-fit: cover;
 }
 
 .shop-btn {
@@ -164,7 +164,14 @@ and add a hover style */
 }
 
 .carousel-caption {
-    bottom: 18rem;
+    right: 0;
+    left: 0;
+    bottom: 275px;
+}
+
+.custom-captions-white {
+    letter-spacing: 5px;
+    text-shadow: 1px -1px 5px #000000;
 }
 
 .custom-captions {

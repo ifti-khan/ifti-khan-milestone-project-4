@@ -46,9 +46,9 @@ in index.html */
         padding-top: 182px;
     }
 
-    /* Carousel captions */
-    .carousel-caption {
-        bottom: 15rem;
+    /* Index carousel captions */
+    .custom-captions, .custom-captions-white {
+        font-size: 22px;
     }
 }
 
@@ -74,7 +74,11 @@ in index.html */
     .top-head-container {
         padding-top: 167px;
     }
-    
+
+    /* Index carousel captions */
+    .custom-captions, .custom-captions-white {
+        font-size: 24px;
+    }
 }
 
 /* Small Smartphones */
