@@ -857,20 +857,6 @@
         "pk": 62,
         "model": "products.product",
         "fields": {
-            "sku": "ugm0003",
-            "product_name": "3 Month Membership",
-            "product_description": "3 Month Membership",
-            "product_price": 120,
-            "category": 9,
-            "product_rating": 0,
-            "product_image_url": "",
-            "product_image": "ur_gym_three_month.jpg"
-        }
-    },
-    {
-        "pk": 63,
-        "model": "products.product",
-        "fields": {
             "sku": "ugm0004",
             "product_name": "Bronze Membership",
             "product_description": "3 Month Membership",
@@ -882,7 +868,7 @@
         }
     },
     {
-        "pk": 64,
+        "pk": 63,
         "model": "products.product",
         "fields": {
             "sku": "ugm0005",
@@ -896,7 +882,7 @@
         }
     },
     {
-        "pk": 65,
+        "pk": 64,
         "model": "products.product",
         "fields": {
             "sku": "ugm0006",
