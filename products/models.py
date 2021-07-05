@@ -2,6 +2,12 @@ from django.db import models
 
 
 class Category(models.Model):
+
+    # Adding a meta class specifying a verbose name of categories
+    # instead of Django default category name on the admin page
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     # Setting the programmatic name
     category_name = models.CharField(max_length=254)
     # Setting the friendly name
