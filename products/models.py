@@ -25,15 +25,13 @@ class Category(models.Model):
         return self.category_friendly_name
 
 
-"""
-Below you will find the product model which contains
-the key fields to store product information.
-Null and Blank true have been used throughout the model
-fields to make them optional.
-"""
-
-
 class Product(models.Model):
+    """
+    Below you will find the product model which contains
+    the key fields to store product information.
+    Null and Blank true have been used throughout the model
+    fields to make them optional.
+    """
     category = models.ForeignKey(
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     product_name = models.CharField(max_length=254)
