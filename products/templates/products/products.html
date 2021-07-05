@@ -2,19 +2,108 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container top-head-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<!-- This is needed to push the content down
+    under the navigation bar  -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{ products }}
+<!-- Product page container -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Product page heading -->
+        <div class="col text-center my-4">
+            <h2 class="custom-font-head text-uppercase fw-bold product-head">Products</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+    </div>
+
+    <!-- All Products container -->
+    <div class="row">
+        <div class="allproducts-container col-10 offset-1">
+            <div class="row">
+                <!-- Django for loop, looping through the products db -->
+                {% for product in products %}
+                <!-- All Products cols for various screen size devices -->
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+                    <!-- All products card -->
+                    <div class="card h-100 p-1 border-0 rounded-0">
+
+                        <!-- Django if statement to check if there is a product image url and if
+                                true, insert image url into image source from the products db and if false 
+                                then insert the no image url into the image source -->
+                        {% if product.product_image %}
+                        <a href="">
+                            <!-- positioning image to the top of the card and making it fluid
+                                    to resize smoothly on smaller or larger screen devices -->
+                            <img class="card-img-top img-fluid" src="{{ product.product_image.url }}"
+                                alt="{{ product.product_name }}">
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="/media/noimage_img.jpg"
+                                alt="{{ product.product_name }}">
+                        </a>
+                        {% endif %}
+                        <!-- Product name -->
+                        <div class="card-body pb-0">
+                            <p class="mb-0">{{ product.product_name }}</p>
+                        </div>
+                        <!-- card footer to display product price and rating and if there is no rating
+                                given for a product a message of no rating will appear in muted -->
+                        <div class="card-footer text-end pt-0 border-0 bg-white  ">
+                            <div class="row">
+                                <div class="col">
+                                    <p class="lead mb-0 text-left font-weight-bold">£{{ product.product_price }}</p>
+                                    {% if product.product_rating %}
+                                    <small class="text-muted"><i
+                                            class="fas fa-star mr-1"></i>{{ product.product_rating }} / 5</small>
+                                    {% else %}
+                                    <small class="text-muted">No Rating</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- This block of code create a full width horizontal rule after 
+                each row and changes depending on screen size by using a django for
+                loop counter and dividing it by the number of columns, this code has 
+                been taken and modified from the django mini project -->
+
+                <!-- This loop calculation is for small device screen sizes like a smartphone -->
+                {% if forloop.counter|divisibleby:1 %}
+                <div class="col-12 d-sm-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                <!-- This loop calculation is for medium device screen sizes like a tablet -->
+                {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                <!-- This loop calculation is for large device screen sizes like a laptop -->
+                {% if forloop.counter|divisibleby:3 %}
+                <div class="col-12 d-none d-lg-block d-xl-none mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                <!-- This loop calculation is for extra large device screen sizes 
+                like a desktop pc or a large monitor  -->
+                {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-xl-block mb-4">
+                    <hr>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
