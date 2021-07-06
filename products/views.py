@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product
+from .models import Product, Category
 
 # Create your views here.
 
@@ -14,6 +14,16 @@ def all_products(request):
     """
     products = Product.objects.all()
     query = None
+    categories = None
+
+    # This block of code is checking if the request get exists,
+    # then splits the at the commas to make a list and uses that
+    # list to filter the products using the category name from the list
+    if request.GET:
+        if 'category' in request.GET:
+            categories = request.GET['category'].split(',')
+            products = products.filter(category__category_name__in=categories)
+            categories = Category.objects.filter(category_name__in=categories)
 
     # This block of code is checking if the request get exists
     # and uses the search bar name search and assigns to var query
@@ -35,9 +45,12 @@ def all_products(request):
                 product_description__icontains=query)
             products = products.filter(queries)
 
+    # context dictionary with keys and values to be
+    # used in the rendered html template
     context = {
         'products': products,
         'product_search': query,
+        'current_categories': categories,
     }
 
     return render(request, 'products/products.html', context)
