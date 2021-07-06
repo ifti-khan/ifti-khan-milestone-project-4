@@ -82,7 +82,7 @@
             </div>
             <!-- This block of code is for the user product search -->
             <div class="col-12 col-lg-4 mx-auto my-auto py-1 py-lg-4">
-                <form method="GET" action="">
+                <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
                         <input class="form-control border border-white rounded-0" type="text" name="search"
                             placeholder="Search for a product">
@@ -161,9 +161,9 @@
             <a class="navbar-brand text-center white-text my-0 custom-font-head 
             text-uppercase site-logo d-block d-lg-none fs-1" href="{% url 'home' %}">ur-gym</a>
 
-            <!-- This block of code is for the user product search -->
+            <!-- This block of code is for the user product search in the mobile top header -->
             <div class="col-12 col-lg-4 mx-auto my-auto py-1 py-lg-4 d-block d-lg-none">
-                <form method="GET" action="">
+                <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-75 mx-auto">
                         <input class="form-control border border-white rounded-0 fw-bold" type="text" name="search"
                             placeholder="Search for a product">

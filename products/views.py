@@ -1,4 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
+from django.db.models import Q
 from .models import Product
 
 # Create your views here.
@@ -11,9 +13,31 @@ def all_products(request):
     for products.
     """
     products = Product.objects.all()
+    query = None
+
+    # This block of code is checking if the request get exists
+    # and uses the search bar name search and assigns to var query
+    # so that it can be used to search for a product within the
+    # products db. A error message will display if no search word has
+    # been entered and redirected back to the products page.
+    if request.GET:
+        if 'search' in request.GET:
+            query = request.GET['search']
+            if not query:
+                messages.error(
+                    request, "Please type something to search")
+                return redirect(reverse('products'))
+
+            # This block of code uses the user search query and finds
+            # a match to the search query in both the
+            # product name and description which is case insensitive
+            queries = Q(product_name__icontains=query) | Q(
+                product_description__icontains=query)
+            products = products.filter(queries)
 
     context = {
         'products': products,
+        'product_search': query,
     }
 
     return render(request, 'products/products.html', context)
