@@ -15,11 +15,37 @@ def all_products(request):
     products = Product.objects.all()
     query = None
     categories = None
+    sort = None
+    direction = None
 
-    # This block of code is checking if the request get exists,
-    # then splits the at the commas to make a list and uses that
-    # list to filter the products using the category name from the list
+    # Lower is here to get rid of the flaking error message
+    Lower = None
+
     if request.GET:
+        # This block of code check to see if sort is in request.get
+        # then sets it to none and sortkey, then if a user sorts by name
+        # the sortkey will be renamed to lower_name. Then the current list
+        # is annotated with a new field.
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                products = products.annotate(lower_name=Lower('name'))
+
+            # This block of code checks to see if direction is in
+            # request.get and checks to see if the direction is
+            # descending and then orders the products using the
+            # order by model method.
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            products = products.order_by(sortkey)
+
+        # This block of code is checking if the request get exists,
+        # then splits the at the commas to make a list and uses that
+        # list to filter the products using the category name from the list
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__category_name__in=categories)
@@ -45,12 +71,15 @@ def all_products(request):
                 product_description__icontains=query)
             products = products.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     # context dictionary with keys and values to be
     # used in the rendered html template
     context = {
         'products': products,
         'product_search': query,
         'current_categories': categories,
+        'current_sorting': current_sorting
     }
 
     return render(request, 'products/products.html', context)
