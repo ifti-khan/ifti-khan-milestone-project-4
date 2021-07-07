@@ -19,6 +19,16 @@
         <div class="col text-center my-4">
             <h2 class="custom-font-head text-uppercase fw-bold product-head">Products</h2>
             <hr class="w-50 mx-auto">
+
+            <!-- Django for loop using the context var current_categories to display category list
+            in bootstrap buttons  -->
+            {% for c in current_categories %}
+            <a class="category-btns text-decoration-none" href="{% url 'products' %}?category={{ c.category_name }}">
+                <span class="btn btn-secondary btn-sm white-text rounded-0 custom-font-head text-uppercase fw-bold
+                p-2 my-1">{{ c.category_friendly_name }}</span>
+            </a>
+        {% endfor %}
+
         </div>
     </div>
 
@@ -53,15 +63,26 @@
                         <div class="card-body pb-0">
                             <p class="mb-0">{{ product.product_name }}</p>
                         </div>
-                        <!-- card footer to display product price and rating and if there is no rating
+                        <!-- card footer to display product price, category and rating and if there is no rating
                                 given for a product a message of no rating will appear in muted -->
                         <div class="card-footer text-end pt-0 border-0 bg-white  ">
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">£{{ product.product_price }}</p>
+                                    <!-- Django if statement checking to see if the product has a category and then
+                                    displaying under the product price  -->
+                                    {% if product.category %}
+                                    <p class="small my-1">
+                                        <a class="text-muted"
+                                            href="{% url 'products' %}?category={{ product.category.category_name }}">
+                                            <i
+                                                class="fas fa-layer-group me-1"></i>{{ product.category.category_friendly_name }}
+                                        </a>
+                                    </p>
+                                    {% endif %}
                                     {% if product.product_rating %}
-                                    <small class="text-muted"><i
-                                            class="fas fa-star mr-1"></i> {{ product.product_rating|floatformat:0 }} / 5</small>
+                                    <small class="text-muted"><i class="fas fa-star mr-1"></i>
+                                        {{ product.product_rating|floatformat:0 }} / 5</small>
                                     {% else %}
                                     <small class="text-muted">No Rating</small>
                                     {% endif %}

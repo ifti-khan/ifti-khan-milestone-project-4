@@ -183,3 +183,10 @@ and add a hover style */
     letter-spacing: 10px;
 }
 
+.category-btns {
+    letter-spacing: 3px;
+}
+
+.category-btns span:hover {
+    background-color: #000000;
+}
