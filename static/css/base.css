@@ -35,6 +35,14 @@ main {
     color: #ffffff !important;
 }
 
+.text-spacing {
+    letter-spacing: 4px;
+}
+
+.custom-bg {
+    background-color: #595959;
+}
+
 /*This gets rid of all focus outline 
 within the browser on all elements*/
 *:focus,

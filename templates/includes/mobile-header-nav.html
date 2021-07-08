@@ -43,7 +43,7 @@
     <!-- Shopping trolley icon, trolley price and link to the trolley page -->
     <li class="list-inline-item">
         <a class="{% if final_total %}text-info font-weight-bold{% else %}text-black{% endif %} 
-        nav-link d-block" href="#">
+        nav-link d-block" href="{% url 'view_trolley' %}">
             <div class="text-center d-block d-lg-none">
                 <div><i class="fas fa-shopping-cart fa-lg white-text"></i></div>
                 <p class="my-0 white-text">
