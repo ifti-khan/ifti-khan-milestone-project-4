@@ -71,6 +71,15 @@ button:focus {
     letter-spacing: 1px;
 }
 
+.free-delivery-ban {
+    background-color: #e6e6e6;
+}
+
+.free-delivery-ban p {
+    font-size: 14px;
+    letter-spacing: 4px;
+}
+
 .site-logo {
     letter-spacing: 10px;
     font-weight: bold;

@@ -107,4 +107,14 @@ in index.html */
     .top-head-container {
         padding-top: 162px;
     }
+
+    /* Free delivery banner */
+    .free-delivery-ban p {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .free-delivery-ban {
+        padding-bottom: 4px;
+    }
 }
