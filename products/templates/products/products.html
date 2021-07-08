@@ -16,7 +16,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Product page heading -->
-        <div class="col text-center my-4">
+        <div class="col text-center mt-4 mt-lg-5 mb-lg-3">
             <h2 class="custom-font-head text-uppercase fw-bold product-head">Products</h2>
             <hr class="w-50 mx-auto">
 
@@ -35,6 +35,36 @@
     <!-- All Products container -->
     <div class="row">
         <div class="allproducts-container col-10 offset-1">
+            <!-- Sort selector form dropdown -->
+            <div class="row mb-2">
+                <div class="col-12 col-md-6 my-auto order-last d-flex justify-content-center justify-content-md-end">
+                    <!-- Form select and select options -->
+                    <div class="form-select-sort me-lg-3">
+                        <select id="dropdown-sort-selector" class="form-select form-select-sm rounded-0 
+                        border border-{% if current_sorting != 'None' %}{% else %}secondary{% endif %}">
+                            <option value="reset" {% if current_sorting == 'None' %}selected{% endif %}>Sort by...</option>
+                            <option value="product_price-asc" {% if current_sorting == 'product_price_asc' %}selected{% endif %}>Price (low to high)</option>
+                            <option value="product_price-desc" {% if current_sorting == 'product_price_desc' %}selected{% endif %}>Price (high to low)</option>
+                            <option value="product_rating-asc" {% if current_sorting == 'product_rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                            <option value="product_rating-desc" {% if current_sorting == 'product_rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                            <option value="product_name-asc" {% if current_sorting == 'product_name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                            <option value="product_name-desc" {% if current_sorting == 'product_name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                            <option value="category-asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                            <option value="category-desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 order-md-first">
+                    <p class="text-muted text-center text-md-start my-auto ms-lg-3">
+                        <!-- Product home navigation link -->
+                        {% if product_search or current_categories or current_sorting != 'None' %}
+                            <span class="small"><a href="{% url 'products' %}">Products Home</a> <strong>|</strong></span>
+                        {% endif %}
+                        <!-- Product count displaying as a number and also displaying the users typed search query -->
+                        {{ products|length }} Products{% if product_search %} found for <strong>"{{ product_search }}"</strong>{% endif %}
+                    </p>
+                </div>
+            </div>
             <div class="row">
                 <!-- Django for loop, looping through the products db -->
                 {% for product in products %}
@@ -127,4 +157,44 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        // Capturing the change event from the form selector
+        // Also assigning form selector to var called selector and 
+        // var for current windows location url
+        $('#dropdown-sort-selector').change(function() {
+            let formSelector = $(this);
+            let currentUrl = new URL(window.location);
+
+            // Assigning var selectVal the from selector value attributes 
+            let selectVal = formSelector.val();
+            // If the form selector value is not reset then var sort will be the
+            // first split item and var direction will be the second split item.
+            if(selectVal != "reset"){
+                let sort = selectVal.split("-")[0];
+                let direction = selectVal.split("-")[1];
+
+                // Replacing the get parameters in the url with the 
+                // searchParams.set for sort and direction
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                // This replaces the current location url with the 
+                // newly created url from the form sort selector
+                window.location.replace(currentUrl);
+            } else {
+                // This block of code is if the user chooses the reset
+                // option within the form sort selector which will
+                // delete the sort and direction parameters and then
+                // replace the current windows location
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
 {% endblock %}

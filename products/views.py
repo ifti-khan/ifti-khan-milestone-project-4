@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
 from .models import Product, Category
 
 # Create your views here.
@@ -18,9 +19,6 @@ def all_products(request):
     sort = None
     direction = None
 
-    # Lower is here to get rid of the flaking error message
-    Lower = None
-
     if request.GET:
         # This block of code check to see if sort is in request.get
         # then sets it to none and sortkey, then if a user sorts by name
@@ -32,6 +30,9 @@ def all_products(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
+            # This is sort the categories by name instead of id
+            if sortkey == 'category':
+                sortkey = 'category__category_name'
 
             # This block of code checks to see if direction is in
             # request.get and checks to see if the direction is
