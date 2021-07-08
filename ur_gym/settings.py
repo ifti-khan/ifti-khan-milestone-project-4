@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # my created apps for the project
     'home',
     'products',
+    'trolley',
 ]
 
 MIDDLEWARE = [
