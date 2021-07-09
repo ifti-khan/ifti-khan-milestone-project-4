@@ -39,6 +39,10 @@ main {
     letter-spacing: 4px;
 }
 
+.text-spacing-1 {
+    letter-spacing: 1px;
+}
+
 .custom-bg {
     background-color: #595959;
 }
