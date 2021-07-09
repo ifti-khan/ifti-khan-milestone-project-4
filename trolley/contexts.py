@@ -1,5 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from products.models import Product
 
 
 def trolley_contents(request):
@@ -9,6 +11,22 @@ def trolley_contents(request):
     trolley_items = []
     total = 0
     product_count = 0
+    # Getting trolley session if one exist, if not it will
+    # create an empty dictionary
+    trolley = request.session.get('trolley', {})
+
+    # Iterating through all items in the shopping trolley and add
+    # up the total cost, product count and add the product data to the
+    # trolley item list to be shown in the shopping trolley page.
+    for item_id, quantity in trolley.items():
+        product = get_object_or_404(Product, pk=item_id)
+        total += quantity * product.product_price
+        product_count += quantity
+        trolley_items.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'product': product,
+        })
 
     # This block of code is calculates the free delivery limit on orders
     # which is £50 or more and if its not then will charge customers a delivery
