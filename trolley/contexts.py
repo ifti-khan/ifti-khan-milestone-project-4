@@ -15,18 +15,35 @@ def trolley_contents(request):
     # create an empty dictionary
     trolley = request.session.get('trolley', {})
 
-    # Iterating through all items in the shopping trolley and add
-    # up the total cost, product count and add the product data to the
-    # trolley item list to be shown in the shopping trolley page.
-    for item_id, quantity in trolley.items():
-        product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.product_price
-        product_count += quantity
-        trolley_items.append({
-            'item_id': item_id,
-            'quantity': quantity,
-            'product': product,
-        })
+    # Iterating through all items in the shopping trolley and checking
+    # if the item has a size, if no sizes then it will add
+    # up the total cost, quantity and add the product data to the
+    # trolley item list to be shown in the shopping trolley page template.
+    # if it does then it will execute the code block after the else statement
+    for item_id, item_data in trolley.items():
+        if isinstance(item_data, int):
+            product = get_object_or_404(Product, pk=item_id)
+            total += item_data * product.product_price
+            product_count += item_data
+            trolley_items.append({
+                'item_id': item_id,
+                'quantity': item_data,
+                'product': product,
+            })
+        else:
+            # Iterating thorugh the dictionary item_size, then incrementing the
+            # quantity and total accordingly and adding product size to render
+            # to the trolley page template.
+            product = get_object_or_404(Product, pk=item_id)
+            for size, quantity in item_data['item_size'].items():
+                total += quantity * product.product_price
+                product_count += quantity
+                trolley_items.append({
+                    'item_id': item_id,
+                    'quantity': item_data,
+                    'product': product,
+                    'size': size,
+                })
 
     # This block of code is calculates the free delivery limit on orders
     # which is £50 or more and if its not then will charge customers a delivery
