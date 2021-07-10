@@ -40,7 +40,7 @@ def trolley_contents(request):
                 product_count += quantity
                 trolley_items.append({
                     'item_id': item_id,
-                    'quantity': item_data,
+                    'quantity': quantity,
                     'product': product,
                     'size': size,
                 })
