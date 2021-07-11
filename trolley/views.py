@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 # Create your views here.
 
@@ -59,3 +59,56 @@ def add_to_trolley(request, item_id):
 
     request.session['trolley'] = trolley
     return redirect(redirect_url)
+
+
+def adjust_trolley(request, item_id):
+    """
+    Adjust the product quantity to the users specified
+    amount within the shopping trolley
+    """
+
+    quantity = int(request.POST.get('product_quantity'))
+    size = None
+    if 'clothing_sizes' in request.POST:
+        size = request.POST['clothing_sizes']
+    trolley = request.session.get('trolley', {})
+
+    if size:
+        if quantity > 0:
+            trolley[item_id]['item_size'][size] = quantity
+        else:
+            del trolley[item_id]['item_size'][size]
+            if not trolley[item_id]['item_size']:
+                trolley.pop(item_id)
+    else:
+        if quantity > 0:
+            trolley[item_id] = quantity
+        else:
+            trolley.pop(item_id)
+
+    request.session['trolley'] = trolley
+    return redirect(reverse('view_trolley'))
+
+
+def remove_from_trolley(request, item_id):
+    """
+    Remove an item from the shopping trolley
+    """
+    try:
+        size = None
+        if 'clothing_sizes' in request.POST:
+            size = request.POST['clothing_sizes']
+        trolley = request.session.get('trolley', {})
+
+        if size:
+            del trolley[item_id]['item_size'][size]
+            if not trolley[item_id]['item_size']:
+                trolley.pop(item_id)
+        else:
+            trolley.pop(item_id)
+
+        request.session['trolley'] = trolley
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        return HttpResponse(status=e)
