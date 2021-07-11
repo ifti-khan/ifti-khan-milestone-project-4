@@ -4,120 +4,188 @@
 {% block page_header %}
 <!-- This is needed to push the content down
     under the navigation bar  -->
-    <div class="container top-head-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <!-- Shopping trolley container -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <!-- Shopping trolley heading with horizontal rule -->
-                <h2 class="custom-font-head fw-bold text-uppercase text-spacing my-4">Shopping Trolley</h2>
-                <hr>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 text-center">
-                <!-- Django if to check for items in the trolley -->
-                {% if trolley_items %}
-                    <!-- Bootstrap responsive table -->
-                    <div class="table-responsive rounded">
-                        <table class="table table-sm table-borderless">
-                            <!-- Table headings -->
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <!-- Django for loop, looping through the trolley_items list looking
-                            for product to display -->
-                            {% for item in trolley_items %}
-                                <tr>
-                                    <!-- Product image -->
-                                    <td class="p-2 w-25">
-                                        <img class="img-fluid rounded" src="{{ item.product.product_image.url }}">
-                                    </td>
-                                    <!-- Product name, sizes and SKU -->
-                                    <td class="py-3">
-                                        <p class="my-0"><strong>{{ item.product.product_name }}</strong></p>
-                                        <p class="my-0"><strong>Size: </strong>{% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                                        <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
-                                    </td>
-                                    <!-- Product price -->
-                                    <td class="py-3">
-                                        <p class="my-0">£{{ item.product.product_price }}</p>
-                                    </td>
-                                    <!-- Product quantity -->
-                                    <td class="py-3 w-25">
-                                        <p class="my-0">{{ item.quantity }}</p>
-                                    </td>
-                                    <!-- Trolley subtotal -->
-                                    <td class="py-3">
-                                        <p class="my-0">£{{ item.product.product_price }}</p>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            <tr>
-                                <!-- Trolley total -->
-                                <td colspan="6" class="pt-4 text-end">
-                                    <h6 class="fw-bold text-spacing-1">Trolley Total: £{{ total|floatformat:2 }}</h6>
-                                    <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
-                                    else to display the delivery cost -->
-                                    {% if free_delivery == 0 %}
-                                    <h6 class="text-spacing-1">Free Delivery</h6>
-                                    {% else %}
-                                    <h6 class="text-spacing-1">Delivery Cost: £{{ delivery|floatformat:2 }}</h6>
-                                    {% endif %}
-                                    <!-- Final total the full amount to be paid -->
-                                    <h4 class="mt-3 fw-bold text-spacing-1">Final Total: £{{ final_total|floatformat:2 }}</h4>
-                                    {% if free_delivery > 0 %}
-                                        <!-- Free delivery warning if user are spending less than £50 -->
-                                        <p class="my-2 text-danger text-spacing-1">
-                                            Spend <strong>£{{ free_delivery }}</strong> more, to qualify for free delivery
-                                        </p>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <!-- Trolley buttons, one btn to continue shopping and the second btn to proceed
-                                to the checkout page -->
-                                <td colspan="5" class="text-end">
-                                    <a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 btn-lg">
-                                        <span class="icon">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </span>
-                                        <span class="text-uppercase">continue shopping</span>
-                                    </a>
-                                    <a href="" class="btn btn-outline-dark rounded-0 btn-lg">
-                                        <span class="text-uppercase">Secure Checkout</span>
-                                        <span class="icon">
-                                            <i class="fas fa-lock"></i>
-                                        </span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                {% else %}
-                    <!-- If no items are in the shopping trolley then a message will display to the user
-                    informing them of a empty shopping trolley and a button to go back to the products page -->
-                    <p class="fs-4 mt-2 mb-5 text-capitalize">your shopping trolley is empty.</p>
-                    <a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 btn-lg">
-                        <span class="icon"><i class="fas fa-arrow-left"></i></span>
-                        <span class="text-uppercase">continue shopping</span>
-                    </a>
-                {% endif %}
-            </div>
+<!-- Shopping trolley container -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <!-- Shopping trolley heading with horizontal rule -->
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing my-4">Shopping Trolley</h2>
+            <hr>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <!-- Django if to check for items in the trolley -->
+            {% if trolley_items %}
+            <!-- Bootstrap responsive table -->
+            <div class="table-responsive rounded">
+                <table class="table table-sm table-borderless">
+                    <!-- Table headings -->
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <!-- Django for loop, looping through the trolley_items list looking
+                            for product to display -->
+                    {% for item in trolley_items %}
+                    <tr>
+                        <!-- Product image -->
+                        <td class="p-2 w-25">
+                            <img class="img-fluid rounded" src="{{ item.product.product_image.url }}">
+                        </td>
+                        <!-- Product name, sizes and SKU -->
+                        <td class="py-3">
+                            <p class="my-0"><strong>{{ item.product.product_name }}</strong></p>
+                            <p class="my-0"><strong>Size:
+                                </strong>{% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}
+                            </p>
+                            <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                        </td>
+                        <!-- Product price -->
+                        <td class="py-3">
+                            <p class="my-0">£{{ item.product.product_price }}</p>
+                        </td>
+                        <!-- Product quantity with increase and decrease buttons -->
+                        <td class="py-3 w-25">
+                            <form class="form trolley-form" method="POST" action="">
+                                {% csrf_token %}
+                                <div class="form-group w-50 mx-auto">
+                                    <div class="input-group">
+                                        <!-- Decrease amount small button left with minus icon -->
+                                        <div class="input-group-prepend">
+                                            <button class="decrease-qty btn btn-sm btn-dark custom-bg rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="decrease-qty_{{ item.item_id }}">
+                                                <span><i class="fas fa-minus fa-sm"></i></span>
+                                            </button>
+                                        </div>
+                                        <!-- Product quantity input small -->
+                                        <input class="form-control form-control-sm rounded-0 quantity_input"
+                                            type="number" name="product_quantity" value="{{ item.quantity }}" min="1"
+                                            max="99" data-item_id="{{ item.item_id }}"
+                                            id="id_quantity_{{ item.item_id }}">
+                                        <!-- Increase amount small button right with plus icon -->
+                                        <div class="input-group-append">
+                                            <button class="increase-qty btn btn-sm  btn-dark custom-bg rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="increase-qty_{{ item.item_id }}">
+                                                <span><i class="fas fa-plus fa-sm"></i></span>
+                                            </button>
+                                        </div>
+                                        <!-- Hidden size input field used with update and remove for submit -->
+                                        {% if item.product.product_size %}
+                                        <input type="hidden" name="clothing_sizes" value="{{ item.size }}">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Update and remove item button -->
+                            <div class="btn-group mt-2" role="group">
+                                <a class="update-item btn btn-sm p-1 me-5 rounded-0 btn-secondary">Update</a>
+                                <a class="remove-item btn btn-sm p-1 rounded-0 btn-secondary"
+                                    id="remove_{{ item.item_id }}" data-size="{{ item.size }}">Remove</a>
+                            </div>
+                        </td>
+                        <!-- Trolley subtotal -->
+                        <td class="py-3">
+                            <p class="my-0">£{{ item.product.product_price }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <!-- Trolley total -->
+                        <td colspan="6" class="pt-4 text-end">
+                            <h6 class="fw-bold text-spacing-1">Trolley Total: £{{ total|floatformat:2 }}</h6>
+                            <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
+                                    else to display the delivery cost -->
+                            {% if free_delivery == 0 %}
+                            <h6 class="text-spacing-1">Free Delivery</h6>
+                            {% else %}
+                            <h6 class="text-spacing-1">Delivery Cost: £{{ delivery|floatformat:2 }}</h6>
+                            {% endif %}
+                            <!-- Final total the full amount to be paid -->
+                            <h4 class="mt-3 fw-bold text-spacing-1">Final Total: £{{ final_total|floatformat:2 }}</h4>
+                            {% if free_delivery > 0 %}
+                            <!-- Free delivery warning if user are spending less than £50 -->
+                            <p class="my-2 text-danger text-spacing-1">
+                                Spend <strong>£{{ free_delivery }}</strong> more, to qualify for free delivery
+                            </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <!-- Trolley buttons, one btn to continue shopping and the second btn to proceed
+                                to the checkout page -->
+                        <td colspan="5" class="text-end">
+                            <a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 btn-lg">
+                                <span class="icon">
+                                    <i class="fas fa-arrow-left"></i>
+                                </span>
+                                <span class="text-uppercase">continue shopping</span>
+                            </a>
+                            <a href="" class="btn btn-outline-dark rounded-0 btn-lg">
+                                <span class="text-uppercase">Secure Checkout</span>
+                                <span class="icon">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% else %}
+            <!-- If no items are in the shopping trolley then a message will display to the user
+                    informing them of a empty shopping trolley and a button to go back to the products page -->
+            <p class="fs-4 mt-2 mb-5 text-capitalize">your shopping trolley is empty.</p>
+            <a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 btn-lg">
+                <span class="icon"><i class="fas fa-arrow-left"></i></span>
+                <span class="text-uppercase">continue shopping</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- This is for the increase and decrease quantity buttons -->
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/qty_input_btn_script.html' %}
+
+<script type="text/javascript">
+    // This updates the trolley quantity on click
+    $('.update-item').click(function (e) {
+        let form = $(this).prev('.trolley-form');
+        form.submit();
+    })
+
+    // This removes an item and reload the page on click
+    $('.remove-item').click(function (e) {
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = $(this).attr('id').split('remove_')[1];
+        let size = $(this).data('size');
+        let url = `/bag/remove/${itemId}`;
+        let data = {
+            'csrfmiddlewaretoken': csrfToken,
+            'size': size
+        };
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
+    })
+</script>
 {% endblock %}
