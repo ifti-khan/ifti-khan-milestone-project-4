@@ -67,12 +67,18 @@ def adjust_trolley(request, item_id):
     amount within the shopping trolley
     """
 
+    # Setting and initializing variables
     quantity = int(request.POST.get('product_quantity'))
     size = None
+    # Checking if products have a size and creating trolley session
     if 'clothing_sizes' in request.POST:
         size = request.POST['clothing_sizes']
     trolley = request.session.get('trolley', {})
 
+    # If the product has sizes and is greater than zero
+    # then set the product quantity accordingly or update if already
+    # in the shopping trolley or remove it from the shopping trolley
+    # if quantity is below zero.
     if size:
         if quantity > 0:
             trolley[item_id]['item_size'][size] = quantity
@@ -81,12 +87,15 @@ def adjust_trolley(request, item_id):
             if not trolley[item_id]['item_size']:
                 trolley.pop(item_id)
     else:
+        # Same as the above but only for quantity not sizes
         if quantity > 0:
             trolley[item_id] = quantity
         else:
             trolley.pop(item_id)
 
     request.session['trolley'] = trolley
+    # Once the quantity is updated by the user and submitted
+    # they will be taken back to the trolley page
     return redirect(reverse('view_trolley'))
 
 
@@ -94,12 +103,16 @@ def remove_from_trolley(request, item_id):
     """
     Remove an item from the shopping trolley
     """
+    # try block used to catch server errors
     try:
         size = None
+        # Checking if products have a size and creating trolley session
         if 'clothing_sizes' in request.POST:
             size = request.POST['clothing_sizes']
         trolley = request.session.get('trolley', {})
 
+        # If the item has a size remove specific item user has specified
+        # by removing the size key in the size dictionary and empty items
         if size:
             del trolley[item_id]['item_size'][size]
             if not trolley[item_id]['item_size']:
@@ -108,7 +121,10 @@ def remove_from_trolley(request, item_id):
             trolley.pop(item_id)
 
         request.session['trolley'] = trolley
+        # returning a 200 response when item is removed because javascript
+        # is being used
         return HttpResponse(status=200)
 
+    # Returning a 500 server error
     except Exception as e:
-        return HttpResponse(status=e)
+        return HttpResponse(status=500)
