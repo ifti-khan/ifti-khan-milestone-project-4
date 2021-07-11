@@ -79,6 +79,20 @@ in index.html */
     .custom-captions, .custom-captions-white {
         font-size: 24px;
     }
+
+    /* Free delivery banner */
+    .free-delivery-ban p {
+        font-size: 13px;
+    }
+
+    .free-delivery-ban {
+        padding-bottom: 4px;
+    }
+
+    /* Trolley btn */
+    .trolley-btn {
+        margin-top: 16px !important;
+    }
 }
 
 /* Small Smartphones */
