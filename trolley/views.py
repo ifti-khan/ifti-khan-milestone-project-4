@@ -1,4 +1,7 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import (
+    render, redirect, reverse, HttpResponse, get_object_or_404)
+from django.contrib import messages
+from products.models import Product
 
 # Create your views here.
 
@@ -17,6 +20,8 @@ def add_to_trolley(request, item_id):
     Adds a product quantity specified by the user
     to the shopping trolley
     """
+    # Getting the product
+    product = get_object_or_404(Product, pk=item_id)
 
     # This block of code gets the quantity from the form and coverts it
     # from string to integer.
@@ -42,10 +47,19 @@ def add_to_trolley(request, item_id):
         if item_id in list(trolley.keys()):
             if size in trolley[item_id]['item_size'].keys():
                 trolley[item_id]['item_size'][size] += quantity
+                messages.success(
+                    request, f'Updated size {size.upper()} {product.product_name}\
+                        quantity to {trolley[item_id]["item_size"][size]}')
             else:
                 trolley[item_id]['item_size'][size] = quantity
+                messages.success(
+                    request, f'Added size {size.upper()}\
+                        {product.product_name} to your trolley')
         else:
             trolley[item_id] = {'item_size': {size: quantity}}
+            messages.success(
+                    request, f'Added size {size.upper()}\
+                        {product.product_name} to your trolley')
     else:
 
         # This block of code will update the quantity if the same item is
@@ -54,8 +68,13 @@ def add_to_trolley(request, item_id):
         # updated the session and then redirect using the redirect url
         if item_id in list(trolley.keys()):
             trolley[item_id] += quantity
+            messages.success(
+                request, f'Updated {product.product_name}\
+                    quantity to {trolley[item_id]}')
         else:
             trolley[item_id] = quantity
+            messages.success(
+                request, f'Added {product.product_name} to your trolley')
 
     request.session['trolley'] = trolley
     return redirect(redirect_url)
@@ -66,6 +85,9 @@ def adjust_trolley(request, item_id):
     Adjust the product quantity to the users specified
     amount within the shopping trolley
     """
+
+    # Getting the product
+    product = get_object_or_404(Product, pk=item_id)
 
     # Setting and initializing variables
     quantity = int(request.POST.get('product_quantity'))
@@ -82,16 +104,28 @@ def adjust_trolley(request, item_id):
     if size:
         if quantity > 0:
             trolley[item_id]['item_size'][size] = quantity
+            messages.success(
+                request, f'Updated size {size.upper()} {product.product_name}\
+                    quantity to {trolley[item_id]["items_size"][size]}')
         else:
             del trolley[item_id]['item_size'][size]
             if not trolley[item_id]['item_size']:
                 trolley.pop(item_id)
+            messages.success(
+                request, f'Removed size {size.upper()}\
+                    {product.product_name} from your trolley')
     else:
         # Same as the above but only for quantity not sizes
         if quantity > 0:
             trolley[item_id] = quantity
+            messages.success(
+                request, f'Updated {product.product_name}\
+                    quantity to {trolley[item_id]}')
         else:
             trolley.pop(item_id)
+            messages.success(
+                request, f'Removed {product.product_name}\
+                    from your trolley')
 
     request.session['trolley'] = trolley
     # Once the quantity is updated by the user and submitted
@@ -103,6 +137,9 @@ def remove_from_trolley(request, item_id):
     """
     Remove an item from the shopping trolley
     """
+    # Getting the product
+    product = get_object_or_404(Product, pk=item_id)
+
     # try block used to catch server errors
     try:
         size = None
@@ -117,8 +154,13 @@ def remove_from_trolley(request, item_id):
             del trolley[item_id]['item_size'][size]
             if not trolley[item_id]['item_size']:
                 trolley.pop(item_id)
+            messages.success(
+                request, f'Removed size {size.upper()}\
+                    {product.product_name} from your trolley')
         else:
             trolley.pop(item_id)
+            messages.success(
+                request, f'Removed {product.name} from your trolley')
 
         request.session['trolley'] = trolley
         # returning a 200 response when item is removed because javascript
@@ -127,4 +169,5 @@ def remove_from_trolley(request, item_id):
 
     # Returning a 500 server error
     except Exception as e:
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)

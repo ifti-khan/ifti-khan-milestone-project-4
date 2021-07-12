@@ -200,8 +200,31 @@
 
     </header>
 
+    <!-- This block of code is for the toast messages -->
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+        <!-- Django messages have different levels for
+        different classifiers -->
+        {% for message in messages %}
+        <!-- This with statement checks the level for the toasts
+        which are integers -->
+        {% with message.level as level %}
+        <!-- Level 40 = Error -->
+        {% if level == 40 %}
+        {% include 'includes/toasts/error_toast.html' %}
+        <!-- Level 30 = Warning -->
+        {% elif level == 30 %}
+        {% include 'includes/toasts/warning_toast.html' %}
+        <!-- Level 25 = Success -->
+        {% elif level == 25 %}
+        {% include 'includes/toasts/success_toast.html' %}
+        {% else %}
+        <!-- Default toast = info/alert -->
+        {% include 'includes/toasts/info_toast.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% block page_header %}
@@ -263,6 +286,10 @@
     </a>
 
     {% block postloadjs %}
+    <script type="text/javascript">
+        // Initializing the bootstrap toasts 
+        $('.toast').toast('show');
+    </script>
     {% endblock %}
 
 </body>
