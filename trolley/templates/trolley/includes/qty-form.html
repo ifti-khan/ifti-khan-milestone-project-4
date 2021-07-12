@@ -1,0 +1,35 @@
+<!-- Quantity form which include input field, increase and decrease buttons and
+update quantity and remove item buttons -->
+<form class="form update-qty-form" method="POST" action="{% url 'adjust_trolley' item.item_id %}">
+    {% csrf_token %}
+    <div class="form-group w-50 mx-auto">
+        <div class="input-group">
+            <!-- Decrease amount small button left with minus icon -->
+            <div class="input-group-prepend">
+                <button class="decrease-qty btn btn-sm btn-dark custom-bg rounded-0" data-item_id="{{ item.item_id }}"
+                    id="decrease-qty_{{ item.item_id }}">
+                    <span><i class="fas fa-minus fa-sm"></i></span>
+                </button>
+            </div>
+            <!-- Product quantity input small -->
+            <input class="form-control form-control-sm rounded-0 quantity_input" type="number" name="product_quantity"
+                value="{{ item.quantity }}" min="1" max="99" data-item_id="{{ item.item_id }}"
+                id="id_quantity_{{ item.item_id }}">
+            <!-- Increase amount small button right with plus icon -->
+            <div class="input-group-append">
+                <button class="increase-qty btn btn-sm btn-dark custom-bg rounded-0" data-item_id="{{ item.item_id }}"
+                    id="increase-qty_{{ item.item_id }}">
+                    <span><i class="fas fa-plus fa-sm"></i></span>
+                </button>
+            </div>
+            <!-- Hidden size input field used with update and remove for submit -->
+            {% if item.product.product_size %}
+            <input type="hidden" name="clothing_sizes" value="{{ item.size }}">
+            {% endif %}
+        </div>
+    </div>
+</form>
+<!-- Update and remove item button -->
+<a class="update-item btn btn-sm p-1 me-md-0 me-lg-5 mt-2 rounded-0 btn-secondary">Update</a>
+<a class="remove-item btn btn-sm p-1 mt-2 rounded-0 btn-secondary" id="remove_{{ item.item_id }}"
+    data-clothing_sizes="{{ item.size }}">Remove</a>

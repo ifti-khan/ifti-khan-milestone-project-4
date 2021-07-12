@@ -1,0 +1,9 @@
+<!-- Product image which includes an if statement to check if there is an image to display
+and if no image then display the no image image instead -->
+{% if item.product.product_image %}
+<!-- Product Image from database -->
+<img class="img-fluid rounded" src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
+{% else %}
+<!-- No image image from media folder -->
+<img class="img-fluid rounded" src="/media/noimage_img.jpg" alt="{{ item.product.product_name }}">
+{% endif %}
