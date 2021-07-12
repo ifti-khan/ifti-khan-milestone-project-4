@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <!-- Shopping trolley heading with horizontal rule -->
-            <h2 class="custom-font-head fw-bold text-uppercase text-spacing my-4">Shopping Trolley</h2>
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Shopping Trolley</h2>
             <hr>
         </div>
     </div>
@@ -27,8 +27,78 @@
         <div class="col-12 text-center">
             <!-- Django if to check for items in the trolley -->
             {% if trolley_items %}
-            <!-- Bootstrap responsive table -->
-            <div class="table-responsive rounded">
+            <!-- Trolley responsive divs for smaller screen devices -->
+            <div class="d-block d-md-none">
+                <!-- Flush Accordion from bootstrap for shopping trolley summary -->
+                <div class="accordion mb-3" id="trolleySummary">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-trolley-summary">
+                            <!-- Clickable button to show the trolley summary -->
+                            <button class="accordion-button collapsed py-1" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-collapseSummary" aria-expanded="false"
+                                aria-controls="flush-collapseSummary">
+                                <!-- Button text -->
+                                <p class="text-muted fs-5 mt-3 mx-auto ps-2 text-capitalize">Your shopping trolley
+                                    summary</p>
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSummary" class="accordion-collapse collapse"
+                            aria-labelledby="flush-trolley-summary" data-bs-parent="#trolleySummary">
+                            <!-- Flush accordion body containing the main content of the for loop -->
+                            <div class="accordion-body">
+                                {% for item in trolley_items %}
+                                <div class="row">
+                                    <!-- Product image include -->
+                                    <div class="col-10 offset-1 mb-3">
+                                        {% include "trolley/includes/product-image.html" %}
+                                    </div>
+                                    <!-- Product info which include, product name, size and SKU include -->
+                                    <div class="col-12 mb-2">
+                                        {% include "trolley/includes/product-info.html" %}
+                                    </div>
+                                    <!-- Product price, trolley quantity and trolley subtotal -->
+                                    <div class="col-12">
+                                        <p class="my-0"><strong>Price:</strong> £{{ item.product.product_price }}</p>
+                                        <p class="my-0"><strong>Trolley Qty:</strong> {{ item.quantity }}</p>
+                                        <p><strong>Trolley Subtotal:</strong>
+                                            £{{ item.product.product_price | calc_subtotal:item.quantity }}</p>
+                                    </div>
+                                    <!-- Quantity adjust form include -->
+                                    <div class="col-12 col-sm-6">
+                                        <p class="my-0 fw-bold">Adjust Quantity</p>
+                                        {% include "trolley/includes/qty-form.html" %}
+                                    </div>
+                                </div>
+                                <!-- Horizontal rule -->
+                                <div class="row">
+                                    <div class="col-10 offset-1">
+                                        <hr>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Shopping trolley subtotal, delivery charge and final total include -->
+                    <div class="col">
+                        {% include "trolley/includes/trolley-total.html" %}
+                    </div>
+                </div>
+                <!-- Shopping trolley btns include -->
+                <div class="row">
+                    <div class="col">
+                        {% include "trolley/includes/checkout-btns.html" %}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Bootstrap responsive table for medium and larger screen devices -->
+            <div class="table-responsive rounded d-none d-md-block">
                 <table class="table table-sm table-borderless">
                     <!-- Table headings -->
                     <thead>
@@ -41,106 +111,48 @@
                         </tr>
                     </thead>
                     <!-- Django for loop, looping through the trolley_items list looking
-                            for product to display -->
+                    for product info to display, include have been used to make the code
+                    look cleaner and to make the trolley page better responsive on smaller devices -->
                     {% for item in trolley_items %}
                     <tr>
-                        <!-- Product image -->
+                        <!-- Product image from includes product-image.html -->
                         <td class="p-2 w-25">
-                            <img class="img-fluid rounded" src="{{ item.product.product_image.url }}">
+                            {% include "trolley/includes/product-image.html" %}
                         </td>
-                        <!-- Product name, sizes and SKU -->
+                        <!-- Product name, sizes and SKU from includes product-info.html-->
                         <td class="py-3">
-                            <p class="my-0"><strong>{{ item.product.product_name }}</strong></p>
-                            <p class="my-0"><strong>Size:
-                                </strong>{% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}
-                            </p>
-                            <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
+                            {% include "trolley/includes/product-info.html" %}
                         </td>
                         <!-- Product price -->
                         <td class="py-3">
                             <p class="my-0">£{{ item.product.product_price }}</p>
                         </td>
-                        <!-- Product quantity with increase and decrease buttons -->
+                        <!-- Product quantity form includes from qty-form.html -->
                         <td class="py-3 w-25">
-                            <form class="form update-qty-form" method="POST"
-                                action="{% url 'adjust_trolley' item.item_id %}">
-                                {% csrf_token %}
-                                <div class="form-group w-50 mx-auto">
-                                    <div class="input-group">
-                                        <!-- Decrease amount small button left with minus icon -->
-                                        <div class="input-group-prepend">
-                                            <button class="decrease-qty btn btn-sm btn-dark custom-bg rounded-0"
-                                                data-item_id="{{ item.item_id }}" id="decrease-qty_{{ item.item_id }}">
-                                                <span><i class="fas fa-minus fa-sm"></i></span>
-                                            </button>
-                                        </div>
-                                        <!-- Product quantity input small -->
-                                        <input class="form-control form-control-sm rounded-0 quantity_input"
-                                            type="number" name="product_quantity" value="{{ item.quantity }}" min="1"
-                                            max="99" data-item_id="{{ item.item_id }}"
-                                            id="id_quantity_{{ item.item_id }}">
-                                        <!-- Increase amount small button right with plus icon -->
-                                        <div class="input-group-append">
-                                            <button class="increase-qty btn btn-sm btn-dark custom-bg rounded-0"
-                                                data-item_id="{{ item.item_id }}" id="increase-qty_{{ item.item_id }}">
-                                                <span><i class="fas fa-plus fa-sm"></i></span>
-                                            </button>
-                                        </div>
-                                        <!-- Hidden size input field used with update and remove for submit -->
-                                        {% if item.product.product_size %}
-                                        <input type="hidden" name="clothing_sizes" value="{{ item.size }}">
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- Update and remove item button -->
-                            <a class="update-item btn btn-sm p-1 me-5 mt-2 rounded-0 btn-secondary">Update</a>
-                            <a class="remove-item btn btn-sm p-1 mt-2 rounded-0 btn-secondary" id="remove_{{ item.item_id }}"
-                                data-clothing_sizes="{{ item.size }}">Remove</a>
+                            {% include "trolley/includes/qty-form.html" %}
                         </td>
-                        <!-- Trolley subtotal -->
+                        <!-- Trolley subtotal using the trolley_tools to help calculate the subtotal -->
                         <td class="py-3">
                             <p class="my-0">£{{ item.product.product_price | calc_subtotal:item.quantity }}</p>
                         </td>
                     </tr>
+                    <tr>
+                        <!-- Horizontal rule -->
+                        <td colspan="5">
+                            <hr>
+                        </td>
+                    </tr>
                     {% endfor %}
                     <tr>
-                        <!-- Trolley total -->
+                        <!-- Trolley total from includes trolley.total.html -->
                         <td colspan="6" class="pt-4 text-end">
-                            <h6 class="fw-bold text-spacing-1">Trolley Total: £{{ total|floatformat:2 }}</h6>
-                            <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
-                                    else to display the delivery cost -->
-                            {% if free_delivery == 0 %}
-                            <h6 class="text-spacing-1">Free Delivery</h6>
-                            {% else %}
-                            <h6 class="text-spacing-1">Delivery Cost: £{{ delivery|floatformat:2 }}</h6>
-                            {% endif %}
-                            <!-- Final total the full amount to be paid -->
-                            <h4 class="mt-3 fw-bold text-spacing-1">Final Total: £{{ final_total|floatformat:2 }}</h4>
-                            {% if free_delivery > 0 %}
-                            <!-- Free delivery warning if user are spending less than £50 -->
-                            <p class="my-2 text-danger text-spacing-1">
-                                Spend <strong>£{{ free_delivery }}</strong> more, to qualify for free delivery
-                            </p>
-                            {% endif %}
+                            {% include "trolley/includes/trolley-total.html" %}
                         </td>
                     </tr>
                     <tr>
-                        <!-- Trolley buttons, one btn to continue shopping and the second btn to proceed
-                                to the checkout page -->
+                        <!-- Trolley page buttons from includes checkout-btns.html -->
                         <td colspan="5" class="text-end">
-                            <a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 btn-lg">
-                                <span class="icon">
-                                    <i class="fas fa-arrow-left"></i>
-                                </span>
-                                <span class="text-uppercase">continue shopping</span>
-                            </a>
-                            <a href="" class="btn btn-outline-dark rounded-0 btn-lg">
-                                <span class="text-uppercase">Secure Checkout</span>
-                                <span class="icon">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </a>
+                            {% include "trolley/includes/checkout-btns.html" %}
                         </td>
                     </tr>
                 </table>
@@ -156,6 +168,7 @@
             {% endif %}
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
 
@@ -178,7 +191,9 @@
         let size = $(this).data('clothing_sizes');
         let url = `/trolley/remove/${itemId}/`;
         let data = {
-            'csrfmiddlewaretoken': csrfToken, 'clothing_sizes': size};
+            'csrfmiddlewaretoken': csrfToken,
+            'clothing_sizes': size
+        };
 
         $.post(url, data)
             .done(function () {
