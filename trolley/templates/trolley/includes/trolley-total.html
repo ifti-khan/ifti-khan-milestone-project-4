@@ -1,14 +1,14 @@
 <!-- Trolley total, delivery cost and free delivery warning -->
 <h6 class="fw-bold text-spacing-1">Trolley Total: £{{ total|floatformat:2 }}</h6>
 <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
-                                    else to display the delivery cost -->
+else to display the delivery cost -->
 {% if free_delivery == 0 %}
 <h6 class="text-spacing-1">Free Delivery</h6>
 {% else %}
-<h6 class="text-spacing-1">Delivery Cost: £{{ delivery|floatformat:2 }}</h6>
+<h6 class="text-spacing-1">Delivery Charge: £{{ delivery|floatformat:2 }}</h6>
 {% endif %}
 <!-- Final total the full amount to be paid -->
-<h4 class="mt-3 fw-bold text-spacing-1">Final Total: £{{ final_total|floatformat:2 }}</h4>
+<h4 class=" mt-0 mt-md-3 fw-bold text-spacing-1">Final Total: £{{ final_total|floatformat:2 }}</h4>
 {% if free_delivery > 0 %}
 <!-- Free delivery warning if user are spending less than £50 -->
 <p class="my-2 text-danger text-spacing-1">
