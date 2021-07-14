@@ -1,6 +1,7 @@
 from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404)
 from django.contrib import messages
+
 from products.models import Product
 
 # Create your views here.
@@ -17,64 +18,55 @@ def view_trolley(request):
 
 def add_to_trolley(request, item_id):
     """
-    Adds a product quantity specified by the user
-    to the shopping trolley
+    Adding products with and without sizes and quantity specified by the user
+    to the shopping trolley. It does this by getting the qty from the input
+    element and converting it from string to int. Then it checks to see if the
+    product posted has a size or not and is not already in the trolley session.
+    if the product is already in the trolley the quantity will be incremented,
+    or if its a new product it will be added to the shopping trolley. When a
+    product is added to the shopping trolley the user will see a message
+    informing them that the product has been added to the shopping trolley.
     """
-    # Getting the product
-    product = get_object_or_404(Product, pk=item_id)
 
-    # This block of code gets the quantity from the form and coverts it
-    # from string to integer.
-    # It also gets the redirect url from the form and then creates a empty
-    # trolley dictionary session if one has not already been created.
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('product_quantity'))
     redirect_url = request.POST.get('redirect_url')
-
-    # This block of code initializes the size var to none and then checks
-    # to see if the product sizes has been posted to the URL and then
-    # sets size to the size selected from the URL
     size = None
     if 'clothing_sizes' in request.POST:
         size = request.POST['clothing_sizes']
-
     trolley = request.session.get('trolley', {})
 
-    # This block of code will check to see if the same item with the same
-    # size is in the trolley and if it is then the quantity will be incremented
-    # and if not then set it to the quantity the user has chosen. This only
-    # applies to products that have sizes.
     if size:
         if item_id in list(trolley.keys()):
             if size in trolley[item_id]['item_size'].keys():
                 trolley[item_id]['item_size'][size] += quantity
                 messages.success(
-                    request, f'Updated size {size.upper()} {product.product_name}\
-                        quantity to {trolley[item_id]["item_size"][size]}')
+                    request, f'Size {size.upper()} - {product.product_name}\
+                        quantity has been updated to\
+                            {trolley[item_id]["item_size"][size]}')
             else:
                 trolley[item_id]['item_size'][size] = quantity
                 messages.success(
-                    request, f'Added size {size.upper()}\
-                        {product.product_name} to your trolley')
+                    request, f'Size {size.upper()} -\
+                        {product.product_name}, has been added to\
+                            your shopping trolley')
         else:
             trolley[item_id] = {'item_size': {size: quantity}}
             messages.success(
-                    request, f'Added size {size.upper()}\
-                        {product.product_name} to your trolley')
+                request, f'Size {size.upper()} -\
+                        {product.product_name}, has been added to\
+                            your shopping trolley')
     else:
-
-        # This block of code will update the quantity if the same item is
-        # already in the trolley, if not then it will add the item to the
-        # shopping trolley and overwrite the session variable with the
-        # updated the session and then redirect using the redirect url
         if item_id in list(trolley.keys()):
             trolley[item_id] += quantity
             messages.success(
-                request, f'Updated {product.product_name}\
-                    quantity to {trolley[item_id]}')
+                request, f'{product.product_name}\
+                    quantity has been updated to {trolley[item_id]}')
         else:
             trolley[item_id] = quantity
             messages.success(
-                request, f'Added {product.product_name} to your trolley')
+                request, f'{product.product_name}, has been added to\
+                    your shopping trolley')
 
     request.session['trolley'] = trolley
     return redirect(redirect_url)
@@ -82,92 +74,89 @@ def add_to_trolley(request, item_id):
 
 def adjust_trolley(request, item_id):
     """
-    Adjust the product quantity to the users specified
-    amount within the shopping trolley
+    Adjusting the product quantity within the shopping trolley page,
+    for products with sizes and products with no sizes. By checking if
+    the product has a size and if the quantity is greater than zero then
+    add to trolley or update if already in trolley the trolley and
+    display a message to the user. Also if the value is zero and the quantity
+    form is updated it will also remove the product from the shopping trolley.
     """
 
-    # Getting the product
     product = get_object_or_404(Product, pk=item_id)
-
-    # Setting and initializing variables
     quantity = int(request.POST.get('product_quantity'))
     size = None
-    # Checking if products have a size and creating trolley session
     if 'clothing_sizes' in request.POST:
         size = request.POST['clothing_sizes']
     trolley = request.session.get('trolley', {})
 
-    # If the product has sizes and is greater than zero
-    # then set the product quantity accordingly or update if already
-    # in the shopping trolley or remove it from the shopping trolley
-    # if quantity is below zero.
     if size:
         if quantity > 0:
             trolley[item_id]['item_size'][size] = quantity
             messages.success(
-                request, f'Updated size {size.upper()} {product.product_name}\
-                    quantity to {trolley[item_id]["items_size"][size]}')
+                request, f'Size {size.upper()} - {product.product_name}\
+                    quantity has been updated to\
+                        {trolley[item_id]["item_size"][size]}')
         else:
             del trolley[item_id]['item_size'][size]
             if not trolley[item_id]['item_size']:
                 trolley.pop(item_id)
             messages.success(
-                request, f'Removed size {size.upper()}\
-                    {product.product_name} from your trolley')
+                request, f'Size {size.upper()} -\
+                    {product.product_name}, has been removed\
+                from your shopping trolley')
     else:
-        # Same as the above but only for quantity not sizes
         if quantity > 0:
             trolley[item_id] = quantity
             messages.success(
-                request, f'Updated {product.product_name}\
-                    quantity to {trolley[item_id]}')
+                request, f'{product.product_name}\
+                    quantity has been updated to {trolley[item_id]}')
         else:
             trolley.pop(item_id)
             messages.success(
-                request, f'Removed {product.product_name}\
-                    from your trolley')
+                request, f'{product.product_name}, has been removed\
+                from your shopping trolley')
 
     request.session['trolley'] = trolley
-    # Once the quantity is updated by the user and submitted
-    # they will be taken back to the trolley page
+    # Once the user updates the quantity they will
+    # be taken back to the shopping trolley page
     return redirect(reverse('view_trolley'))
 
 
 def remove_from_trolley(request, item_id):
     """
-    Remove an item from the shopping trolley
+    Removing products with sizes and also products with no sizes from
+    the shopping trolley by checking if the product has a size and then
+    removing that specific item from the shopping trolley, or if no sizes
+    then remove from the shopping trolley. Then display a message to the
+    user on successful removal of product from the shopping trolley.
     """
-    # Getting the product
-    product = get_object_or_404(Product, pk=item_id)
-
-    # try block used to catch server errors
+    # Try block used to catch server errors and display an error message
     try:
+        product = get_object_or_404(Product, pk=item_id)
         size = None
-        # Checking if products have a size and creating trolley session
         if 'clothing_sizes' in request.POST:
             size = request.POST['clothing_sizes']
         trolley = request.session.get('trolley', {})
 
-        # If the item has a size remove specific item user has specified
-        # by removing the size key in the size dictionary and empty items
         if size:
             del trolley[item_id]['item_size'][size]
             if not trolley[item_id]['item_size']:
                 trolley.pop(item_id)
             messages.success(
-                request, f'Removed size {size.upper()}\
-                    {product.product_name} from your trolley')
+                request, f'Size {size.upper()} - \
+                    {product.product_name}, has been removed\
+                from your shopping trolley')
         else:
             trolley.pop(item_id)
             messages.success(
-                request, f'Removed {product.name} from your trolley')
+                request, f'{product.product_name}, has been removed\
+                from your shopping trolley')
 
         request.session['trolley'] = trolley
-        # returning a 200 response when item is removed because javascript
-        # is being used
+        # 200 terminal response on successful product removal from trolley
         return HttpResponse(status=200)
 
-    # Returning a 500 server error
+    # 500 terminal response if error removing product from trolley
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
