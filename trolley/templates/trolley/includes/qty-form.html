@@ -23,7 +23,7 @@ update quantity and remove item buttons -->
                 </button>
             </div>
             <!-- Hidden size input field used with update and remove for submit -->
-            {% if item.product.product_size %}
+            {% if item.product.product_sizes %}
             <input type="hidden" name="clothing_sizes" value="{{ item.size }}">
             {% endif %}
         </div>
