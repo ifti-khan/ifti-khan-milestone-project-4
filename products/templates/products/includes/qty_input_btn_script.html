@@ -31,6 +31,11 @@
         $(closestInput).val(currentValue + 1);
         let itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
+
+        // To stop input value going past 99
+        if (currentValue >= 99) {
+            $(closestInput).val(99);
+        }
     });
 
     // This is for the Decrease quantity/minus button on the left
@@ -41,5 +46,10 @@
         $(closestInput).val(currentValue - 1);
         let itemId = $(this).data('item_id');
         handleEnableDisable(itemId);
+
+        // To stop input value going below 0
+        if (currentValue <= 0){
+            $(closestInput).val(0);
+        }
     });
 </script>
