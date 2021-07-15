@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-# All the shopping trolley URLs
+# All shopping trolley app URLs
 urlpatterns = [
     path('', views.view_trolley, name='view_trolley'),
     path('add/<item_id>/', views.add_to_trolley, name='add_to_trolley'),
