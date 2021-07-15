@@ -8,10 +8,20 @@ in index.html */
 
 }
 
+/* Small Laptops */
+@media (max-width: 1024px) {
+    /* Toasts */
+    .message-container {
+        top: 205px;
+        right: 5px;
+    }
+}
+
 /* This media query has been added
 for the top header container located
 in index.html */
 @media (max-width: 991px) {
+
     /* Header container in index.html */
     .top-head-container {
         padding-top: 190px;
@@ -21,15 +31,32 @@ in index.html */
         height: calc(94vh - 190px);
         object-fit: cover;
     }
+
+    /* Toasts */
+    .message-container {
+        top: 225px;
+        right: 5px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    
+    /* Toasts */
+    .message-container {
+        top: 220px;
+        right: 5px;
+    }
 }
 
 /* Large Smartphones */
 @media (max-width: 425px) {
+
     /* Main Nav */
     .nav-link {
         font-size: 16px;
     }
-    
+
     /* Main Footer */
     .main-footer {
         font-size: 14px;
@@ -47,9 +74,22 @@ in index.html */
     }
 
     /* Index carousel captions */
-    .custom-captions, .custom-captions-white {
+    .custom-captions,
+    .custom-captions-white {
         font-size: 22px;
     }
+
+    /* Toasts */
+    .message-container {
+        top: 206px;
+        right: 0px;
+    }
+
+    .toast {
+        width: 100%;
+        margin: 0 auto;
+    }
+
 }
 
 /* Medium Smartphones */
@@ -61,7 +101,7 @@ in index.html */
 
     /* Mobile Toggler */
     .navbar-icon {
-    font-size: 26px;
+        font-size: 26px;
     }
 
     /*Back To Top Button*/
@@ -76,7 +116,8 @@ in index.html */
     }
 
     /* Index carousel captions */
-    .custom-captions, .custom-captions-white {
+    .custom-captions,
+    .custom-captions-white {
         font-size: 24px;
     }
 
@@ -93,6 +134,12 @@ in index.html */
     .trolley-btn {
         margin-top: 16px !important;
     }
+
+    /* Toasts */
+    .message-container {
+        top: 194px;
+        right: 0px;
+    }
 }
 
 /* Small Smartphones */
@@ -108,7 +155,7 @@ in index.html */
     }
 
     .navbar-icon {
-    font-size: 24px;
+        font-size: 24px;
     }
 
     /*Back To Top Button*/
@@ -131,4 +178,11 @@ in index.html */
     .free-delivery-ban {
         padding-bottom: 4px;
     }
+
+    /* Toasts */
+    .message-container {
+        top: 188px;
+        right: 0px;
+    }
+
 }

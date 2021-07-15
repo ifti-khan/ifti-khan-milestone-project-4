@@ -1,13 +1,71 @@
-<div class="toast custom-toast rounded-0 border-top-0 fade show" data-autohide="false">
-    <div class="arrow-up arrow-success"></div>
-    <div class="w-100 toast-capper bg-success"></div>
-    <div class="toast-header bg-white text-dark">
-        <strong class="mr-auto">Success!</strong>
-        <button type="button" class="me-2 mb-1 close text-dark" data-bs-dismiss="toast" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<!-- My custom toast with accessibility attributes to help those with assistive technologies -->
+<div class="toast sucess-toast rounded-0 border border-success border-5 bg-white" role="alert" aria-live="assertive"
+    aria-atomic="true">
+    <!-- Toast header -->
+    <div class="toast-header custom-bg rounded-0">
+        <span class="mx-auto ps-4 custom-font-head fs-6 fw-bold text-uppercase text-spacing-2 white-text">Success</span>
+        <button type="button" class="btn btn-lg white-text custom-bg fw-bold p-1" data-bs-dismiss="toast"
+            aria-label="Close">X</button>
     </div>
-    <div class="toast-body bg-white">
+    <!-- Toast main body -->
+    <div class="toast-body text-center">
+        <!-- Toast message -->
         {{ message }}
     </div>
+    <!-- Django if checks to see if there is a final total, if true it will then render the shopping trolley items -->
+    {% if final_total %}
+    <!-- Shopping trolley item heading with product count -->
+    <p class="text-center fw-bold fs-5 text-spacing-1 mb-0">Your Trolley Items ({{ product_count }})</p>
+    <hr class="w-75 mx-auto mt-1 mb-2">
+    <!-- Shopping trolley items -->
+    <div class="additional-info-con mx-auto px-4 pt-2 pb-0">
+        <!-- Django for loop, looping through the trolley items -->
+        {% for item in trolley_items %}
+        <div class="row">
+            <!-- Toast product image -->
+            <div class="col-4 p-0 pe-2">
+                <img class="w-100" src="{{ item.product.product_image.url }}">
+            </div>
+            <!-- Toast product name, size and quantity -->
+            <div class="col-8 p-0 ps-2 mb-4">
+                <p class="my-0 fw-bold">{{ item.product.product_name }}</p>
+                <p class="my-0">Size:
+                    <!-- Django if checking if there is a size, if not then display N/A -->
+                    {% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                <p class="my-0">Qty: {{ item.quantity }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr class="w-75 mx-auto my-1">
+    <div class="row">
+        <div class="col">
+            <!-- Toast trolley total with a django is to check if the user is spend less than the 
+                free delivery limit, and if the are excluding delivery is shown in the trolley total and 
+                if they spend over the free delivery limit the excluding delivery is not shown in the 
+                trolley total to the user -->
+            <p class="my-2 fw-bold fs-6 text-spacing-1 text-center">
+                Trolley Total{% if free_delivery > 0 %} (Exc. delivery){% endif %}:
+                <span>£{{ total|floatformat:2 }}</span>
+            </p>
+            <!-- Django if that check if the user is spending less than the free delivery amount
+            and if they are, then an info banner will appear informing the user that they need to spend
+            a certain amount more to get free delivery -->
+            {% if free_delivery > 0 %}
+            <p class="m-1 p-2 bg-info text-center text-spacing-1 text-capitalize">
+                Spend <strong>£{{ free_delivery }}</strong> more to get free delivery
+            </p>
+            {% endif %}
+            <!-- View shopping trolley btn -->
+            <div class="text-center mx-1">
+                <a href="{% url 'view_trolley' %}" class="btn btn-dark custom-bg rounded-0 border border-none w-100 mb-1">
+                    <span class="text-uppercase text-spacing-1">view shopping trolley</span>
+                    <span class="icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>

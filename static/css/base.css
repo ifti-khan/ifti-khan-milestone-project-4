@@ -43,6 +43,10 @@ main {
     letter-spacing: 1px;
 }
 
+.text-spacing-2 {
+    letter-spacing: 10px;
+}
+
 .custom-bg {
     background-color: #595959;
 }
@@ -219,12 +223,4 @@ and add a hover style */
     top: 210px;
     right: 5px;
     z-index: 99999999999;
-}
-
-.custom-toast {
-    overflow: visible;
-}
-
-.toast-capper {
-    height: 10px;
 }

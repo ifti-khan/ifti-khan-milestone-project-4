@@ -202,7 +202,8 @@
 
     <!-- This block of code is for the toast messages -->
     {% if messages %}
-    <div class="message-container">
+    <!-- Toast message container -->
+    <div class="message-container p-1 p-md-0">
         <!-- Django messages have different levels for
         different classifiers -->
         {% for message in messages %}
@@ -287,8 +288,16 @@
 
     {% block postloadjs %}
     <script type="text/javascript">
-        // Initializing the bootstrap toasts 
-        $('.toast').toast('show');
+        // Initializing the bootstrap toasts for bootstrap v5 and setting toast options
+        // This code was taken from the bootstrap v5 documentation
+        let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        let toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, {
+                autohide: true,
+                animation: true,
+                delay: 10000,
+            }).show()
+        })
     </script>
     {% endblock %}
 
