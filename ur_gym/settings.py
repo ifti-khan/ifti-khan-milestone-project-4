@@ -57,6 +57,9 @@ INSTALLED_APPS = [
     'products',
     'trolley',
     'checkout',
+
+    # Other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ur_gym.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
     {
@@ -90,6 +95,12 @@ TEMPLATES = [
                 # Shopping trolley context processor
                 'trolley.contexts.trolley_contents',
             ],
+            # Creating a list for the crispy forms tag we want to avaliable to
+            # use in all the projects templates by default
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
