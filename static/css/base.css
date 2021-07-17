@@ -27,6 +27,10 @@ main {
     font-family: 'Poiret One', sans-serif;
 }
 
+.custom-font {
+    font-family: 'Poiret One', sans-serif;
+}
+
 .black-text {
     color: #000000 !important;
 }
@@ -222,5 +226,15 @@ and add a hover style */
     position: fixed;
     top: 210px;
     right: 5px;
+    overflow: auto;
+    max-height: 665px;
+    overflow-x: hidden;
     z-index: 99999999999;
+    /* Setting scroll bar width to none */
+    scrollbar-width: none;
+}
+
+    /* Hiding the scrollbar for the toast messages */
+    .message-container::-webkit-scrollbar {
+    display: none;
 }
