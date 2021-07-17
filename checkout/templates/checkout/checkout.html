@@ -124,11 +124,11 @@
                             then the save delivery info check button will appear-->
 							{% if user.is_authenticated %}
 								<label class="form-check-label" for="id-save-del-info">Save the above delivery information to personal profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-del-info" name="save-del-info" checked>
 							{% else %}
                                 <!-- If the user is not logged in, then the two href links will appear instead,
                                 prompting the user to either register or login to save there delivery info -->
-								<label class="form-check-label" for="id-save-delivery-info">
+								<label class="form-check-label" for="id-save-del-info">
                                     <a class="register-info text-spacing-1" href="{% url 'account_signup' %}">Register</a> or 
                                     <a class="login-info text-spacing-1" href="{% url 'account_login' %}">Login</a> to save the above delivery information
                                 </label>
