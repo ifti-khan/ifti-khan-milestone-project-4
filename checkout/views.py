@@ -3,6 +3,12 @@ from django.contrib import messages
 
 from .forms import OrderForm
 
+import environ
+# This initialise the environment variables
+# which I have set as myenv
+myenv = environ.Env()
+environ.Env.read_env()
+
 
 def checkout(request):
     """
@@ -23,6 +29,10 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
+        # Stripe public key
+        'stripe_public_key': myenv('STRIPE_PUBLIC_KEY'),
+        # Client secret key
+        'client_secret': 'testing client secret key',
     }
 
     return render(request, template, context)

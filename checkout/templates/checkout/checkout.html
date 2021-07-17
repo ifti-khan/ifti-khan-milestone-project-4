@@ -141,11 +141,11 @@
                         <!-- The Stripe card element goes here -->
                         <div class="mb-3" id="card-element"></div>
 
-                        <!-- This is used to display form errors -->
-                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                        <!-- This is used to display stripe card error messages -->
+                        <div class="mb-0 ps-1 text-center text-md-start text-danger" id="card-errors" role="alert"></div>
                     </fieldset>
 
-                    <div class="checkout-back-btn text-center text-md-end mt-5 mb-2">
+                    <div class="checkout-back-btn text-center text-md-end mt-4 mb-2">
                         <!-- Back to shopping trolley button with left arrow icon -->
 						<a href="{% url 'view_trolley' %}" class="btn btn-secondary custom-bg rounded-0">
 							<span class="icon">
@@ -174,4 +174,13 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <!-- Using the Django template filter called json_script to render 
+    Django templates variables for stripe into external javascript files -->
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
