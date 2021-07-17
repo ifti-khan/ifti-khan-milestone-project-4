@@ -185,4 +185,9 @@ in index.html */
         right: 0px;
     }
 
+    /* Checkout Complete btn */
+    .checkout-complete-btn {
+        margin-top: 16px;
+    }
+
 }
