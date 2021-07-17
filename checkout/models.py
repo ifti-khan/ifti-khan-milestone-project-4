@@ -58,8 +58,9 @@ class Order(models.Model):
         the delivery costs. It does this buy using the import sum located
         at the top.
         """
+        # or 0 will prevent an error if the all line items are manually deleted
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
-            'lineitem_total__sum']
+            'lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_LIMIT:
             self.delivery_cost = self.order_total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE / 100
@@ -99,7 +100,7 @@ class OrderLineItem(models.Model):
         method to set the lineitem total and update the order total by
         multiplying the product price and quantity of each line item.
         """
-        self.lineitem_total = self.product.price * self.quantity
+        self.lineitem_total = self.product.product_price * self.quantity
         super().save(*args, **kwargs)
 
     # String method returning the product sku and order number

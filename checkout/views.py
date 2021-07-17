@@ -33,8 +33,8 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email_address': request.POST['email_address'],
             'phone_number': request.POST['phone_number'],
-            'address_line1': request.POST['street_address1'],
-            'address_line2': request.POST['street_address2'],
+            'address_line1': request.POST['address_line1'],
+            'address_line2': request.POST['address_line2'],
             'town_or_city': request.POST['town_or_city'],
             'county': request.POST['county'],
             'postcode': request.POST['postcode'],
@@ -68,7 +68,7 @@ def checkout(request):
                                 order=order,
                                 product=product,
                                 quantity=quantity,
-                                clothing_sizes=size,
+                                product_size=size,
                             )
                             order_line_item.save()
                 # Error message for product if not found in database, the order
