@@ -86,7 +86,7 @@ def checkout(request):
             # the user will be taken to the checkout success page.
             request.session['save_del_info'] = 'save-del-info' in request.POST
             return redirect(
-                reverse('checkout_success', args=[order.order_number]))
+                reverse('checkout_complete', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your order form. \
                 Please check the information you have entered.')
@@ -131,7 +131,7 @@ def checkout(request):
     return render(request, template, context)
 
 
-def checkout_success(request, order_number):
+def checkout_complete(request, order_number):
     """
     This view is for the checkout success letting the user know
     that the payment was successful and order has been completed
@@ -142,7 +142,7 @@ def checkout_success(request, order_number):
     # in the toast message to the user along with additional info
     save_del_info = request.session.get('save_del_info')
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Order successfully processed! \
+    messages.success(request, f'Order successfully completed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email_address}.')
 
@@ -151,7 +151,7 @@ def checkout_success(request, order_number):
         del request.session['trolley']
 
     # Setting the template and context to be rendered
-    template = 'checkout/checkout_success.html'
+    template = 'checkout/checkout_complete.html'
     context = {
         'order': order,
     }
