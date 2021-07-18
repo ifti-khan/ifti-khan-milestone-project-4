@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import (
+    render, redirect, reverse, get_object_or_404, HttpResponse)
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -8,6 +10,32 @@ from products.models import Product
 from trolley.contexts import trolley_contents
 
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_data(request):
+    """
+    This block of code is making a post request with the client secrect key
+    from the payment intent and then splitting secret and storing it pid.
+    Then modifying the payment intent with the metadata which contains the
+    shopping trolley data, if they want to save there delivery info and
+    and the user.
+    """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'trolley': json.dumps(request.session.get('trolley', {})),
+            'save_del_info': request.POST.get('save-del-info'),
+            'username': request.user,
+        })
+        # Setting up error handling with toast messages
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
