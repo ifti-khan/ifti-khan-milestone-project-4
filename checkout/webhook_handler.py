@@ -1,9 +1,12 @@
 from django.http import HttpResponse
 
+# This code was learnt and added from the stripe video section,
+# within the django mini project, specifcally video 10 and 11.
+
 
 class StripeWH_Handler:
     """
-    Handle Stripe webhooks and creates and instance once called.
+    Handles Stripe webhooks.
     """
 
     def __init__(self, request):
@@ -11,8 +14,23 @@ class StripeWH_Handler:
 
     def handle_event(self, event):
         """
-        Handle a generic/unknown/unexpected webhook event from stripe
-        and returns a HTTP response indicating a webhook has been recivied.
+        Handle a generic/unknown/unexpected webhook event
+        """
+        return HttpResponse(
+            content=f'Unhandled webhook received: {event["type"]}',
+            status=200)
+
+    def handle_payment_intent_succeeded(self, event):
+        """
+        Handles the payment_intent.succeeded webhook from Stripe
+        """
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]}',
+            status=200)
+
+    def handle_payment_intent_payment_failed(self, event):
+        """
+        Handles the payment_intent.payment_failed webhook from Stripe
         """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
