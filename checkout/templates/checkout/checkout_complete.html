@@ -23,20 +23,190 @@
                 <h2 class="custom-font-head fw-bold text-center text-uppercase text-spacing mt-5 my-lg-4 mb-4">Thank You For Your Purchase</h2>
                 <hr>
                 <!-- Checkout complete message to user -->
-                <p class="text-center">Your order information is below. A confirmation email will 
+                <p class="text-center">Your order summary is below, and a confirmation email will 
                     be sent to <strong>{{ order.email_address }}</strong>.</p>
             </div>
         </div>
-        <!-- Order summary -->
+        <!-- Order summary section -->
         <div class="row">
-            <div class="col-12">
+            <div class="col-8 offset-2">
                 <!-- Order summary heading -->
                 <h4 class="custom-font-head fw-bold text-center text-uppercase text-spacing my-3">Order Summary</h4>
                 <hr class="order-hr w-25 mx-auto">
+                <!-- Order summary container -->
+                <div class="order-summary-con">
+                    <!-- Order info heading -->
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p class="text-muted my-2">Order Information</p>
+                        </div>
+                    </div>
+                    <!-- Order number and info -->
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p class="mb-0 fw-bold text-center text-md-start">Order Number:</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0 text-truncate d-block d-lg-none">{{ order.order_number }}</p>
+                            <p class="mb-0 d-none d-lg-block">{{ order.order_number }}</p>
+                        </div>
+                    </div>
+                    <!-- Order date and info -->
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <p class="mb-0 fw-bold text-center text-md-start">Order Date:</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.date }}</p>
+                        </div>
+                    </div>
+                    <!-- Order details heading -->
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p class="text-muted my-2">Products Ordered</p>
+                        </div>
+                    </div>
+                    <!-- Django for loop, iteration through the line items and storing in item var -->
+                    {% for item in order.lineitems.all %}
+                    <div class="row">
+                        <!-- Product ordered div containing product name, size -->
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold small">
+                                {{ item.product.product_name }}<br>
+                                {% if item.product_size %} Size: {{ item.product_size|upper }}{% endif %}
+                            </p>
+                        </div>
+                        <!-- Product ordered quantity and product price-->
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="small mb-0">{{ item.quantity }} x £{{ item.product.product_price }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <!-- Delivery info heading -->
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p class="text-muted my-2">Delivery Information</p>
+                        </div>
+                    </div>
+                    <!-- Delivery full name -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Full Name</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.full_name }}</p>
+                        </div>
+                    </div>
+                    <!-- Contact number -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Contact Number</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.phone_number }}</p>
+                        </div>
+                    </div>
+                    <!-- Address line 1 -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Address Line 1</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.address_line1 }}</p>
+                        </div>
+                    </div>
+                    <!-- Django if to check to see if there info 
+                    in address line 2 field and then display it -->
+                    {% if order.street_address2 %}
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Address Line 2</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-endht">
+                            <p class="mb-0">{{ order.address_line2 }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Town or city -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Town or City</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.town_or_city }}</p>
+                        </div>
+                    </div>
+                    <!-- Django if to check to see if there info 
+                    in county field and then display it -->
+                    {% if order.county %}
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">County</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.county }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Django if to check to see if there info 
+                    in postcode field and then display it -->
+                    {% if order.postcode %}
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Postcode</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.postcode }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <!-- Country -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Country</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">{{ order.country }}</p>
+                        </div>
+                    </div>
+                    <!-- Billing information heading -->
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p class="text-muted my-2">Billing Information</p>
+                        </div>
+                    </div>
+                    <!-- Order total -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Order Total</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">£{{ order.order_total }}</p>
+                        </div>
+                    </div>
+                    <!-- Delivery charge -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Delivery</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">£{{ order.delivery_cost }}</p>
+                        </div>
+                    </div>
+                    <!-- Final total -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 text-center text-md-start">
+                            <p class="mb-0 fw-bold">Final Total</p>
+                        </div>
+                        <div class="col-12 col-md-6 text-center text-md-end">
+                            <p class="mb-0">£{{ order.final_total }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Continue shopping and account button -->
-        <div class="row mt-5">
+        <div class="row mt-4 mb-3">
 			<div class="col-12 text-center">
                 <!-- This will take the user back to the all product page -->
 				<a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 my-2">
