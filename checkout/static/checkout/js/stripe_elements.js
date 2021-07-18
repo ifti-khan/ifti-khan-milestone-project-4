@@ -88,6 +88,10 @@ form.addEventListener('submit', function (ev) {
     avoid multiple card submissions*/
     card.update({'disabled': true});
     $('#submit-button').attr('disabled', true);
+    
+    // This is for the spinner overlay, for when a payment is being processed
+    $('#payment-form').fadeToggle(100);
+    $('#spinner-overlay').fadeToggle(100);
 
     // Calling the confirm card payment method
     stripe.confirmCardPayment(clientSecret, {
@@ -106,6 +110,11 @@ form.addEventListener('submit', function (ev) {
                 </span>
             <span>${result.message}</span>`;
             $(displayError).html(html);
+            
+            // This is for the spinner overlay, for when a payment is being processed
+            $('#payment-form').fadeToggle(100);
+            $('#spinner-overlay').fadeToggle(100);
+            
             // Enabling the card element and submit button if there is an error
             card.update({'disabled': false});
             $('#submit-button').attr('disabled', false);

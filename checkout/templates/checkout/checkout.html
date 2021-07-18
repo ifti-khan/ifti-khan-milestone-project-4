@@ -3,8 +3,8 @@
 {% load trolley_tools %}
 
 {% block extra_css %}
-    <!-- Checkout page stylesheet -->
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<!-- Checkout page stylesheet -->
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -17,170 +17,188 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Main checkout container -->
-    <div class="container checkout-con">
-        <div class="row">
-            <div class="col text-center">
-                <!-- Checkout header with horizontal rule -->
-                <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Checkout</h2>
-                <hr>
-            </div>
-        </div>
-        <!-- Order summary section located on the left of the checkout page -->
-        <div class="row">
-            <div class="col-12 col-lg-6 mb-4">
-                <!-- Order summary heading with product count -->
-                <p class="text-muted text-center text-spacing-1">Your Order Summary ({{ product_count }})</p>
-                <div class="row">
-                    <!-- Order summary left column for the trolley items-->
-                    <div class="col-7 offset-2">
-                        <!-- Django if checking if the product count is greater than 1, 
-                        then display trolley items instead or trolley item. -->
-                        {% if product_count > 1 %}
-                        <p class="mb-1 mt-0 small text-muted text-center text-md-start">Trolley Items</p>
-                        {% else %}
-                        <p class="mb-1 mt-0 small text-muted text-center text-md-start">Trolly Item</p>
-                        {% endif %}
-                    </div>
-                    <!-- Order summary right column for the trolley items subtotal -->
-                    <div class="col-3 text-start">
-                        <p class="mb-1 mt-0 small text-muted">Subtotal</p>
-                    </div>
-                </div>
-                <!-- Django for loop, looping through the trolley_items list -->
-                {% for item in trolley_items %}
-                    <div class="row">
-                        <!-- Product image left column with a href link to product details page -->
-                        <div class="col-2 mb-4 pe-0 ps-3 pe-md-3">
-                            <a href="{% url 'product_details' item.product.id %}">
-                                <!-- Django if check to see if there is a product image and if not display the no image image -->
-                                {% if item.product.product_image %}
-                                    <img class="w-100" src="{{ item.product.product_image.url }}" alt="{{ product.product_name }}">
-                                {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ product.product_name }}">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <!-- Product info middle column containing product name, size and quantity -->
-                        <div class="col-7 text-center text-md-start">
-                            <p class="my-0 fw-bold">{{ item.product.product_name }}</p>
-                            <p class="my-0 small">Size: {% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
-                            <p class="mt-0 mb-3 small">Qty: {{ item.quantity }}</p>
-                        </div>
-                        <!-- Trolley subtotal right column -->
-                        <div class="col-3 text-start">
-                            <!-- calculating subtotal using the custom template tag -->
-                            <p class="my-0 small text-muted">£{{ item.product.product_price | calc_subtotal:item.quantity }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-                <hr class="mt-0">
-                <div class="row">
-                    <!-- Column containing order total, delivery charge and final total headings -->
-                    <div class="col-6 text-end pe-1 pe-md-2 col-md-6 col-lg-6 offset-lg-3">
-                        <p class="my-0">Order Total:</p>
-                        <p class="my-0">Delivery:</p>
-                        <p class="my-0 fw-bold">Final Total:</p>
-                    </div>
-                    <!-- Column containing order total, delivery charge and final total figures -->
-                    <div class="col-6 text-start ps-1 ps-md-2 col-md-6 col-lg-3">
-                        <p class="my-0">£{{ total | floatformat:2 }}</p>
-                        <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
-                        else to display the delivery cost -->
-                        {% if free_delivery == 0 %}
-                        <p class="my-0">Free</p>
-                        {% else %}
-                        <p class="my-0">£{{ delivery|floatformat:2 }}</p>
-                        {% endif %}
-                        <p class="my-0 fw-bold">£{{ final_total | floatformat:2 }}</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Checkout delivery information form using crispy forms for bootstrap 5 -->
-            <div class="col-12 col-lg-6">
-                <p class="text-muted text-center text-spacing-1">Please fill out the delivery information in the form below</p>
-                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                    {% csrf_token %}
-                    <!-- Fieldset containing order full name and email address -->
-                    <fieldset class="px-3 mb-3">
-                        <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Personal Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email_address | as_crispy_field }}
-                    </fieldset>
-                    <!-- Fieldset for delivery information containing, phone number, address line 1 and 2, 
-                    town/city, county, postcode and country -->
-                    <fieldset class="px-3 mb-4">
-                        <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Delivery Information</legend>
-                        {{ order_form.phone_number | as_crispy_field }}
-                        {{ order_form.address_line1 | as_crispy_field }}
-                        {{ order_form.address_line2 | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                        <!-- Save delivery information check button -->
-                        <div class="form-check form-check-inline float-end me-4 me-md-0 text-center text-md-end">
-                            <!-- Django if that checks to see if the user is logged in and if they are
-                            then the save delivery info check button will appear-->
-							{% if user.is_authenticated %}
-								<label class="form-check-label" for="id-save-del-info">Save the above delivery information to personal profile</label>
-                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-del-info" name="save-del-info" checked>
-							{% else %}
-                                <!-- If the user is not logged in, then the two href links will appear instead,
-                                prompting the user to either register or login to save there delivery info -->
-								<label class="form-check-label" for="id-save-del-info">
-                                    <a class="register-info text-spacing-1" href="{% url 'account_signup' %}">Register</a> or 
-                                    <a class="login-info text-spacing-1" href="{% url 'account_login' %}">Login</a> to save the above delivery information
-                                </label>
-							{% endif %}
-						</div>
-                    </fieldset>
-                    <!-- This fieldset is for the payment stripe payment section -->
-                    <fieldset class="px-3">
-                        <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Payment Information</legend>
-                        <!-- The Stripe card element goes here -->
-                        <div class="mb-3" id="card-element"></div>
-
-                        <!-- This is used to display stripe card error messages -->
-                        <div class="mb-0 ps-1 text-center text-md-start text-danger" id="card-errors" role="alert"></div>
-                    </fieldset>
-
-                    <div class="checkout-back-btn text-center text-md-end mt-4 mb-2">
-                        <!-- Back to shopping trolley button with left arrow icon -->
-						<a href="{% url 'view_trolley' %}" class="btn btn-secondary custom-bg rounded-0">
-							<span class="icon">
-								<i class="fas fa-arrow-left"></i>
-							</span>
-							<span>Back To Trolley</span>
-						</a>
-                        <!-- Complete purchase order button with circle check icon -->
-						<button id="submit-button" class="checkout-complete-btn btn btn-outline-dark rounded-0">
-							<span class="icon">
-								<i class="fas fa-check-circle"></i>
-							</span>
-                            <span class="fw-bold text-spacing-1">Purchase Order</span>
-							
-						</button>
-                        <!-- A text colour danger/red message informing the user that the payment card will be charged
-                        the final amount with exclamation triangle icon -->
-						<p class="text-danger mt-2 mb-0">
-							<span class="icon">
-								<i class="fas fa-exclamation-triangle"></i>
-							</span>
-							<span>Your card will be charged <strong>£{{ final_total|floatformat:2 }}</strong></span>
-						</p>
-					</div>
-                </form>
-            </div>
+<!-- Main checkout container -->
+<div class="container checkout-con">
+    <div class="row">
+        <div class="col text-center">
+            <!-- Checkout header with horizontal rule -->
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Checkout</h2>
+            <hr>
         </div>
     </div>
+    <!-- Order summary section located on the left of the checkout page -->
+    <div class="row">
+        <div class="col-12 col-lg-6 mb-4">
+            <!-- Order summary heading with product count -->
+            <p class="text-muted text-center text-spacing-1">Your Order Summary ({{ product_count }})</p>
+            <div class="row">
+                <!-- Order summary left column for the trolley items-->
+                <div class="col-7 offset-2">
+                    <!-- Django if checking if the product count is greater than 1, 
+                        then display trolley items instead or trolley item. -->
+                    {% if product_count > 1 %}
+                    <p class="mb-1 mt-0 small text-muted text-center text-md-start">Trolley Items</p>
+                    {% else %}
+                    <p class="mb-1 mt-0 small text-muted text-center text-md-start">Trolly Item</p>
+                    {% endif %}
+                </div>
+                <!-- Order summary right column for the trolley items subtotal -->
+                <div class="col-3 text-start">
+                    <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                </div>
+            </div>
+            <!-- Django for loop, looping through the trolley_items list -->
+            {% for item in trolley_items %}
+            <div class="row">
+                <!-- Product image left column with a href link to product details page -->
+                <div class="col-2 mb-4 pe-0 ps-3 pe-md-3">
+                    <a href="{% url 'product_details' item.product.id %}">
+                        <!-- Django if check to see if there is a product image and if not display the no image image -->
+                        {% if item.product.product_image %}
+                        <img class="w-100" src="{{ item.product.product_image.url }}" alt="{{ product.product_name }}">
+                        {% else %}
+                        <img class="w-100" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ product.product_name }}">
+                        {% endif %}
+                    </a>
+                </div>
+                <!-- Product info middle column containing product name, size and quantity -->
+                <div class="col-7 text-center text-md-start">
+                    <p class="my-0 fw-bold">{{ item.product.product_name }}</p>
+                    <p class="my-0 small">Size:
+                        {% if item.product.product_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                    <p class="mt-0 mb-3 small">Qty: {{ item.quantity }}</p>
+                </div>
+                <!-- Trolley subtotal right column -->
+                <div class="col-3 text-start">
+                    <!-- calculating subtotal using the custom template tag -->
+                    <p class="my-0 small text-muted">£{{ item.product.product_price | calc_subtotal:item.quantity }}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <hr class="mt-0">
+            <div class="row">
+                <!-- Column containing order total, delivery charge and final total headings -->
+                <div class="col-6 text-end pe-1 pe-md-2 col-md-6 col-lg-6 offset-lg-3">
+                    <p class="my-0">Order Total:</p>
+                    <p class="my-0">Delivery:</p>
+                    <p class="my-0 fw-bold">Final Total:</p>
+                </div>
+                <!-- Column containing order total, delivery charge and final total figures -->
+                <div class="col-6 text-start ps-1 ps-md-2 col-md-6 col-lg-3">
+                    <p class="my-0">£{{ total | floatformat:2 }}</p>
+                    <!-- Delivery cost if statement check if delivery equals zero, to then display free delivery
+                        else to display the delivery cost -->
+                    {% if free_delivery == 0 %}
+                    <p class="my-0">Free</p>
+                    {% else %}
+                    <p class="my-0">£{{ delivery|floatformat:2 }}</p>
+                    {% endif %}
+                    <p class="my-0 fw-bold">£{{ final_total | floatformat:2 }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Checkout delivery information form using crispy forms for bootstrap 5 -->
+        <div class="col-12 col-lg-6">
+            <p class="text-muted text-center text-spacing-1">Please fill in your personal and delivery information in the form below
+            </p>
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <!-- Fieldset containing order full name and email address -->
+                <fieldset class="px-3 mb-3">
+                    <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Personal Details
+                    </legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email_address | as_crispy_field }}
+                </fieldset>
+                <!-- Fieldset for delivery information containing, phone number, address line 1 and 2, 
+                    town/city, county, postcode and country -->
+                <fieldset class="px-3 mb-4">
+                    <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Delivery Information
+                    </legend>
+                    {{ order_form.phone_number | as_crispy_field }}
+                    {{ order_form.address_line1 | as_crispy_field }}
+                    {{ order_form.address_line2 | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.county | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                    <!-- Save delivery information check button -->
+                    <div class="form-check form-check-inline float-end me-4 me-md-0 text-center text-md-end">
+                        <!-- Django if that checks to see if the user is logged in and if they are
+                            then the save delivery info check button will appear-->
+                        {% if user.is_authenticated %}
+                        <label class="form-check-label" for="id-save-del-info">Save the above delivery information to
+                            personal profile</label>
+                        <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-del-info"
+                            name="save-del-info" checked>
+                        {% else %}
+                        <!-- If the user is not logged in, then the two href links will appear instead,
+                                prompting the user to either register or login to save there delivery info -->
+                        <label class="form-check-label" for="id-save-del-info">
+                            <a class="register-info text-spacing-1" href="{% url 'account_signup' %}">Register</a> or
+                            <a class="login-info text-spacing-1" href="{% url 'account_login' %}">Login</a> to save the
+                            above delivery information
+                        </label>
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <!-- This fieldset is for the payment stripe payment section -->
+                <fieldset class="px-3">
+                    <legend class="fieldset-label small ps-1 text-center text-md-start text-muted">Payment Information
+                    </legend>
+                    <!-- The Stripe card element goes here -->
+                    <div class="mb-3" id="card-element"></div>
+
+                    <!-- This is used to display stripe card error messages -->
+                    <div class="mb-0 ps-1 text-center text-md-start text-danger" id="card-errors" role="alert"></div>
+                </fieldset>
+
+                <div class="checkout-back-btn text-center text-md-end mt-4 mb-2">
+                    <!-- Back to shopping trolley button with left arrow icon -->
+                    <a href="{% url 'view_trolley' %}" class="btn btn-secondary custom-bg rounded-0">
+                        <span class="icon">
+                            <i class="fas fa-arrow-left"></i>
+                        </span>
+                        <span>Back To Trolley</span>
+                    </a>
+                    <!-- Complete purchase order button with circle check icon -->
+                    <button id="submit-button" class="checkout-complete-btn btn btn-outline-dark rounded-0">
+                        <span class="icon">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
+                        <span class="fw-bold text-spacing-1">Purchase Order</span>
+
+                    </button>
+                    <!-- A text colour danger/red message informing the user that the payment card will be charged
+                        the final amount with exclamation triangle icon -->
+                    <p class="text-danger mt-2 mb-0">
+                        <span class="icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </span>
+                        <span>Your card will be charged <strong>£{{ final_total|floatformat:2 }}</strong></span>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- This block of code is for the spinning loading overlay, when the user
+has filled in the order form and clicks the purchase order button -->
+<div id="spinner-overlay">
+    <h1 class="text-light loading-spinner">
+        <span class="icon">
+            <i class="fas fa-3x fa-circle-notch fa-spin"></i>
+        </span>
+    </h1>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    <!-- Using the Django template filter called json_script to render 
+{{ block.super }}
+<!-- Using the Django template filter called json_script to render 
     Django templates variables for stripe into external javascript files -->
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{{ stripe_public_key|json_script:"id_stripe_public_key" }}
+{{ client_secret|json_script:"id_client_secret" }}
+<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
