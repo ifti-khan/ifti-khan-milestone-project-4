@@ -90,7 +90,7 @@
                         {% if free_delivery == 0 %}
                         <p class="my-0">Free</p>
                         {% else %}
-                        <p class="my-0">Delivery Charge: £{{ delivery|floatformat:2 }}</p>
+                        <p class="my-0">£{{ delivery|floatformat:2 }}</p>
                         {% endif %}
                         <p class="my-0 fw-bold">£{{ final_total | floatformat:2 }}</p>
                     </div>
