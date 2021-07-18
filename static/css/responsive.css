@@ -47,6 +47,11 @@ in index.html */
         top: 220px;
         right: 5px;
     }
+
+    /* Checkout complete page */
+    .order-hr {
+        width: 50% !important;
+    }
 }
 
 /* Large Smartphones */

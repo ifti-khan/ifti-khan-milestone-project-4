@@ -15,27 +15,38 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
+    <!-- Main checkout container -->
+    <div class="container checkout-complete-con">
         <div class="row">
             <div class="col">
+                <!-- Checkout complete heading -->
+                <h2 class="custom-font-head fw-bold text-center text-uppercase text-spacing mt-5 my-lg-4 mb-4">Thank You For Your Purchase</h2>
                 <hr>
-                <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4 mb-4">Thank You For Your Purchase</h2>
-                <hr>
-                <p class="text-black">Your order information is below. A confirmation email will 
+                <!-- Checkout complete message to user -->
+                <p class="text-center">Your order information is below. A confirmation email will 
                     be sent to <strong>{{ order.email_address }}</strong>.</p>
             </div>
         </div>
-
+        <!-- Order summary -->
         <div class="row">
-            <div class="col-12 col-lg-7"></div>
+            <div class="col-12">
+                <!-- Order summary heading -->
+                <h4 class="custom-font-head fw-bold text-center text-uppercase text-spacing my-3">Order Summary</h4>
+                <hr class="order-hr w-25 mx-auto">
+            </div>
         </div>
-        <div class="row">
-			<div class="col-12 col-lg-7 text-right">
+        <!-- Continue shopping and account button -->
+        <div class="row mt-5">
+			<div class="col-12 text-center">
+                <!-- This will take the user back to the all product page -->
 				<a href="{% url 'products' %}" class="btn btn-secondary custom-bg rounded-0 my-2">
-					<span class="icon me-2">
-						<i class="fas fa-arrow-left"></i>
-					</span>
+					<span class="icon"><i class="fas fa-arrow-left"></i></span>
 					<span class="text-uppercase">Continue Shopping</span>
+				</a>
+                <!-- This will take the user to there account page -->
+				<a href="#" class="btn btn-secondary custom-bg rounded-0 my-2">
+					<span class="icon"><i class="fas fa-user"></i></span>
+					<span class="text-uppercase">View Account</span>
 				</a>
 			</div>
 		</div>
