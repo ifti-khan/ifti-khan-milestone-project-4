@@ -234,7 +234,45 @@ and add a hover style */
     scrollbar-width: none;
 }
 
-    /* Hiding the scrollbar for the toast messages */
-    .message-container::-webkit-scrollbar {
+/* Hiding the scrollbar for the toast messages */
+.message-container::-webkit-scrollbar {
+display: none;
+}
+
+/* Search bar */
+input[name='search']::placeholder {
+    color: #9c9c9c;
+}
+
+/* Allauth form styling */
+/* Styles the input box */
+.allauth-form-inner-content input {
+    border-color: #acacac;
+    border-radius: 0;
+    box-shadow: 0 1px 3px 0 #b1b1b1;
+    box-sizing: border-box;
+}
+
+/* Hide form labels */
+.allauth-form-inner-content label:not([for='id_remember']) {
     display: none;
+}
+
+/* Placeholder colour */
+.allauth-form-inner-content input::placeholder {
+    color: #797979;
+}
+
+/* allauth home btn */
+.allauth-home-btn {
+    color: #000000 !important;
+}
+
+.allauth-home-btn:hover {
+    color: #ffffff !important;
+}
+
+/* Allauth headings */
+.allauth-form-inner-content h2 {
+    text-align: center;
 }
