@@ -17,6 +17,8 @@ class UserProfile(models.Model):
 
     # Taken from the order model in checkouts app
     default_full_name = models.CharField(max_length=50, null=True, blank=True)
+    default_email_address = models.EmailField(
+        max_length=254, null=True, blank=True)
     default_phone_number = models.CharField(
         max_length=20, null=True, blank=True)
     default_address_line1 = models.CharField(

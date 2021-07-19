@@ -6,6 +6,9 @@ from .models import UserProfile
 # Importing the user profile form from forms
 from .forms import UserProfileForm
 
+# Importing the order model from the checkout app
+from checkout.models import Order
+
 
 def profile(request):
     """
@@ -35,6 +38,33 @@ def profile(request):
         'form': form,
         'orders': orders,
         'on_profile_page': True
+    }
+
+    return render(request, template, context)
+
+
+def order_history(request, order_number):
+    """
+    Getting past order using the order number, then once the
+    order number is clicked, the user will be taken to the checkout
+    complete page and will be able to see the past order history and
+    a toast message informing users that this is a past order.
+    """
+    order = get_object_or_404(Order, order_number=order_number)
+
+    # Toast message informing user that is a past order
+    messages.info(request, (
+        f'This is a past order, here is your order number {order_number}. '
+        'A confirmation email was sent your on the order date,\
+        please check your emails'
+    ))
+
+    # setting the template url and returning var to
+    # be rendered into the template
+    template = 'checkout/checkout_complete.html'
+    context = {
+        'order': order,
+        'from_profile': True,
     }
 
     return render(request, template, context)

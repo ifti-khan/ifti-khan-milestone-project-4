@@ -31,7 +31,7 @@ class OrderAdmin(admin.ModelAdmin):
                        'stripe_pid')
 
     # Field order in the admin interface
-    fields = ('order_number', 'date', 'full_name',
+    fields = ('order_number', 'user_profile', 'date', 'full_name',
               'email_address', 'phone_number', 'address_line1',
               'address_line2', 'postcode', 'town_or_city',
               'county', 'country', 'order_total', 'delivery_cost',
