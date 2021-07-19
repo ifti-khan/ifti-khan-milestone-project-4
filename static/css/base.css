@@ -230,8 +230,6 @@ and add a hover style */
     max-height: 665px;
     overflow-x: hidden;
     z-index: 99999999999;
-    /* Setting scroll bar width to none */
-    scrollbar-width: none;
 }
 
 /* Hiding the scrollbar for the toast messages */
