@@ -33,7 +33,6 @@ class OrderForm(forms.ModelForm):
             'town_or_city': 'Town or City',
             'county': 'County',
             'postcode': 'Postcode',
-            'country': 'Country',
         }
 
         # Setting the autofocus to true so the cursor will start
@@ -45,10 +44,12 @@ class OrderForm(forms.ModelForm):
         # placeholder attributes from the placeholder dictionary to the
         # form fields, a stripe style class and removing all form field labels
         for field in self.fields:
-            if self.fields[field].required:
-                placeholder = f'{placeholders[field]} *'
-            else:
-                placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
+            if field != 'country':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
+

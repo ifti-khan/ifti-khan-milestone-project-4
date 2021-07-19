@@ -5,6 +5,9 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 
+# Importing country fields for the stripe country dropdown
+from django_countries.fields import CountryField
+
 # Used in the line item model for the foreign keys
 from products.models import Product
 
@@ -25,7 +28,7 @@ class Order(models.Model):
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     county = models.CharField(max_length=80, null=True, blank=True)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
     date = models.DateTimeField(auto_now_add=True)
 
     delivery_cost = models.DecimalField(
