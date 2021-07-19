@@ -51,8 +51,7 @@ select option {
 
 /* Greying out the selected option */
 select:invalid,
-select option[value=""],
-select option[value="*"] {
+select option[value=""] {
     color: #797979 !important;
     border: 1px solid #acacac;   
 }

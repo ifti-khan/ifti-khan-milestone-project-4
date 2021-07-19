@@ -17,8 +17,6 @@ class UserProfile(models.Model):
 
     # Taken from the order model in checkouts app
     default_full_name = models.CharField(max_length=50, null=True, blank=True)
-    default_email_address = models.EmailField(
-        max_length=254, null=True, blank=True)
     default_phone_number = models.CharField(
         max_length=20, null=True, blank=True)
     default_address_line1 = models.CharField(
@@ -30,7 +28,7 @@ class UserProfile(models.Model):
         max_length=40, null=True, blank=True)
     default_county = models.CharField(max_length=80, null=True, blank=True)
     default_country = CountryField(
-        blank_label='Country *', null=True, blank=True)
+        blank_label='Country', null=True, blank=True)
 
     # String method for username
     def __str__(self):

@@ -25,5 +25,33 @@
             <hr>
         </div>
     </div>
-    {{ profile }}
+    <div class="row">
+        <!-- Personal info -->
+        <div class="col-12 col-lg-6">
+            <!-- Personal info heading -->
+            <p class="text-muted">Personal Information</p>
+            <!-- Personal info form using crispy forms -->
+            <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <!-- Update info btn -->
+                <button class="btn btn-dark custom-bg rounded-0 text-uppercase
+                d-flex mx-auto">Update Information</button>
+            </form>
+        </div>
+        <!-- Order history -->
+        <div class="col-12 col-lg-6">
+            <!-- order history heading -->
+            <p class="text-muted">Order History</p>
+            {{ orders }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- This post load js block is for the country dropdown
+select and not selected colour -->
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}

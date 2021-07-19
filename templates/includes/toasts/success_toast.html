@@ -13,7 +13,7 @@
         {{ message }}
     </div>
     <!-- Django if checks to see if there is a final total, if true it will then render the shopping trolley items -->
-    {% if final_total %}
+    {% if final_total and not on_profile_page %}
     <!-- Shopping trolley item heading with product count -->
     <p class="text-center fw-bold fs-5 text-spacing-1 mb-0">Your Trolley Items ({{ product_count }})</p>
     <hr class="w-75 mx-auto mt-1 mb-2">

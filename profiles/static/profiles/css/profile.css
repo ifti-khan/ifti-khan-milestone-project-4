@@ -1,0 +1,26 @@
+/* Profile form inputs */
+#profile-update-form .form-control {
+    color: #000000;
+    border-color: #acacac;
+    border-radius: 0;
+    box-shadow: 0 1px 3px 0 #b1b1b1;
+    box-sizing: border-box;
+}
+
+#profile-update-form input::placeholder {
+    color: #797979;
+}
+
+/* Country dropdown */
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #000000;
+    border-color: #acacac;
+    border-radius: 0;
+    box-shadow: 0 1px 3px 0 #b1b1b1;
+    box-sizing: border-box;
+}
+
+#id_default_country option:first-child {
+    color: #797979;
+}
