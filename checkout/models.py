@@ -11,6 +11,9 @@ from django_countries.fields import CountryField
 # Used in the line item model for the foreign keys
 from products.models import Product
 
+# Importing the users models
+from profiles.models import UserProfile
+
 
 class Order(models.Model):
     """
@@ -20,6 +23,15 @@ class Order(models.Model):
     be auto generated, just like the date field when an order is created
     """
     order_number = models.CharField(max_length=32, null=False, editable=False)
+
+    # Creating the user profile foreign key, set null used so an order history
+    # is kept if the user is deleted, this also allows users without an account
+    # to make purchases. A related name has also been set so that it be used
+    # to access users orders.
+    user_profile = models.ForeignKey(
+        UserProfile, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name='orders')
+
     full_name = models.CharField(max_length=50, null=False, blank=False)
     email_address = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
