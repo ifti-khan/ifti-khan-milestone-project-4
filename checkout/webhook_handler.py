@@ -2,6 +2,7 @@ from django.http import HttpResponse
 
 from .models import Order, OrderLineItem
 from products.models import Product
+from profiles.models import UserProfile
 
 import json
 import time
@@ -48,6 +49,25 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update profile information if save_del_info was checked also
+        # setting user to none so that non logged in users can make a
+        # purchase,
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_del_info:
+                profile.default_full_name = shipping_details.name,
+                profile.default_email_address = shipping_details.email,
+                profile.default_phone_number = shipping_details.phone
+                profile.default_address_line1 = shipping_details.address.line1
+                profile.default_address_line2 = shipping_details.address.line2
+                profile.default_town_or_city = shipping_details.address.city
+                profile.default_county = shipping_details.address.state
+                profile.default_postcode = shipping_details.address.postal_code
+                profile.default_country = shipping_details.address.country
+                profile.save()
 
         # Setting the order exist to false and then using the payment intent
         # to get the order info and then using iexact to make it an exact
@@ -96,6 +116,7 @@ class StripeWH_Handler:
                 # Creating the form to save within the webhook
                 order = Order.objects.create(
                     full_name=shipping_details.name,
+                    user_profile=profile,
                     email_address=billing_details.email,
                     phone_number=shipping_details.phone,
                     country=shipping_details.address.country,
