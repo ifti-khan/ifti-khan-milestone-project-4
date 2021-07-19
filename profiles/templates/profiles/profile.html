@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<!-- Profile page stylesheet -->
+<link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar  -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Main profile container -->
+<div class="container profile-con">
+    <div class="row">
+        <div class="col text-center">
+            <!-- Profile header with horizontal rule -->
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">My Profile</h2>
+            <hr>
+        </div>
+    </div>
+{% endblock %}

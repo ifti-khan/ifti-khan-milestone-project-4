@@ -14,7 +14,7 @@ class UserProfile(models.Model):
 
     # a user can only have one profile
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+
     # Taken from the order model in checkouts app
     default_full_name = models.CharField(max_length=50, null=True, blank=True)
     default_email_address = models.EmailField(
