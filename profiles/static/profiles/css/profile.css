@@ -24,3 +24,14 @@
 #id_default_country option:first-child {
     color: #797979;
 }
+
+/* Order history */
+.order-history {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Hiding the scrollbar for the order history */
+.order-history::-webkit-scrollbar {
+    display: none;
+    }
