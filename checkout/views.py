@@ -71,7 +71,16 @@ def checkout(request):
         order_form = OrderForm(form_data)
         # If the order form is valid then it will be saved
         if order_form.is_valid():
-            order = order_form.save()
+            # This stops multiple save event to the db
+            order = order_form.save(commit=False)
+
+            # Getting the payment intent id, adding the shopping
+            # trolley to the model by getting and dumping the
+            # shopping trolley to json and then saving the order
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_trolley = json.dumps(trolley)
+            order.save()
 
             # This code was taken from my trolley context.py and modified
             for item_id, item_data in trolley.items():

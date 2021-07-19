@@ -27,19 +27,21 @@ class OrderAdmin(admin.ModelAdmin):
     # Un-editable fields
     readonly_fields = ('order_number', 'date',
                        'delivery_cost', 'order_total',
-                       'final_total',)
+                       'final_total', 'original_trolley',
+                       'stripe_pid')
 
     # Field order in the admin interface
     fields = ('order_number', 'date', 'full_name',
               'email_address', 'phone_number', 'address_line1',
               'address_line2', 'postcode', 'town_or_city',
               'county', 'country', 'order_total', 'delivery_cost',
-              'final_total',)
+              'final_total', 'original_trolley', 'stripe_pid')
 
     # To restrict order list columns to only show a few key items
     list_display = ('order_number', 'date', 'full_name',
                     'order_total', 'delivery_cost',
-                    'final_total',)
+                    'final_total', 'original_trolley',
+                    'stripe_pid')
 
     # Orders will be ordered by the most recent date being at the top
     ordering = ('-date',)
