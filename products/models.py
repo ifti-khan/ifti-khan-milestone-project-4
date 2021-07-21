@@ -42,7 +42,8 @@ class Product(models.Model):
     sku = models.CharField(
         max_length=254, null=True, blank=True)
     product_sizes = models.BooleanField(default=False, null=True, blank=True)
-    product_image = models.ImageField(null=True, blank=True)
+    product_image = models.ImageField(null=True, blank=True,
+                                      default='noimage_img.jpg')
     product_image_url = models.URLField(
         max_length=1024, null=True, blank=True)
 
