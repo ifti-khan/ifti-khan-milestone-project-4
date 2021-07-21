@@ -85,8 +85,8 @@ class StripeWH_Handler:
         if username != 'AnonymousUser':
             profile = UserProfile.objects.get(user__username=username)
             if save_del_info:
-                profile.default_full_name = shipping_details.name,
-                profile.default_email_address = shipping_details.email,
+                profile.default_full_name = shipping_details.name
+                profile.default_email_address = billing_details.email
                 profile.default_phone_number = shipping_details.phone
                 profile.default_address_line1 = shipping_details.address.line1
                 profile.default_address_line2 = shipping_details.address.line2
@@ -109,12 +109,12 @@ class StripeWH_Handler:
                     full_name__iexact=shipping_details.name,
                     email_address__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
-                    country__iexact=shipping_details.address.country,
-                    postcode__iexact=shipping_details.address.postal_code,
-                    town_or_city__iexact=shipping_details.address.city,
                     address_line1__iexact=shipping_details.address.line1,
                     address_line2__iexact=shipping_details.address.line2,
+                    town_or_city__iexact=shipping_details.address.city,
                     county__iexact=shipping_details.address.state,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    country__iexact=shipping_details.address.country,
                     final_total=final_total,
                     # adding on the shopping trolley and pid
                     original_trolley=trolley,
@@ -145,15 +145,15 @@ class StripeWH_Handler:
                 # Creating the form to save within the webhook
                 order = Order.objects.create(
                     full_name=shipping_details.name,
-                    user_profile=profile,
                     email_address=billing_details.email,
                     phone_number=shipping_details.phone,
-                    country=shipping_details.address.country,
-                    postcode=shipping_details.address.postal_code,
-                    town_or_city=shipping_details.address.city,
                     address_line1=shipping_details.address.line1,
-                    saddress_line2=shipping_details.address.line2,
+                    address_line2=shipping_details.address.line2,
+                    town_or_city=shipping_details.address.city,
                     county=shipping_details.address.state,
+                    postcode=shipping_details.address.postal_code,
+                    country=shipping_details.address.country,
+                    user_profile=profile,
                     # adding on the shopping trolley and pid
                     original_trolley=trolley,
                     stripe_pid=pid,
@@ -171,7 +171,7 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data['items_size'].items():
+                        for size, quantity in item_data['item_size'].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,

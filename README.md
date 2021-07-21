@@ -62,11 +62,11 @@ The web application will allow all users to find and make a purchase, but regist
 
 * As a user, I want to be able view my order history, so that I can see a record of what I have ordered from the website.
 
-* As a user, I want to be able to view the total number of items in my shopping bag, so that I can how much money I am about to spend on product.
+* As a user, I want to be able to view the total number of items in my shopping trolley, so that I can how much money I am about to spend on product.
 
-* As a user, I want to have the option to amend my shopping bag, so that I can decide whether I would like to remove or update the product quantity of a certain item before purchasing. 
+* As a user, I want to have the option to amend my shopping trolley, so that I can decide whether I would like to remove or update the product quantity of a certain item before purchasing. 
 
-* As a user, I want to be able to enter my card details, so that I can purchase the said items in my shopping bag. 
+* As a user, I want to be able to enter my card details, so that I can purchase the said items in my shopping trolley. 
 * As a user, I want to be able to see an order confirmation once a purchase has been made, so that I can see a visual confirmation of my purchase order. 
 
 * As a user, I want there to be some kind of contact form, so that I can get in contact with the site owner in regard to an issue, product or order.

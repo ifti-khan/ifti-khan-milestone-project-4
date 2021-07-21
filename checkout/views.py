@@ -55,7 +55,7 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     # Checking to see if the method is post and get the
-    # shopping bag session. Also putting the order form data
+    # shopping trolley session. Also putting the order form data
     # into a dictionary.
     if request.method == 'POST':
         trolley = request.session.get('trolley', {})
@@ -88,7 +88,7 @@ def checkout(request):
             # This code was taken from my trolley context.py and modified
             for item_id, item_data in trolley.items():
                 try:
-                    # Getting product id out of the bag, if value is an
+                    # Getting product id out of the trolley, if value is an
                     # integer, then product has no sizes and save the
                     # order line item.
                     product = Product.objects.get(id=item_id)
@@ -115,7 +115,7 @@ def checkout(request):
                 # is deleted and user is taken back to the view trolley page
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your shopping bag, \
+                        "One of the products in your shopping trolley, \
                             could not be found in the database, \
                                 Please call us for assistance!")
                     )
@@ -137,7 +137,7 @@ def checkout(request):
             please add a product to your shopping trolley")
             return redirect(reverse('products'))
 
-        # Storing current shopping trolley in var called current_bag
+        # Storing current shopping trolley in var called current_trolley
         # Also getting the final total key from the current trolley and
         # setting the stripe total as integer
         current_trolley = trolley_contents(request)
