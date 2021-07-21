@@ -26,8 +26,8 @@
                     <img class="img-fluid" src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
                 </a>
                 {% else %}
-                <a href="{{ product.product_image.url }}">
-                    <img class="img-fluid" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ product.product_name }}">
+                <a href="{{ product.product_image.url }}" target="_blank">
+                    <img class="img-fluid" src="{{ MEDIA_URL }noimage_img.jpg" alt="{{ product.product_name }}">
                 </a>
                 {% endif %}
             </div>

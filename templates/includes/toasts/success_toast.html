@@ -24,7 +24,11 @@
         <div class="row">
             <!-- Toast product image -->
             <div class="col-4 p-0 pe-2">
-                <img class="w-100" src="{{ item.product.product_image.url }}">
+                {% if item.product.product_image %}
+                <img class="w-100" src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
+                {% else %}
+                <img class="w-100" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ item.product.product_name }}">
+                {% endif %}
             </div>
             <!-- Toast product name, size and quantity -->
             <div class="col-8 p-0 ps-2 mb-4">
