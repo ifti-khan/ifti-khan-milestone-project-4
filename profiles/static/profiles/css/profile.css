@@ -26,6 +26,17 @@
 }
 
 /* Order history */
+.personal-info {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* Hiding the scrollbar for the order history */
+.personal-info::-webkit-scrollbar {
+    display: none;
+    }
+
+/* Order history */
 .order-history {
     max-height: 200px;
     overflow-y: auto;
