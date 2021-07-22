@@ -102,7 +102,7 @@ def product_details(request, product_id):
 
 
 def add_product(request):
-    """ Add a product to the store """
+    """ Adding a product to the store """
     # Checking if request is post for the form and request files for
     # the image file, which then checks to see if the form is valid, and
     # if so then save the form.
@@ -126,6 +126,44 @@ def add_product(request):
     template = 'products/add_product.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ Editing a product currently in the store """
+    # Getting a product
+    product = get_object_or_404(Product, pk=product_id)
+    # Checking if request is post and request files for
+    # the image file and an instance.
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        # Checking if the form is valid, if valid then save
+        if form.is_valid():
+            form.save()
+            # Message that will inform the admin saying product successfully
+            # updated and returns the admin back to the product details page
+            # of that product they are editing.
+            messages.success(request, f'{product.product_name} has been\
+                successfully updated')
+            return redirect(reverse('product_details', args=[product.id]))
+        else:
+            # Error message to admin if product fails to update
+            messages.error(request, f'{product.product_name} failed to update,\
+                Please make sure the form is correctly filled in.')
+    else:
+        # Creating an instance and a toast message informing admin
+        # which product they are editing
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.product_name}')
+
+    # context dictionary with keys and values to be
+    # used in the rendered html template
+    template = 'products/edit_product.html'
+    context = {
+        'form': form,
+        'product': product,
     }
 
     return render(request, template, context)

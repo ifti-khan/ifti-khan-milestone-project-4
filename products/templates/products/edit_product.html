@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar  -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <!-- Editing a product main container -->
+    <div class="container edit-product-main-con">
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3 text-center">
+                <!-- Admin page headings -->
+                <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Admin - Product Management</h2>
+                <h5 class="text-muted">Editing A Product</h5>
+                <hr>
+            </div>
+        </div>
+        <!-- Add new product form using crispy forms -->
+        <div class="row">
+            <div class="col-12 col-md-6 offset-md-3">
+                <!-- enctype is used for submitting and image file -->
+                <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Add new product form using crispy forms -->
+                    {{ form | crispy }}
+                    <!-- Cancel form btn and adding product btn -->
+                    <div class="text-end">
+                        <a class="btn btn-outline-dark rounded-0" href="{% url 'products' %}">Cancel</a>
+                        <button class="btn btn-dark custom-bg rounded-0" type="submit">Update Product</button>
+                    </div>
+                </form>
+            </div>            
+        </div>
+    </div>
+{% endblock %}
