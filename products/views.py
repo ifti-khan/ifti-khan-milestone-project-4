@@ -102,18 +102,22 @@ def product_details(request, product_id):
 
 
 def add_product(request):
-    """ Adding a product to the store """
+    """
+    Adding a new product to the db, only for admin users
+    """
     # Checking if request is post for the form and request files for
     # the image file, which then checks to see if the form is valid, and
     # if so then save the form.
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             # Message that will inform the admin saying product successfully
-            # added and returns the admin back to the add product page.
-            messages.success(request, 'Product successfully added')
-            return redirect(reverse('add_product'))
+            # added and take the admin to the product details page of
+            # that newly added product.
+            messages.success(
+                request, f'{product.product_name} successfully added')
+            return redirect(reverse('product_details', args=[product.id]))
         else:
             # Error message to admin if product fails to add
             messages.error(request, 'Product failed to add,\
@@ -132,7 +136,9 @@ def add_product(request):
 
 
 def edit_product(request, product_id):
-    """ Editing a product currently in the store """
+    """
+    Editing a new or current product in db, only for admin users
+    """
     # Getting a product
     product = get_object_or_404(Product, pk=product_id)
     # Checking if request is post and request files for
@@ -167,3 +173,18 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+def delete_product(request, product_id):
+    """
+    Delete a current product in db, only for admin users
+    """
+    # Getting product using product id
+    product = get_object_or_404(Product, pk=product_id)
+    # Deleting product
+    product.delete()
+    # Success message to admin informing them that the product
+    # has been deleted using toasts and redirecting them back
+    # to the all products page.
+    messages.success(request, f'{product.product_name} successfully deleted')
+    return redirect(reverse('products'))
