@@ -11,22 +11,25 @@
 {% endblock %}
 
 {% block content %}
+    <!-- Adding new product main container -->
     <div class="container add-product-main-con">
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3 text-center">
-                <hr>
+                <!-- Admin page headings -->
                 <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Admin - Product Management</h2>
                 <h5 class="text-muted">Adding New Product</h5>
                 <hr>
             </div>
         </div>
-
+        <!-- Add new product form using crispy forms -->
         <div class="row">
             <div class="col-12 col-md-6 offset-md-3">
                 <!-- enctype is used for submitting and image file -->
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
+                    <!-- Add new product form using crispy forms -->
                     {{ form | crispy }}
+                    <!-- Cancel form btn and adding product btn -->
                     <div class="text-end">
                         <a class="btn btn-outline-dark rounded-0" href="{% url 'products' %}">Cancel</a>
                         <button class="btn btn-dark custom-bg rounded-0" type="submit">Add Product</button>
