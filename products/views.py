@@ -76,6 +76,7 @@ def all_products(request):
 
     # context dictionary with keys and values to be
     # used in the rendered html template
+    template = 'products/products.html'
     context = {
         'products': products,
         'product_search': query,
@@ -83,7 +84,7 @@ def all_products(request):
         'current_sorting': current_sorting
     }
 
-    return render(request, 'products/products.html', context)
+    return render(request, template, context)
 
 
 def product_details(request, product_id):
@@ -94,11 +95,12 @@ def product_details(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
+    template = 'products/product_details.html'
     context = {
         'product': product,
     }
 
-    return render(request, 'products/product_details.html', context)
+    return render(request, template, context)
 
 
 def add_product(request):
@@ -186,5 +188,7 @@ def delete_product(request, product_id):
     # Success message to admin informing them that the product
     # has been deleted using toasts and redirecting them back
     # to the all products page.
-    messages.success(request, f'{product.product_name} successfully deleted')
+    messages.success(
+        request, f'{product.product_name} has been successfully deleted')
+
     return redirect(reverse('products'))

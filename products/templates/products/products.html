@@ -23,11 +23,12 @@
             <!-- Django for loop using the context var current_categories to display category list
             in bootstrap buttons  -->
             {% for category in current_categories %}
-            <a class="category-btns text-decoration-none" href="{% url 'products' %}?category={{ category.category_name }}">
+            <a class="category-btns text-decoration-none"
+                href="{% url 'products' %}?category={{ category.category_name }}">
                 <span class="btn btn-secondary custom-bg btn-sm white-text rounded-0 custom-font-head text-uppercase fw-bold
                 p-2 mb-3">{{ category.category_friendly_name }}</span>
             </a>
-        {% endfor %}
+            {% endfor %}
 
         </div>
     </div>
@@ -42,15 +43,28 @@
                     <div class="form-select-sort me-lg-3 my-3 my-md-0">
                         <select id="dropdown-sort-selector" class="form-select form-select-sm rounded-0 
                         border border-{% if current_sorting != 'None' %}{% else %}secondary{% endif %}">
-                            <option value="reset" {% if current_sorting == 'None' %}selected{% endif %}>Sort by...</option>
-                            <option value="product_price-asc" {% if current_sorting == 'product_price_asc' %}selected{% endif %}>Price (low to high)</option>
-                            <option value="product_price-desc" {% if current_sorting == 'product_price_desc' %}selected{% endif %}>Price (high to low)</option>
-                            <option value="product_rating-asc" {% if current_sorting == 'product_rating_asc' %}selected{% endif %}>Rating (low to high)</option>
-                            <option value="product_rating-desc" {% if current_sorting == 'product_rating_desc' %}selected{% endif %}>Rating (high to low)</option>
-                            <option value="product_name-asc" {% if current_sorting == 'product_name_asc' %}selected{% endif %}>Name (A-Z)</option>
-                            <option value="product_name-desc" {% if current_sorting == 'product_name_desc' %}selected{% endif %}>Name (Z-A)</option>
-                            <option value="category-asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                            <option value="category-desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+                            <option value="reset" {% if current_sorting == 'None' %}selected{% endif %}>Sort by...
+                            </option>
+                            <option value="product_price-asc"
+                                {% if current_sorting == 'product_price_asc' %}selected{% endif %}>Price (low to high)
+                            </option>
+                            <option value="product_price-desc"
+                                {% if current_sorting == 'product_price_desc' %}selected{% endif %}>Price (high to low)
+                            </option>
+                            <option value="product_rating-asc"
+                                {% if current_sorting == 'product_rating_asc' %}selected{% endif %}>Rating (low to high)
+                            </option>
+                            <option value="product_rating-desc"
+                                {% if current_sorting == 'product_rating_desc' %}selected{% endif %}>Rating (high to
+                                low)</option>
+                            <option value="product_name-asc"
+                                {% if current_sorting == 'product_name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                            <option value="product_name-desc"
+                                {% if current_sorting == 'product_name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                            <option value="category-asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>
+                                Category (A-Z)</option>
+                            <option value="category-desc"
+                                {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
                         </select>
                     </div>
                 </div>
@@ -58,10 +72,11 @@
                     <p class="text-muted text-center text-md-start my-auto ms-lg-3">
                         <!-- Back to all products navigation link -->
                         {% if product_search or current_categories or current_sorting != 'None' %}
-                            <span class="small"><a href="{% url 'products' %}">All Products</a> <strong>|</strong></span>
+                        <span class="small"><a href="{% url 'products' %}">All Products</a> <strong>|</strong></span>
                         {% endif %}
                         <!-- Product count displaying as a number and also displaying the users typed search query -->
-                        {{ products|length }} Products{% if product_search %} found for <strong>"{{ product_search }}"</strong>{% endif %}
+                        {{ products|length }} Products{% if product_search %} found for
+                        <strong>"{{ product_search }}"</strong>{% endif %}
                     </p>
                 </div>
             </div>
@@ -118,6 +133,17 @@
                                     {% else %}
                                     <small class="text-muted">No Rating</small>
                                     {% endif %}
+                                    {% if request.user.is_superuser %}
+                                    <div class="row">
+                                        <div class="col mt-2">
+                                            <!-- Edit and delete buttons for admin -->
+                                            <a href="{% url 'edit_product' product.id %}"
+                                                class="edit-product btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
+                                            <a href="{% url 'delete_product' product.id %}"
+                                                class="delete-product btn btn-sm rounded-0 btn-secondary">Delete</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -162,41 +188,41 @@
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    <script type="text/javascript">
-        // Capturing the change event from the form selector
-        // Also assigning form selector to var called selector and 
-        // var for current windows location url
-        $('#dropdown-sort-selector').change(function() {
-            let formSelector = $(this);
-            let currentUrl = new URL(window.location);
+{{ block.super }}
+<script type="text/javascript">
+    // Capturing the change event from the form selector
+    // Also assigning form selector to var called selector and 
+    // var for current windows location url
+    $('#dropdown-sort-selector').change(function () {
+        let formSelector = $(this);
+        let currentUrl = new URL(window.location);
 
-            // Assigning var selectVal the from selector value attributes 
-            let selectVal = formSelector.val();
-            // If the form selector value is not reset then var sort will be the
-            // first split item and var direction will be the second split item.
-            if(selectVal != "reset"){
-                let sort = selectVal.split("-")[0];
-                let direction = selectVal.split("-")[1];
+        // Assigning var selectVal the from selector value attributes 
+        let selectVal = formSelector.val();
+        // If the form selector value is not reset then var sort will be the
+        // first split item and var direction will be the second split item.
+        if (selectVal != "reset") {
+            let sort = selectVal.split("-")[0];
+            let direction = selectVal.split("-")[1];
 
-                // Replacing the get parameters in the url with the 
-                // searchParams.set for sort and direction
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
+            // Replacing the get parameters in the url with the 
+            // searchParams.set for sort and direction
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction);
 
-                // This replaces the current location url with the 
-                // newly created url from the form sort selector
-                window.location.replace(currentUrl);
-            } else {
-                // This block of code is if the user chooses the reset
-                // option within the form sort selector which will
-                // delete the sort and direction parameters and then
-                // replace the current windows location
-                currentUrl.searchParams.delete("sort");
-                currentUrl.searchParams.delete("direction");
+            // This replaces the current location url with the 
+            // newly created url from the form sort selector
+            window.location.replace(currentUrl);
+        } else {
+            // This block of code is if the user chooses the reset
+            // option within the form sort selector which will
+            // delete the sort and direction parameters and then
+            // replace the current windows location
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
 
-                window.location.replace(currentUrl);
-            }
-        })
-    </script>
+            window.location.replace(currentUrl);
+        }
+    })
+</script>
 {% endblock %}
