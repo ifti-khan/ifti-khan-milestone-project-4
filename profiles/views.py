@@ -9,7 +9,12 @@ from .forms import UserProfileForm
 # Importing the order model from the checkout app
 from checkout.models import Order
 
+# This will stop non logged in users from gaining access
+# to certain urls
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def profile(request):
     """
     Display the user's profile with user profile form.

@@ -3,6 +3,10 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 
+# This will stop non logged in users from gaining access
+# to certain urls
+from django.contrib.auth.decorators import login_required
+
 from .models import Product, Category
 from .forms import ProductForm
 
@@ -103,10 +107,18 @@ def product_details(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def add_product(request):
     """
     Adding a new product to the db, only for admin users
     """
+    # This block of code is to stop non admin users gaining
+    # access to this page with a redirect and a warning message
+    if not request.user.is_superuser:
+        messages.warning(
+            request, 'Access Denied - Only admin users have access')
+        return redirect(reverse('home'))
+
     # Checking if request is post for the form and request files for
     # the image file, which then checks to see if the form is valid, and
     # if so then save the form.
@@ -137,10 +149,18 @@ def add_product(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_product(request, product_id):
     """
     Editing a new or current product in db, only for admin users
     """
+    # This block of code is to stop non admin users gaining
+    # access to this page with a redirect and a warning message
+    if not request.user.is_superuser:
+        messages.warning(
+            request, 'Access Denied - Only admin users have access')
+        return redirect(reverse('home'))
+
     # Getting a product
     product = get_object_or_404(Product, pk=product_id)
     # Checking if request is post and request files for
@@ -177,10 +197,18 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_product(request, product_id):
     """
     Delete a current product in db, only for admin users
     """
+    # This block of code is to stop non admin users gaining
+    # access to this page with a redirect and a warning message
+    if not request.user.is_superuser:
+        messages.warning(
+            request, 'Access Denied - Only admin users have access')
+        return redirect(reverse('home'))
+
     # Getting product using product id
     product = get_object_or_404(Product, pk=product_id)
     # Deleting product
