@@ -274,3 +274,22 @@ input[name='search']::placeholder {
 .allauth-form-inner-content h2 {
     text-align: center;
 }
+
+/* Product Form Image Field Widget */
+
+/* Input made to look like a button */
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Input made to look like a button */
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}

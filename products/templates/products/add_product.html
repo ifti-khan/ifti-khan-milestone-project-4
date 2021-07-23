@@ -27,15 +27,37 @@
                 <!-- enctype is used for submitting and image file -->
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <!-- Add new product form using crispy forms -->
-                    {{ form | crispy }}
+                    {% for field in form %}
+                        <!-- Django if statement to render crispy field if field name
+                        has no product image -->
+                        {% if field.name != 'product_image' %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
                     <!-- Cancel form btn and adding product btn -->
                     <div class="text-end">
                         <a class="btn btn-outline-dark rounded-0" href="{% url 'products' %}">Cancel</a>
                         <button class="btn btn-dark custom-bg rounded-0" type="submit">Add Product</button>
                     </div>
                 </form>
-            </div>            
+            </div>
         </div>
     </div>
+{% endblock %}
+
+<!-- This block of code will notify the admin about the image will be changed to,
+this will show under the input element that has been styled to look like a button -->
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        // Listening for for the change event on the span btn input
+        $('#new-image').change(function() {
+            // Getting the new file name
+            var file = $('#new-image')[0].files[0];
+            // Setting the new filename to the widget template
+            $('#filename').text(`Your new image will be set to: ${file.name}`);
+        });
+    </script>
 {% endblock %}

@@ -1,6 +1,9 @@
 from django import forms
 from .models import Product, Category
 
+# Importing custom image field widget
+from .widgets import CustomClearableFileInput
+
 
 class ProductForm(forms.ModelForm):
 
@@ -8,6 +11,10 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = '__all__'
+
+    # Replacing current image field with custom image widget
+    product_image = forms.ImageField(
+        label='Image', required=False, widget=CustomClearableFileInput)
 
     # Overriding the init method to make changes to the fields
     def __init__(self, *args, **kwargs):
@@ -21,5 +28,5 @@ class ProductForm(forms.ModelForm):
 
         # Updating the categories on the form to use the friendly names
         self.fields['category'].choices = category_friendly_name
-        for field_category_name, field in self.fields.items():
+        for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'rounded-0'
