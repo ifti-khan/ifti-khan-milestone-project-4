@@ -7,8 +7,8 @@ from django.db.models.functions import Lower
 # to certain urls
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Category
-from .forms import ProductForm
+from .models import Product, Category, Review
+from .forms import ProductForm, ReviewForm
 
 
 def all_products(request):
@@ -98,10 +98,14 @@ def product_details(request, product_id):
     """
 
     product = get_object_or_404(Product, pk=product_id)
+    reviews = Review.objects.filter(product=product_id)
+    form = ReviewForm(request.POST)
 
     template = 'products/product_details.html'
     context = {
         'product': product,
+        'reviews': reviews,
+        'form': form,
     }
 
     return render(request, template, context)
@@ -207,7 +211,7 @@ def delete_product(request, product_id):
     if not request.user.is_superuser:
         messages.warning(
             request, 'Access Denied - Only admin users have access')
-        return redirect(reverse('home'))
+        return redirect(reverse('products'))
 
     # Getting product using product id
     product = get_object_or_404(Product, pk=product_id)
@@ -220,3 +224,33 @@ def delete_product(request, product_id):
         request, f'{product.product_name} has been successfully deleted')
 
     return redirect(reverse('products'))
+
+
+@login_required
+def add_review(request, product_id):
+    """ Add a review to a product """
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.message = request.POST["review_message"]
+            data.user = request.user
+            data.product = product
+            data.save()
+            messages.success(request, 'Successfully added review!')
+            return redirect(reverse('product_details', args=[product.id]))
+        else:
+            messages.error(
+                request, 'Failed to add review.')
+    else:
+
+        form = ReviewForm()
+
+    template = 'products/product_details.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
