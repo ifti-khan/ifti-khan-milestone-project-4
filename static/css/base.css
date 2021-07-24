@@ -23,11 +23,7 @@ main {
     flex: 1 0 auto;
 }
 
-.custom-font-head {
-    font-family: 'Poiret One', sans-serif;
-}
-
-.custom-font {
+.custom-font-head, .custom-font {
     font-family: 'Poiret One', sans-serif;
 }
 
