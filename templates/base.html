@@ -110,7 +110,7 @@
                 <ul class="nav custom-font-head text-uppercase justify-content-center justify-content-lg-end">
                     <!-- Account dropdown-->
                     <li class="list-inline-item dropdown mx-0">
-                        <a class="text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
+                        <a class="text-black nav-link" href="" id="user-options" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fas fa-user fa-lg white-text"></i></div>
@@ -125,7 +125,7 @@
                             appropriate account links. -->
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+                            <a href="{% url 'add_product' %}" class="dropdown-item">Administrator</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>

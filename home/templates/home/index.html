@@ -50,7 +50,8 @@
                             <h2 class="custom-captions custom-font-head text-uppercase fw-bold black-text">Need New Gym Clothes?</h2>
                             <div class="mb-2">
                                 <!-- Button that will take the user to the all clothing page -->
-                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                <a href="{% url 'products' %}?category=t_shirts,vest,hoodies,tops,joggers" 
+                                class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
                                     <h6 class="m-0 white-text fw-bold">Shop Clothing</h6>
                                 </a>
                             </div>
@@ -64,7 +65,8 @@
                             <h2 class="custom-captions-white custom-font-head text-uppercase fw-bold">Need That Extra Boost?</h2>
                             <div class="mb-2">
                                 <!-- Button that will take the user to the all supplements page -->
-                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                <a href="{% url 'products' %}?category=powders,vitamins,snacks" 
+                                class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
                                     <h6 class="m-0 white-text fw-bold">Shop Supplements</h6>
                                 </a>
                             </div>
@@ -78,7 +80,8 @@
                             <h2 class="custom-captions-white custom-font-head text-uppercase fw-bold">Sign Up Today</h2>
                             <div class="mb-2">
                                 <!-- Button that will take the user to the memberships page -->
-                                <a href="" class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
+                                <a href="{% url 'products' %}?category=memberships" 
+                                class="shop-btn btn btn-lg rounded-0 custom-font-head fw-bold text-uppercase py-3">
                                     <h6 class="m-0 white-text fw-bold">Shop Memberships</h6>
                                 </a>
                             </div>
