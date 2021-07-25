@@ -1,26 +1,30 @@
-<!-- Making visual changes to the Django clearable file input -->
+<div class="row">
+    <div class="col-12 d-flex flex-column align-items-center d-lg-block">
+        <!-- Making visual changes to the Django clearable file input -->
 {% if widget.is_initial %}
-    <!-- Initial text heading above the image from widgets.py -->
-    <p>{{ widget.initial_text }}:</p>
-    <!-- Image url link that opens a new tab -->
-    <a href="{{ widget.value.url }}">
-        <!-- Current image file -->
-        <img width="100" height="100" class="rounded-0" src="{{ widget.value.url }}">
-    </a>
-    {% if not widget.required %}
-        <!-- widget checkbox and label with custom classes for css styling -->
-        <div class="custom-control custom-checkbox mt-2">
-            <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
-            <label class="custom-control-label text-danger" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
-        </div>
-    {% endif %}<br>
-    <!-- Widget input text from widgets.py -->
-    {{ widget.input_text }}
+<!-- Initial text heading above the image from widgets.py -->
+<p>{{ widget.initial_text }}:</p>
+<!-- Image url link that opens a new tab -->
+<a href="{{ widget.value.url }}">
+    <!-- Current image file -->
+    <img width="100" height="100" class="rounded-0" src="{{ widget.value.url }}">
+</a>
+{% if not widget.required %}
+    <!-- widget checkbox and label with custom classes for css styling -->
+    <div class="custom-control custom-checkbox mt-2">
+        <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+        <label class="custom-control-label text-danger" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+    </div>
+{% endif %}<br>
+<!-- Widget input text from widgets.py -->
+{{ widget.input_text }}
 {% endif %}
 <!-- Input wrapped in a span to make the entire input look like a button 
 that works with the js block in the edit and delete product html files  -->
 <span class="btn btn-dark custom-bg rounded-0 btn-file">
-    Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
+Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
 <!-- New image file name will show here once selected -->
 <strong><p class="text-danger" id="filename"></p></strong>
+    </div>
+</div>
