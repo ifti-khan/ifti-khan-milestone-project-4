@@ -48,7 +48,6 @@ class ReviewForm(forms.ModelForm):
         labels and set autofocus on first field
         """
         super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
         placeholders = {
             'review_title': 'Review Title',
             'review_message': 'Type review here',
