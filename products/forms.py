@@ -53,7 +53,7 @@ class ReviewForm(forms.ModelForm):
         placeholders = {
             'review_title': 'Review Title',
             'review_message': 'Type review here',
-            'review_rating': 'Product Rating',
+            'review_rating': 'Product Rating 1 - 5',
         }
 
         # Attaching placeholders, setting class names and removing form labels

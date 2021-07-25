@@ -223,6 +223,7 @@ which was causing validation issues -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('.review-form-fields').removeClass('is-invalid');
+        $("#id_review_rating").attr({"max" : 5, "min" : 1});
     });
 </script>
 {% include 'products/includes/qty_input_btn_script.html' %}
