@@ -1,6 +1,5 @@
 from django import forms
 from .models import Product, Category, Review
-from crispy_forms.helper import FormHelper
 
 # Importing custom image field widget
 from .widgets import CustomClearableFileInput
@@ -34,29 +33,33 @@ class ProductForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
-
+    # Meta class is excluding specific fields but including the rest
     class Meta:
         model = Review
-        fields = ('review_title', 'review_message', 'review_rating',)
+        exclude = ('product', 'user', 'date_created', 'time_created')
 
-    review_message = forms.CharField(widget=forms.Textarea
-                                     (attrs={"rows": 3}),)
+        # Setting the row attribute for the textarea message
+        review_message = forms.CharField(widget=forms.Textarea
+                                         (attrs={"rows": 3}),)
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Adding placeholders and classes for review form fields,
+        and remove auto-generated crispy form labels
         """
         super().__init__(*args, **kwargs)
+
+        # Setting custom placeholders text
         placeholders = {
             'review_title': 'Review Title',
             'review_message': 'Type review here',
             'review_rating': 'Product Rating',
         }
 
+        # Attaching placeholders, setting class names and removing form labels
         for field in self.fields:
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[
-                field].widget.attrs['class'] = 'rounded-0 review-form'
+                field].widget.attrs['class'] = 'rounded-0 review-form-fields'
             self.fields[field].label = False
