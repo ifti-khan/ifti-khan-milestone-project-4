@@ -1,9 +1,9 @@
-<!-- Django if to check if user is logged in, and if true they will be able to leave a review -->
+<!-- Django if to check if user is logged in, and if true they will be able to write a review -->
 {% if request.user.is_authenticated %}
 <div class="row mt-5">
     <div class="col-lg-6 offset-lg-3">
-        <!-- Leave review heading -->
-        <h4 class="custom-font-head text-uppercase fw-bold product-head text-center mb-4">Leave a review</h4>
+        <!-- Write review heading -->
+        <h4 class="custom-font-head text-uppercase fw-bold product-head text-center mb-4" id="write-review">Write a review</h4>
         <!-- Review form -->
         <form action="{% url 'add_review' product.id %}" method="POST">
             {% csrf_token %}

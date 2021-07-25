@@ -44,8 +44,9 @@
                 {% if product.product_rating %}
                 <div class="mb-2">
                     <small class="text-muted"><i class="fas fa-star mr-1"></i>
-                        {{ product.product_rating|floatformat:0 }} / 5 (0)
-                        <a href="">Write a review</a></small>
+                        {{ product.product_rating|floatformat:0 }} / 5 
+                        <a href="#product-reviews">({{reviews.count}})</a>
+                        <a href="#write-review">Write a review</a></small>
                 </div>
                 {% else %}
                 <small class="text-muted">No Rating</small>
@@ -119,6 +120,9 @@
                                             </span>
                                         </button>
                                     </div>
+                                    <!-- This anchor is here because when clicked above it will perfectly scroll down
+                                    to the product review section and be in the middle of the viewing screen -->
+                                    <div id="product-reviews"></div>
                                     <!-- Product quantity -->
                                     <input class="form-control rounded-0 quantity_input" type="number"
                                         name="product_quantity" value="1" min="1" max="99"
@@ -155,7 +159,6 @@
                 </form>
             </div>
         </div>
-
         <!-- Product Reviews -->
         <div class="reviews-container">
             <div class="row text-center">
@@ -175,7 +178,7 @@
                                 <!-- Left info col -->
                                 <div class="col-12 col-lg-6 tex-center text-lg-start mb-4 mb-lg-0">
                                     <p class="m-0"><strong>Left by:</strong> {{ review.user.username }}</p>
-                                    <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }}</p>
+                                    <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }} / 5</p>
                                     <p class="m-0"><strong>Date:</strong> {{ review.date_created }}</p>
                                     <p class="m-0"><strong>Time:</strong> {{ review.time_created }}</p>
                                 </div>
