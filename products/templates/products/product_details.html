@@ -192,9 +192,9 @@
                             <div class="row mb-4">
                                 <div class="col text-center">
                                     <!-- Edit and delete buttons for user who left the review -->
-                                    <a href="{% url 'edit_product' product.id %}"
+                                    <a href="{% url 'edit_review' product.id review.id %}"
                                         class="edit-review btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
-                                    <a href="{% url 'delete_product' product.id %}"
+                                    <a href="{% url 'delete_review' product.id review.id %}"
                                         class="delete-review btn btn-sm rounded-0 btn-secondary">Delete</a>
                                 </div>
                             </div>
@@ -209,39 +209,7 @@
                     {% endif %}
                 </div>
             </div>
-            <!-- Django if to check if user is logged in, and if true they will be able to leave a review -->
-            {% if request.user.is_authenticated %}
-            <div class="row mt-5">
-                <div class="col-lg-6 offset-lg-3">
-                    <!-- Leave review heading -->
-                    <h4 class="custom-font-head text-uppercase fw-bold product-head text-center mb-4">Leave a review</h4>
-                    <!-- Review form -->
-                    <form action="{% url 'add_review' product.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <!-- Crispy form review title -->
-                            <div class="col-12 col-md-10 col-lg-8 mx-auto mx-lg-0">
-                                {{ form.review_title|as_crispy_field }}
-                            </div>
-                            <!-- Crispy form product rating -->
-                            <div class="col-12 col-md-10 col-lg-4 mx-auto mx-lg-0">
-                                {{ form.review_rating|as_crispy_field }}
-                            </div>
-                        </div>
-                        <!-- Crispy form review textarea -->
-                        <div class="col-12 col-md-10 col-lg-12 mx-auto mx-lg-0">
-                        {{ form.review_message|as_crispy_field }}
-                        </div>
-                        <!-- Form submit button -->
-                        <input type="submit" class="btn btn-dark custom-bg rounded-0 float-lg-end d-block mx-auto mx-lg-0 mb-4" value="Submit Review">
-                    </form>
-                </div>
-            </div>
-            {% else %}
-            <!-- Message informing user if they want to leave a review they have to be logged in or registered -->
-            <p class="text-center my-4">To leave a review for this product, you have to <a href="{% url 'account_login' %}">login</a>, or
-                have a <a href="{% url 'account_signup' %}">registered</a> account with us.</p>
-            {% endif %}
+            {% include "products/includes/add_review.html" %}
         </div>
     </div>
 </div>

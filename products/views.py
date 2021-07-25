@@ -248,9 +248,55 @@ def add_review(request, product_id):
 
         form = ReviewForm()
 
-    template = 'products/product_details.html'
+    template = 'products/includes/add_review.html'
     context = {
         'form': form,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_review(request, product_id, review_id):
+    """A view to edit product reviews"""
+
+    product = get_object_or_404(Product, pk=product_id)
+    review = get_object_or_404(Review, product=product, pk=review_id)
+
+    if request.user == review.user:
+        if request.method == "POST":
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.save()
+                messages.success(request, 'Review updated!')
+                return redirect('product_details', product_id)
+            else:
+                messages.error(
+                    request, 'Failed to update review.\
+                        Please ensure the form is valid.')
+                return redirect('product_details', product_id)
+        else:
+            form = ReviewForm(instance=review)
+
+        template = 'products/edit_review.html'
+        context = {
+            'form': form,
+        }
+        return render(request, template, context)
+    else:
+        return redirect('product_details', product_id)
+
+
+@login_required
+def delete_review(request, product_id, review_id):
+    """A view to delete product review"""
+
+    product = get_object_or_404(Product, pk=product_id)
+    review = get_object_or_404(Review, product=product, pk=review_id)
+
+    if request.user == review.user:
+        review.delete()
+        messages.success(request, 'Review delete successfully')
+
+    return redirect('product_details', product_id)

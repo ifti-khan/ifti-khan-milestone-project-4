@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Edit review container -->
+<div class="container">
+    <div class="row">
+        <!-- Edit review page heading -->
+        <div class="col text-center mt-5 mt-lg-4">
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Edit Review</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <!-- Edit review form -->
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Crispy form review title -->
+                    <div class="col-12 col-md-12 col-lg-8 mx-auto mx-lg-0">
+                        {{ form.review_title|as_crispy_field }}
+                    </div>
+                    <!-- Crispy form product rating -->
+                    <div class="col-12 col-md-12 col-lg-4 mx-auto mx-lg-0">
+                        {{ form.review_rating|as_crispy_field }}
+                    </div>
+                </div>
+                <!-- Crispy form review textarea -->
+                <div class="col-12 col-md-12 col-lg-12 mx-auto mx-lg-0">
+                    {{ form.review_message|as_crispy_field }}
+                </div>
+                <!-- Form submit button -->
+                <input type="submit" class="btn btn-dark custom-bg rounded-0 float-lg-end d-block mx-auto mx-lg-0 mb-4"
+                    value="Update Review">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
