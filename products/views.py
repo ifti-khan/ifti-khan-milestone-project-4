@@ -96,9 +96,13 @@ def product_details(request, product_id):
     A view to show individual product details
     when a product card is clicked on
     """
-
+    # Getting products
     product = get_object_or_404(Product, pk=product_id)
-    reviews = Review.objects.filter(product=product_id)
+
+    # Getting reviews and filtering by product id and
+    # ordering by new review using date and time
+    reviews = Review.objects.filter(
+        product=product_id).order_by('-date_created', '-time_created')
     form = ReviewForm(request.POST)
 
     template = 'products/product_details.html'
@@ -228,9 +232,12 @@ def delete_product(request, product_id):
 
 @login_required
 def add_review(request, product_id):
-    """ Add a review to a product """
+    """ Adding a review to a product """
+    # Getting product
     product = get_object_or_404(Product, pk=product_id)
 
+    # Checking if request is post and form is post and if it is
+    # check if the form is valid and then save the form.
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -239,15 +246,20 @@ def add_review(request, product_id):
             data.user = request.user
             data.product = product
             data.save()
-            messages.success(request, 'Successfully added review!')
+            # Message informing the user using toasts,
+            # that there review has been added and redirecting them.
+            messages.success(request, 'Thank you for leaving a review')
             return redirect(reverse('product_details', args=[product.id]))
         else:
+            # Error message if review fails to add
             messages.error(
-                request, 'Failed to add review.')
+                request, 'Failed to add your review.')
     else:
 
         form = ReviewForm()
 
+    # context dictionary with keys and values to be
+    # used in the rendered html template
     template = 'products/includes/add_review.html'
     context = {
         'form': form,
@@ -259,44 +271,55 @@ def add_review(request, product_id):
 @login_required
 def edit_review(request, product_id, review_id):
     """A view to edit product reviews"""
-
+    # Getting both products and reviews
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(Review, product=product, pk=review_id)
 
+    # Checking if request user and methods are post and form is post
+    # and if they are then check if the form is valid and then save the form.
     if request.user == review.user:
         if request.method == "POST":
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
                 data = form.save(commit=False)
                 data.save()
-                messages.success(request, 'Review updated!')
-                return redirect('product_details', product_id)
+                # Message informing the user using toasts,
+                # that there review has been updated and redirecting them.
+                messages.success(request, 'Your review has been updated')
+                return redirect(reverse('product_details', args=[product.id]))
             else:
+                # Error message if review fails to update and redirecting them
                 messages.error(
                     request, 'Failed to update review.\
                         Please ensure the form is valid.')
-                return redirect('product_details', product_id)
+                return redirect(reverse('product_details', args=[product.id]))
         else:
             form = ReviewForm(instance=review)
 
+        # context dictionary with keys and values to be
+        # used in the rendered html template
         template = 'products/edit_review.html'
         context = {
             'form': form,
         }
         return render(request, template, context)
     else:
-        return redirect('product_details', product_id)
+        return redirect(reverse('product_details', args=[product.id]))
 
 
 @login_required
 def delete_review(request, product_id, review_id):
     """A view to delete product review"""
-
+    # Getting both products and reviews
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(Review, product=product, pk=review_id)
 
+    # Checking if the user logged in is the user that left the review
+    # and if true then the review will be deleted.
     if request.user == review.user:
         review.delete()
-        messages.success(request, 'Review delete successfully')
+        # Message using toasts to inform user that they
+        # have deleted there review
+        messages.success(request, 'Your review has successfully been deleted')
 
-    return redirect('product_details', product_id)
+    return redirect(reverse('product_details', args=[product.id]))

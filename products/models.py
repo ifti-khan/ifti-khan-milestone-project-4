@@ -52,12 +52,17 @@ class Product(models.Model):
 
 
 class Review(models.Model):
+    """
+    Below you will see the review model for all products.
+    The only fields that will show in the form itself will be
+    the review title, review rating and the review message
+    """
     product = models.ForeignKey(
         Product, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review_title = models.CharField(max_length=250)
     review_rating = models.DecimalField(
-        max_digits=5, decimal_places=1)
+        max_digits=2, decimal_places=1)
     review_message = models.TextField(max_length=1000)
     date_created = models.DateField(auto_now_add=True)
     time_created = models.TimeField(auto_now_add=True)
