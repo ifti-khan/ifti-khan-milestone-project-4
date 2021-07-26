@@ -24,39 +24,30 @@
     <div class="row">
         <!-- About us info -->
         <div class="col mx-auto text-center text-spacing-1">
-            <p>Established in 2021, we specialize in selling gym clothing for both men and women, gym supplements and gym memberships.</p>
-            <p>We also have established our very own online gym community, where people can connect with others and ask questions</p>
+            <p>Established in 2021, we specialize in selling gym clothing for both men and women, gym supplements and
+                gym memberships.</p>
+            <p>We also have established our very own online gym community, where people can connect with others and ask
+                questions</p>
         </div>
     </div>
 
     <div class="row">
+        <div class="col-6 p-5 custom-bg-2 fs-5 text-spacing-1">
+            <!-- Address -->
+            <p class="py-2 ps-5"><strong>Address:</strong><br> St Albans, Hertfordshire, AL1 3LP</p>
+            <!-- Contact number -->
+            <p class="py-2 ps-5"><strong>Phone:</strong><br> 0123456789</p>
+            <!-- Email address -->
+            <p class="py-2 ps-5"><strong>Email:</strong><br> <a href="{% url 'contact' %}">info@urgym.com</p></a>
+        </div>
         <!-- Embedded Google Maps -->
-        <div class="col-10 mx-auto">
+        <div class="col-6">
             <div id="map"></div>
         </div>
     </div>
-
-    <div class="row text-center mt-3">
-        <!-- Address -->
-        <div class="col-12 col-md-4">
-            <p><strong>Address:</strong><br> St Albans, Hertfordshire, AL1 3LP</p>
-        </div>
-        <!-- Contact number -->
-        <div class="col-12 col-md-4">
-            <p><strong>Contact:</strong><br> 0123456789</p>
-        </div>
-        <!-- Email address -->
-        <div class="col-12 col-md-4">
-            <p><strong>Email:</strong><br> <a href="">info@urgym.com</p></a>
-        </div>
-
 </div>
 <!-- This is needed for the embedded google maps api to work, 
 this links contains the api key which is hidden -->
-<script src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_api_key }}&callback=initMap&libraries=&v=weekly"async></script>
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-
+<script src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_api_key }}&callback=initMap&libraries=&v=weekly"
+    async></script>
 {% endblock %}
