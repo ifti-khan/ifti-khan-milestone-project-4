@@ -217,5 +217,8 @@ STRIPE_PUBLIC_KEY = myenv("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = myenv("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = myenv("STRIPE_WH_SECRET")
 
+# Google Maps API
+GMAPS_API_KEY = myenv('GMAPS_API_KEY')
+
 # Default Email Address
 DEFAULT_FROM_EMAIL = 'info@urgym.com'
