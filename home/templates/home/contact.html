@@ -14,10 +14,53 @@
 <!-- Main contact us container -->
 <div class="container checkout-con">
     <div class="row">
-        <div class="col text-center">
+        <div class="col-12 col-lg-10 mx-auto text-center">
             <!-- Contact us header with horizontal rule -->
             <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 mt-lg-4 mb-2">Contact Us</h2>
             <hr>
+        </div>
+    </div>
+    <!-- Contact form -->
+    <div class="row">
+        <div class="col-12 col-lg-10 mx-auto">
+            <form method="post" action="{% url 'send' %}">
+                {% csrf_token %}
+                {% if request.user.is_authenticated %}
+                <!-- Username -->
+                <div class="mb-3">
+                    <input type="text" class="form-control rounded-0" id="contact-username" name="contact-username" placeholder="Full Name"
+                        value="{% if request.user.is_authenticated %}{{ user }}{% endif %}" required>
+                </div>
+                {% endif %}
+                <!-- Full name -->
+                <div class="mb-3">
+                    <input type="text" class="form-control rounded-0" id="contact-fullname" name="contact-fullname" placeholder="Full Name"
+                        value="{% if request.user.is_authenticated %}{{ user.first_name }} {{ user.last_name }}{% endif %}" required>
+                </div>
+
+                <!-- Email Address -->
+                <div class="mb-3">
+                    <input type="email" class="form-control rounded-0" id="contact-email" name="contact-email" placeholder="Email Address"
+                        value="{% if request.user.is_authenticated %}{{ user.email }}{% endif %}" required>
+                </div>
+                <!-- Subject -->
+                <div class="mb-3">
+                    <input type="text" class="form-control rounded-0" id="contact-subject" name="contact-subject" placeholder="Subject" required>
+                </div>
+                <!-- Message box -->
+                <div class="mb-3">
+                    <textarea class="form-control rounded-0" id="contact-message" name="contact-message" placeholder="Message" rows="5"
+                        required></textarea>
+                </div>
+                <!-- Form buttons -->
+                <div class="row">
+                    <div class="col text-center text-lg-end">
+                        <a href="{% url 'home' %}" class="btn btn-dark custom-bg rounded-0 px-4 px-lg-5">Back</a>
+                        <button type="reset" class="btn btn-outline-dark rounded-0 px-4 px-lg-5">Clear</button>
+                        <button type="submit" class="btn btn-dark custom-bg rounded-0 px-4 px-lg-5">Send</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

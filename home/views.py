@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 # This is for the secret keys in the settings
 from django.conf import settings
+# Django imports to help with sending emails
+from django.core.mail import send_mail
+from profiles.models import UserProfile
 
 # Create your views here.
 
@@ -32,11 +36,49 @@ def contact(request):
     """
     This view returns the contact us page
     """
+    profile = UserProfile.objects.all()
     # Setting template and passing vars to context
     # to be rendered
     template = 'home/contact.html'
     context = {
-
+        'profile': profile
     }
 
     return render(request, template, context)
+
+
+def send_contact_email(request):
+    """
+    Send the site admin an email using the contact form
+    """
+    # If request method is post, then it will get all of the
+    # contact form info and store them in the vars
+    if request.method == 'POST':
+        contact_user = request.user
+        contact_fullname = request.POST['contact-fullname']
+        contact_email = request.POST['contact-email']
+        contact_subject = request.POST['contact-subject']
+        contact_message = request.POST['contact-message']
+
+        # Django send mail method, structure has to be
+        # subject, message, from email and to email
+        send_mail(
+            contact_subject,
+            f'{contact_message}\
+                Fullname: {contact_fullname}\
+                    Username: {contact_user}',
+            contact_email,
+            [settings.DEFAULT_FROM_EMAIL],
+        )
+        # Message informing user using toasts that the message
+        # has sent and redirecting them to the home page
+        messages.success(
+            request, 'Your message has been sent to the site admin')
+        return redirect(reverse('home'))
+    else:
+        # Message informing user using toasts that the message
+        # failed to send to the admin and redirecting them back
+        # to the contact form
+        messages.error(
+            request, 'Failed to send message to admin')
+        return redirect(reverse('contact'))
