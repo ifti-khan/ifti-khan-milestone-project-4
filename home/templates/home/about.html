@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar  -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Main about us container -->
+<div class="container checkout-con">
+    <div class="row">
+        <div class="col text-center">
+            <!-- About us header with horizontal rule -->
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">About Us</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <!-- About us info -->
+        <div class="col">
+            <h1>about us info here</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Embedded Google Maps -->
+        <div class="col-12">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+<!-- This is needed for the embedded google maps api to work, 
+this links contains the api key which is hidden -->
+<script src="https://maps.googleapis.com/maps/api/js?key={{ gmaps_api_key }}&callback=initMap&libraries=&v=weekly"async></script>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% endblock %}

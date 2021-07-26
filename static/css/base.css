@@ -289,3 +289,11 @@ input[name='search']::placeholder {
     opacity: 0;
     cursor: pointer;
 }
+
+/* Google maps */ 
+/* Setting the height and width of the div 
+element that contains the map */
+#map {
+    height: 400px;
+    width: 100%;
+}
