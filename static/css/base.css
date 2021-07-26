@@ -51,6 +51,10 @@ main {
     background-color: #595959;
 }
 
+.custom-bg-2 {
+    background-color: #e6e6e6;
+}
+
 /*This gets rid of all focus outline 
 within the browser on all elements*/
 *:focus,

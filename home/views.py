@@ -26,3 +26,17 @@ def about(request):
     }
 
     return render(request, template, context)
+
+
+def contact(request):
+    """
+    This view returns the contact us page
+    """
+    # Setting template and passing vars to context
+    # to be rendered
+    template = 'home/contact.html'
+    context = {
+
+    }
+
+    return render(request, template, context)
