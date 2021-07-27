@@ -22,6 +22,7 @@ class AnswerAdmin(admin.ModelAdmin):
     # Changing the answer admin columns
     # using the list display attribute
     list_display = (
+        'question',
         'user',
         'answer_message',
         'date_created',

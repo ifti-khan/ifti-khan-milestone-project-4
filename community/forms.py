@@ -38,7 +38,7 @@ class AnswerForm(forms.ModelForm):
     # Meta class is excluding specific fields but including the rest
     class Meta:
         model = Answer
-        exclude = ('user', 'date_created', 'time_created')
+        exclude = ('user', 'question', 'date_created', 'time_created')
 
         # Setting the row attribute for the answer message
         answer_message = forms.CharField(widget=forms.Textarea

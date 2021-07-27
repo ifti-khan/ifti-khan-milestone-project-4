@@ -22,6 +22,8 @@ class Answer(models.Model):
     Below you will see the answer question model
     for the community message board.
     """
+    id = models.AutoField(primary_key=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     answer_message = models.TextField(max_length=1000)
     date_created = models.DateField(auto_now_add=True)
