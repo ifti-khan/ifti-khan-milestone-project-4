@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.conf import settings
 # Django imports to help with sending emails
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
 from profiles.models import UserProfile
 
 # Create your views here.
@@ -60,13 +62,20 @@ def send_contact_email(request):
         contact_subject = request.POST['contact-subject']
         contact_message = request.POST['contact-message']
 
+        # Body var is using the render to string method and
+        # passing the values to the contact email body text file
+        # to the format i have specified
+        body = render_to_string(
+            'home/contact_email/contact_email_body.txt',
+            {'username': contact_user, 'fullname': contact_fullname,
+             'message': contact_message, 'user_email': contact_email,
+             'subject': contact_subject})
+
         # Django send mail method, structure has to be
         # subject, message, from email and to email
         send_mail(
             contact_subject,
-            f'{contact_message}\
-                Fullname: {contact_fullname}\
-                    Username: {contact_user}',
+            body,
             contact_email,
             [settings.DEFAULT_FROM_EMAIL],
         )

@@ -1,0 +1,11 @@
+Senders Full Name: {{ fullname }}
+Senders Username: {{ username }}
+Senders Email Address: {{ user_email }}
+
+Subject: {{ subject }}
+
+{{ message }}
+
+Kind Regards
+
+{{ fullname }} / {{ username }}
