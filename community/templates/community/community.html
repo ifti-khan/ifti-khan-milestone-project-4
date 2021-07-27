@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar  -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Main community container -->
+<div class="container community-con">
+    <div class="row">
+        <div class="col text-center">
+            <!-- Community header with horizontal rule -->
+            <h2 class="custom-font-head fw-bold text-capitalize text-spacing mt-5 mt-lg-4 mb-2">Welcome to the UR-GYM community</h2>
+            <hr>
+        </div>
+    </div>
+    <!-- Community rules -->
+    <div class="row">
+        <div class="col text-center">
+            <p class="text-spacing-1 fs-4 mb-1"><strong>Please follow these simple rules:</strong><br> 
+                <span class="text-danger fs-5">No Bullying, No Swearing, No Racism</span></p>
+            <p class="text-spacing-1 fw-bold">If anyone is caught breaking these rules, will instantly banned from the site.</p>
+        </div>
+    </div>
+    <!-- Community messages -->
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
