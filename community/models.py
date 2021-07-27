@@ -15,3 +15,17 @@ class Question(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Answer(models.Model):
+    """
+    Below you will see the answer question model
+    for the community message board.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    answer_message = models.TextField(max_length=1000)
+    date_created = models.DateField(auto_now_add=True)
+    time_created = models.TimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username
