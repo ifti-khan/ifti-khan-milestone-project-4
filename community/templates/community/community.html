@@ -16,32 +16,53 @@
     <div class="row">
         <div class="col text-center">
             <!-- Community header with horizontal rule -->
-            <h2 class="custom-font-head fw-bold text-capitalize text-spacing mt-5 mt-lg-4 mb-2">Welcome to the UR-GYM community ({{ questions.count}})</h2>
+            <h2 class="custom-font-head fw-bold text-capitalize text-spacing mt-5 mt-lg-4 mb-2">Welcome to the UR-GYM
+                community ({{ questions.count}})</h2>
             <hr>
         </div>
     </div>
     <!-- Community rules -->
     <div class="row">
         <div class="col text-center">
-            <p class="text-spacing-1 fs-4 mb-1"><strong>Please follow these simple rules:</strong><br> 
+            <p class="text-spacing-1 fs-4 mb-1"><strong>Please follow these simple rules:</strong><br>
                 <span class="text-danger fs-5">No Bullying, No Swearing, No Racism</span></p>
-            <p class="text-spacing-1 fw-bold">If anyone is caught breaking these rules, will instantly banned from the site.</p>
+            <p class="text-spacing-1 fw-bold">If anyone is caught breaking these rules, they will be instantly banned from the site.</p>
+            <a href="" class="edit-question btn px-4 rounded-0 btn-dark custom-bg mt-3">Ask A Question</a>
         </div>
     </div>
     <!-- Community messages -->
-    <div class="row">
-        <div class="col">
-            {% for question in questions %}
-            {{ question.user}}<br>
-            {{ question.question_title}}<br>
-            {{ question.question_message}}<br>
-            {{ question.date_created}}<br>
-            {{ question.time_created}}<br><br>
-            {% endfor %}
+    <div class="container">
+        <!-- Django for loop, iterating through the questions model -->
+        {% for question in questions %}
+        <div class="row mt-4 mb-4 justify-content-center">
+            <!-- Left question column -->
+            <div class="col-12 col-lg-4 text-center custom-bg-2 p-2">
+                <div><strong>Username: </strong>{{ question.user}}</div>
+                <div><strong>Date: </strong>{{ question.date_created}}</div>
+                <div><strong>Time: </strong>{{ question.time_created}}</div>
 
-            {{ form | crispy }}
+                <!-- Django if checking to check to see if the user logged in is the same
+                user that left the review and if it is then it will display the edit and delete button -->
+                {% if request.user == question.user %}
+                <div class="row mt-3">
+                    <div class="col text-center">
+                        <!-- Edit and delete buttons for user who have asked a question -->
+                        <a href=""
+                            class="edit-question btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
+                        <a href=""
+                            class="delete-question btn btn-sm rounded-0 btn-secondary">Delete</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <!-- Right question column -->
+            <div class="col-12 col-lg-6 text-center border border-outline p-2">
+                <div class="fw-bold pb-2">{{ question.question_title}}</div>
+                <div>{{ question.question_message}}</div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-</div>
 
+</div>
 {% endblock %}
