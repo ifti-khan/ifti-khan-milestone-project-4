@@ -58,7 +58,7 @@
             <!-- Right question column -->
             <div class="col-12 col-lg-6 text-center border border-outline p-3">
                 <div class="fw-bold pb-2">{{ question.question_title}}</div>
-                <div>{{ question.question_message|truncatechars:25 }}</div>
+                <div>{{ question.question_message|truncatechars:100 }}</div>
                 <a href="{% url 'view_question' question.id %}"
                 class="read-more btn btn-sm rounded-0 btn-secondary mt-3">Read More</a>
             </div>
