@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import CommunityQuestion
 
-# Register your models here.
+
+admin.site.register(CommunityQuestion)

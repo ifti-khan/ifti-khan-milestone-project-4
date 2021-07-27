@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col text-center">
             <!-- Community header with horizontal rule -->
-            <h2 class="custom-font-head fw-bold text-capitalize text-spacing mt-5 mt-lg-4 mb-2">Welcome to the UR-GYM community</h2>
+            <h2 class="custom-font-head fw-bold text-capitalize text-spacing mt-5 mt-lg-4 mb-2">Welcome to the UR-GYM community ({{ questions.count}})</h2>
             <hr>
         </div>
     </div>
@@ -31,7 +31,15 @@
     <!-- Community messages -->
     <div class="row">
         <div class="col">
+            {% for question in questions %}
+            {{ question.user}}<br>
+            {{ question.question_title}}<br>
+            {{ question.question_message}}<br>
+            {{ question.date_created}}<br>
+            {{ question.time_created}}<br><br>
+            {% endfor %}
 
+            {{ form | crispy }}
         </div>
     </div>
 </div>
