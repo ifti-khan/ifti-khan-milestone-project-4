@@ -30,6 +30,24 @@ class CategoryAdmin(admin.ModelAdmin):
     )
 
 
+class ReviewAdmin(admin.ModelAdmin):
+    # Changing the review admin columns
+    # using the list display attribute
+    list_display = (
+        'product',
+        'user',
+        'review_title',
+        'review_rating',
+        'review_message',
+        'date_created',
+        'time_created',
+
+    )
+
+    # Sorting the review admin columns
+    ordering = ('-date_created', '-time_created')
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Review)
+admin.site.register(Review, ReviewAdmin)
