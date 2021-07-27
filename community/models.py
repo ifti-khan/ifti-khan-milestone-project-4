@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-class CommunityQuestion(models.Model):
+class Question(models.Model):
     """
     Below you will see the community question model
     for the community message board.
