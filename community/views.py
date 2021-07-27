@@ -77,7 +77,7 @@ def add_question(request):
 
     # context dictionary with keys and values to be
     # used in the rendered html template
-    template = 'community/ask_question.html'
+    template = 'community/add_question.html'
     context = {
         'form': form,
     }
