@@ -176,14 +176,14 @@
                             <!-- Product review info -->
                             <div class="row my-3">
                                 <!-- Left info col -->
-                                <div class="col-12 col-lg-6 tex-center text-lg-start mb-4 mb-lg-0">
+                                <div class="col-12 col-lg-6 tex-center text-lg-start mb-4 mb-lg-0 custom-bg-2 px-4 py-3">
                                     <p class="m-0"><strong>Left by:</strong> {{ review.user.username }}</p>
                                     <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }} / 5</p>
                                     <p class="m-0"><strong>Date:</strong> {{ review.date_created }}</p>
                                     <p class="m-0"><strong>Time:</strong> {{ review.time_created }}</p>
                                 </div>
                                 <!-- Right info col -->
-                                <div class="col-12 col-lg-6 tex-center text-lg-start">
+                                <div class="col-12 col-lg-6 tex-center text-lg-start border border-outline py-3">
                                     <p class="m-0"><strong>{{ review.review_title }}</strong></p>
                                     <p class="m-0">{{ review.review_message }}</p>
                                 </div>

@@ -36,7 +36,7 @@
         {% for question in questions %}
         <div class="row mt-4 mb-4 justify-content-center">
             <!-- Left question column -->
-            <div class="col-12 col-lg-4 text-center custom-bg-2 p-2">
+            <div class="col-12 col-lg-4 text-center custom-bg-2 p-3">
                 <div><strong>Username: </strong>{{ question.user}}</div>
                 <div><strong>Date: </strong>{{ question.date_created}}</div>
                 <div><strong>Time: </strong>{{ question.time_created}}</div>
@@ -56,13 +56,14 @@
                 {% endif %}
             </div>
             <!-- Right question column -->
-            <div class="col-12 col-lg-6 text-center border border-outline p-2">
+            <div class="col-12 col-lg-6 text-center border border-outline p-3">
                 <div class="fw-bold pb-2">{{ question.question_title}}</div>
                 <div>{{ question.question_message|truncatechars:25 }}</div>
                 <a href="{% url 'view_question' question.id %}"
                 class="read-more btn btn-sm rounded-0 btn-secondary mt-3">Read More</a>
             </div>
         </div>
+        <hr class="w-75 mx-auto">
         {% endfor %}
     </div>
 
