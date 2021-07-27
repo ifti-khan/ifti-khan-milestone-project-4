@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from .models import Question
 from .forms import QuestionForm
@@ -31,8 +31,8 @@ def add_question(request):
     """
     Adding a question to the db
     """
-    # Checking if request is post for the form and request files for
-    # the image file, which then checks to see if the form is valid, and
+    # Checking if the request method is post for the form
+    # which then checks to see if the form is valid, and
     # if so then save the form.
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -63,3 +63,22 @@ def add_question(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def delete_question(request, question_id):
+    """
+    Delete a current question in the db
+    """
+
+    # Getting question using question id
+    question = get_object_or_404(Question, pk=question_id)
+    # Deleting question
+    question.delete()
+    # Success message to user using toasts informing them that the question
+    # has been deleted and redirecting them back to the community page.
+    messages.success(
+        request, f'Your question - {question.question_title}\
+            has been successfully deleted')
+
+    return redirect(reverse('community'))

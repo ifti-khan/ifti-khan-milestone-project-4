@@ -49,7 +49,7 @@
                         <!-- Edit and delete buttons for user who have asked a question -->
                         <a href=""
                             class="edit-question btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
-                        <a href=""
+                        <a href="{% url 'delete_question' question.id %}"
                             class="delete-question btn btn-sm rounded-0 btn-secondary">Delete</a>
                     </div>
                 </div>
