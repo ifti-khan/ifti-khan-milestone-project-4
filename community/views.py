@@ -57,17 +57,17 @@ def add_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
         if form.is_valid():
-            data = form.save(commit=False)
-            data.title = request.POST["question_title"]
-            data.message = request.POST["question_message"]
-            data.user = request.user
-            data.save()
+            question = form.save(commit=False)
+            question.title = request.POST["question_title"]
+            question.message = request.POST["question_message"]
+            question.user = request.user
+            question.save()
             # Message that will inform the user that the question they have
             # asked has been asked
             messages.success(
-                request, f'Your question - {data.title}, has successfully\
+                request, f'Your question - {question.title}, has successfully\
                     been asked')
-            return redirect(reverse('community'))
+            return redirect(reverse('view_question', args=[question.id]))
         else:
             # Error message informing user that the question failed to ask
             messages.error(request, 'Question failed to ask,\
@@ -83,6 +83,46 @@ def add_question(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_question(request, question_id):
+    """A view to edit product reviews"""
+    # Getting a question using question id
+    question = get_object_or_404(Question, pk=question_id)
+
+    # Checking if request user, methods and form are post
+    # and if they are then check if the form is valid, if so
+    # then the form will save.
+    if request.user == question.user:
+        if request.method == "POST":
+            form = QuestionForm(request.POST, instance=question)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.save()
+                # Message informing the user using toasts,
+                # that there question has been updated and redirecting them.
+                messages.success(request, 'Your question has been updated')
+                return redirect(reverse('view_question', args=[question.id]))
+            else:
+                # Error message if question fails to update and
+                # then redirecting them
+                messages.error(
+                    request, 'Failed to update question.\
+                        Please ensure the form is valid.')
+                return redirect(reverse('view_question', args=[question.id]))
+        else:
+            form = QuestionForm(instance=question)
+
+        # context dictionary with keys and values to be
+        # used in the rendered html template
+        template = 'community/edit_question.html'
+        context = {
+            'form': form,
+        }
+        return render(request, template, context)
+    else:
+        return redirect(reverse('view_question', args=[question.id]))
 
 
 @login_required

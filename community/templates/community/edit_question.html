@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Edit a question container -->
+<div class="container">
+    <div class="row">
+        <!-- Edit a question page heading -->
+        <div class="col text-center mt-5 mt-lg-4">
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">Edit A Question</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <!-- Edit a question form -->
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <!-- Question Crispy form -->
+                    <div class="col-12">
+                        {{ form | crispy }}
+                    </div>
+                </div>
+
+                <!-- Form submit button -->
+                <input type="submit" class="btn btn-dark custom-bg rounded-0 float-lg-end d-block mx-auto mx-lg-0 mb-4"
+                    value="Update Question">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
