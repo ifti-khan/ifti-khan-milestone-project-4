@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<!-- This is needed to push the content down under the navigation bar -->
+<div class="container top-head-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- View a question container -->
+<div class="container">
+    <div class="row">
+        <!-- View a question page heading -->
+        <div class="col text-center mt-5 mt-lg-4">
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">{{ question.question_title }}</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+    </div>
+    <!-- View question message -->
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-6 mx-auto">
+            <div class="text-center">{{ question.question_message }}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

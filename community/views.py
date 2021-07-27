@@ -27,6 +27,26 @@ def community(request):
 
 
 @login_required
+def view_question(request, question_id):
+    """
+    Viewing a question
+    """
+
+    # Getting question using question id
+    question = get_object_or_404(Question, pk=question_id)
+
+    # context dictionary with keys and values to be
+    # used in the rendered html template
+    template = 'community/view_question.html'
+    context = {
+        'question': question,
+
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def add_question(request):
     """
     Adding a question to the db
