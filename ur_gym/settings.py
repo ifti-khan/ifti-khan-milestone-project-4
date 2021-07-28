@@ -275,9 +275,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 FREE_DELIVERY_LIMIT = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'gbp'
-STRIPE_PUBLIC_KEY = myenv("STRIPE_PUBLIC_KEY")
-STRIPE_SECRET_KEY = myenv("STRIPE_SECRET_KEY")
-STRIPE_WH_SECRET = myenv("STRIPE_WH_SECRET")
+
+# Stripe ifs to check wether keys are in deployment or development
+if 'STRIPE_PUBLIC_KEY' in os.environ:
+    STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY", '')
+else:
+    STRIPE_PUBLIC_KEY = myenv("STRIPE_PUBLIC_KEY")
+
+if 'STRIPE_SECRET_KEY' in os.environ:
+    STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", '')
+else:
+    STRIPE_SECRET_KEY = myenv("STRIPE_SECRET_KEY")
+
+if 'STRIPE_WH_SECRET' in os.environ:
+    STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET", '')
+else:
+    STRIPE_WH_SECRET = myenv("STRIPE_WH_SECRET")
 
 # Google Maps API
 GMAPS_API_KEY = myenv('GMAPS_API_KEY')
