@@ -172,11 +172,11 @@
                     {% for review in reviews %}
                     <div class="row">
                         <!-- Product review main info container -->
-                        <div class="review-info-con col-12 col-lg-6 offset-lg-3">
+                        <div class="review-info-con col-12 col-lg-8 offset-lg-2 px-5 px-lg-0">
                             <!-- Product review info -->
                             <div class="row my-3">
                                 <!-- Left info col -->
-                                <div class="col-12 col-lg-6 tex-center text-lg-start mb-4 mb-lg-0 custom-bg-2 px-4 py-3">
+                                <div class="col-12 col-lg-6 tex-center text-lg-start custom-bg-2 px-4 py-3">
                                     <p class="m-0"><strong>Left by:</strong> {{ review.user.username }}</p>
                                     <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }} / 5</p>
                                     <p class="m-0"><strong>Date:</strong> {{ review.date_created }}</p>
@@ -192,7 +192,7 @@
                             <!-- Django if to check if the user logged in is the user that left the review
                             and if it is they will be able to edit and delete there review -->
                             {% if request.user == review.user %}
-                            <div class="row mb-4">
+                            <div class="row">
                                 <div class="col text-center">
                                     <!-- Edit and delete buttons for user who left the review -->
                                     <a href="{% url 'edit_review' product.id review.id %}"
