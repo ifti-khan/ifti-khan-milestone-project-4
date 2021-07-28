@@ -120,9 +120,6 @@
                                             </span>
                                         </button>
                                     </div>
-                                    <!-- This anchor is here because when clicked above it will perfectly scroll down
-                                    to the product review section and be in the middle of the viewing screen -->
-                                    <div id="product-reviews"></div>
                                     <!-- Product quantity -->
                                     <input class="form-control rounded-0 quantity_input" type="number"
                                         name="product_quantity" value="1" min="1" max="99"
@@ -163,55 +160,15 @@
         <div class="reviews-container">
             <div class="row text-center">
                 <!-- Product review heading with review count -->
-                <h3 class="custom-font-head text-uppercase fw-bold product-head mt-lg-5 mb-4">Product Reviews
+                <h3 class="custom-font-head text-uppercase fw-bold product-head mt-lg-5 mb-4" id="product-reviews">Product Reviews
                     ({{reviews.count}})</h3>
-                <div class="col">
-                    <!-- Django if to check if the product count is greater than 0 -->
-                    {% if reviews.count > 0 %}
-                    <!-- Django for loop, iterating through the reviews model -->
-                    {% for review in reviews %}
-                    <div class="row">
-                        <!-- Product review main info container -->
-                        <div class="review-info-con col-12 col-lg-8 offset-lg-2 px-5 px-lg-0">
-                            <!-- Product review info -->
-                            <div class="row my-3">
-                                <!-- Left info col -->
-                                <div class="col-12 col-lg-6 tex-center text-lg-start custom-bg-2 px-4 py-3">
-                                    <p class="m-0"><strong>Left by:</strong> {{ review.user.username }}</p>
-                                    <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }} / 5</p>
-                                    <p class="m-0"><strong>Date:</strong> {{ review.date_created }}</p>
-                                    <p class="m-0"><strong>Time:</strong> {{ review.time_created }}</p>
-                                </div>
-                                <!-- Right info col -->
-                                <div class="col-12 col-lg-6 tex-center text-lg-start border border-outline py-3">
-                                    <p class="m-0"><strong>{{ review.review_title }}</strong></p>
-                                    <p class="m-0">{{ review.review_message }}</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Django if to check if the user logged in is the user that left the review
-                            and if it is they will be able to edit and delete there review -->
-                            {% if request.user == review.user %}
-                            <div class="row">
-                                <div class="col text-center">
-                                    <!-- Edit and delete buttons for user who left the review -->
-                                    <a href="{% url 'edit_review' product.id review.id %}"
-                                        class="edit-review btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
-                                    <a href="{% url 'delete_review' product.id review.id %}"
-                                        class="delete-review btn btn-sm rounded-0 btn-secondary">Delete</a>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <hr class="w-50 mx-auto">
-                    {% endfor %}
-                    {% else %}
-                        <!-- No review message -->
-                        <p>There are no reviews for this product.</p>
-                    {% endif %}
-                </div>
+                <!-- Product reviews include from includes dir -->
+                {% include "products/includes/product_reviews.html" %}
+
             </div>
+            <!-- Anchor link for writing a view -->
+            <div id="write-review"></div>
+            <!-- Add a review include from includes dir -->
             {% include "products/includes/add_review.html" %}
         </div>
     </div>
