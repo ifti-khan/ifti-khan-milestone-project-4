@@ -5,5 +5,5 @@ and if no image then display the no image image instead -->
 <img class="img-fluid rounded" src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
 {% else %}
 <!-- No image image from media folder -->
-<img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ item.product.product_name }}">
+<img class="img-fluid rounded" src="{{ MEDIA_URL }}noimag.jpg" alt="{{ item.product.product_name }}">
 {% endif %}

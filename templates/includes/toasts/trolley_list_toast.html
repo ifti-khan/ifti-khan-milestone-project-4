@@ -13,7 +13,7 @@
                 {% if item.product.product_image %}
                 <img class="w-100" src="{{ item.product.product_image.url }}" alt="{{ item.product.product_name }}">
                 {% else %}
-                <img class="w-100" src="{{ MEDIA_URL }}noimage_img.jpg" alt="{{ item.product.product_name }}">
+                <img class="w-100" src="{{ MEDIA_URL }}noimg.jpg" alt="{{ item.product.product_name }}">
                 {% endif %}
             </div>
             <!-- Toast product name, size and quantity -->
