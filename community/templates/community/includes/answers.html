@@ -1,0 +1,44 @@
+<div class="col">
+    <!-- Django if to check if the answer count is greater than 0 -->
+    {% if answers.count > 0 %}
+    <!-- Django for loop, iterating through the answers model -->
+    {% for answer in answers %}
+    <div class="row">
+        <!-- Answers main info container -->
+        <div class="review-info-con col-12 col-lg-10 offset-lg-1 px-5 px-lg-0">
+            <!-- Answer info -->
+            <div class="row my-3">
+                <!-- Left info col -->
+                <div class="col-12 col-lg-4 tex-center text-lg-start custom-bg-2 px-4 py-3">
+                    <p class="m-0"><strong>Answered by:</strong> {{ answer.user.username }}</p>
+                    <p class="m-0"><strong>Date:</strong> {{ answer.date_created }}</p>
+                    <p class="m-0"><strong>Time:</strong> {{ answer.time_created }}</p>
+                </div>
+                <!-- Right info col -->
+                <div class="col-12 col-lg-8 tex-center text-lg-start border border-outline py-3">
+                    <p class="m-0">{{ answer.answer_message }}</p>
+                </div>
+            </div>
+
+            <!-- Django if to check if the user logged in is the user that left the review
+                    and if it is they will be able to edit and delete there review -->
+            {% if request.user == answer.user %}
+            <div class="row">
+                <div class="col text-center">
+                    <!-- Edit and delete buttons for user who left the review -->
+                    <a href="{% url 'edit_answer' question.id answer.id %}"
+                        class="edit-answer btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
+                    <a href="{% url 'delete_answer' question.id answer.id %}"
+                        class="delete-answer btn btn-sm rounded-0 btn-secondary">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <hr class="w-50 mx-auto">
+    {% endfor %}
+    {% else %}
+    <!-- No answer message -->
+    <p>There are no answer to this question, why not leave an answer.</p>
+    {% endif %}
+</div>
