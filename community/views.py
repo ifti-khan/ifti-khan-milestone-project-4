@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from .models import Question
-from .forms import QuestionForm
+from .models import Question, Answer
+from .forms import QuestionForm, AnswerForm
 
 # This will stop non logged in users from gaining access
 # to certain urls
@@ -31,15 +31,22 @@ def view_question(request, question_id):
     """
     Viewing a question
     """
-
     # Getting question using question id
     question = get_object_or_404(Question, pk=question_id)
+
+    # Getting answers and filtering by question id and
+    # ordering by new answers using date and time
+    answers = Answer.objects.filter(
+        question=question_id).order_by('-date_created', '-time_created')
+    form = AnswerForm(request.POST)
 
     # context dictionary with keys and values to be
     # used in the rendered html template
     template = 'community/view_question.html'
     context = {
         'question': question,
+        'answers': answers,
+        'form': form,
 
     }
 

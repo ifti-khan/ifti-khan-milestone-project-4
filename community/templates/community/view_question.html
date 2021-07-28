@@ -16,7 +16,7 @@
     <div class="row">
         <!-- View a question page heading -->
         <div class="col text-center mt-5 mt-lg-4">
-            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 mt-lg-4">{{ question.question_title }}
+            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-3 mt-lg-4">{{ question.question_title }}
             </h2>
             <hr class="w-50 mx-auto">
         </div>
@@ -24,26 +24,34 @@
     <!-- View question info -->
     <div class="row">
         <!-- Username -->
-        <div class="col-12 col-md-4 text-muted text-center text-lg-end d-none d-md-block"><strong>Asked by:</strong><br>
+        <div class="col-12 col-md-3 text-muted text-center text-lg-end d-none d-md-block"><strong>Asked by:</strong><br>
             {{ question.user }}</div>
-        <div class="col-12 col-md-4 text-muted text-center text-lg-end d-block d-md-none"><strong>Asked by:</strong>
+        <div class="col-12 col-md-3 text-muted text-center text-lg-end d-block d-md-none"><strong>Asked by:</strong>
             {{ question.user }}</div>
-            
+
         <!-- Date -->
-        <div class="col-12 col-md-4 text-muted text-center text-lg-center my-2 my-md-0 d-none d-md-block">
+        <div class="col-12 col-md-3 text-muted text-center text-lg-center my-2 my-md-0 d-none d-md-block">
             <strong>Date:</strong><br> {{ question.date_created }}</div>
-        <div class="col-12 col-md-4 text-muted text-center text-lg-center my-2 my-md-0 d-block d-md-none">
+        <div class="col-12 col-md-3 text-muted text-center text-lg-center my-2 my-md-0 d-block d-md-none">
             <strong>Date:</strong> {{ question.date_created }}</div>
 
         <!-- Time -->
-        <div class="col-12 col-md-4 text-muted text-center text-lg-start d-none d-md-block"><strong>Time:</strong><br>
+        <div class="col-12 col-md-3 text-muted text-center text-lg-center mb-2 d-none d-md-block"><strong>Time:</strong><br>
             {{ question.time_created }}</div>
-        <div class="col-12 col-md-4 text-muted text-center text-lg-start d-block d-md-none"><strong>Time:</strong>
+        <div class="col-12 col-md-3 text-muted text-center text-lg-center mb-2 d-block d-md-none"><strong>Time:</strong>
             {{ question.time_created }}</div>
+
+        <!-- Answers -->
+        <div class="col-12 col-md-3 text-muted text-center text-lg-start d-none d-md-block">
+            <strong>Answers:</strong><br>
+            {{ answers.count }}</div>
+        <div class="col-12 col-md-3 text-muted text-center text-lg-start d-block d-md-none"><strong>Answers:</strong>
+            {{ answers.count }}</div>
+
         <!-- if the  user logged in is the user that asked the question, then that user will
         be able to edit and delete there question -->
         {% if request.user == question.user %}
-        <div class="row mt-3">
+        <div class="row mt-3 mx-auto">
             <div class="col text-center">
                 <!-- Edit and delete buttons for user who have asked a question -->
                 <a href="{% url 'edit_question' question.id %}"
@@ -61,6 +69,57 @@
         <div class="col-12 col-lg-8 mx-auto">
             <div class="text-center fs-5 text-spacing-1">
                 <p>{{ question.question_message }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Answers to questions -->
+    <div class="answer-container">
+        <div class="row text-center">
+            <!-- Answer heading with answer count -->
+            <h3 class="custom-font-head text-uppercase fw-bold product-head mt-lg-5 mb-2">Answers ({{answers.count}})</h3>
+            <div class="col">
+                <!-- Django if to check if the answer count is greater than 0 -->
+                {% if answers.count > 0 %}
+                <!-- Django for loop, iterating through the answers model -->
+                {% for answer in answers %}
+                <div class="row">
+                    <!-- Answers main info container -->
+                    <div class="review-info-con col-12 col-lg-10 offset-lg-1 px-5 px-lg-0">
+                        <!-- Answer info -->
+                        <div class="row my-3">
+                            <!-- Left info col -->
+                            <div class="col-12 col-lg-4 tex-center text-lg-start custom-bg-2 px-4 py-3">
+                                <p class="m-0"><strong>Answered by:</strong> {{ answer.user.username }}</p>
+                                <p class="m-0"><strong>Date:</strong> {{ answer.date_created }}</p>
+                                <p class="m-0"><strong>Time:</strong> {{ answer.time_created }}</p>
+                            </div>
+                            <!-- Right info col -->
+                            <div class="col-12 col-lg-8 tex-center text-lg-start border border-outline py-3">
+                                <p class="m-0">{{ answer.answer_message }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Django if to check if the user logged in is the user that left the review
+                                and if it is they will be able to edit and delete there review -->
+                        {% if request.user == answer.user %}
+                        <div class="row">
+                            <div class="col text-center">
+                                <!-- Edit and delete buttons for user who left the review -->
+                                <a href=""
+                                    class="edit-review btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
+                                <a href=""
+                                    class="delete-review btn btn-sm rounded-0 btn-secondary">Delete</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="w-50 mx-auto">
+                {% endfor %}
+                {% else %}
+                <!-- No review message -->
+                <p>There are no answer to this question, why not leave an answer.</p>
+                {% endif %}
             </div>
         </div>
     </div>
