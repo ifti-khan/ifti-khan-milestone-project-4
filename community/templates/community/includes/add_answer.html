@@ -1,0 +1,28 @@
+<!-- Django if to check if user is logged in, and if true they will be able to write an answer -->
+{% if request.user.is_authenticated %}
+<div class="row mt-5">
+    <div class="col-lg-6 offset-lg-3">
+        <!-- Write and answer heading -->
+        <h4 class="custom-font-head text-uppercase fw-bold product-head text-center mb-4" id="write-answer">Write An Answer</h4>
+        <!-- Answer form -->
+        <form action="{% url 'add_answer' question.id %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+            <!-- Crispy form answer textarea -->
+            <div class="col-12 col-md-10 col-lg-12 mx-auto mx-lg-0">
+                {{ form.answer_message | as_crispy_field }}
+            </div>
+            <!-- Form submit button -->
+            <div>
+            <input type="submit" class="btn btn-dark custom-bg rounded-0 float-lg-end d-block mx-auto mx-lg-0 mb-4"
+                value="Submit Answer">
+            </div>
+        </form>
+    </div>
+</div>
+{% else %}
+<!-- Message informing user if they want to leave an answer they have to be logged in or registered -->
+<p class="text-center my-4">To leave a review for this product, you have to <a
+        href="{% url 'account_login' %}">login</a>, or
+    have a <a href="{% url 'account_signup' %}">registered</a> account with us.</p>
+{% endif %}

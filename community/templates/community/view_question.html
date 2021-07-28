@@ -117,11 +117,25 @@
                 <hr class="w-50 mx-auto">
                 {% endfor %}
                 {% else %}
-                <!-- No review message -->
+                <!-- No answer message -->
                 <p>There are no answer to this question, why not leave an answer.</p>
                 {% endif %}
             </div>
+            {% include "community/includes/add_answer.html" %}
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!-- This is to remove the class called is-invalid from the answer message textarea
+which was causing validation to show up all the time, even when the form was not filled in -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.answer-form-fields').removeClass('is-invalid');
+        $("#id_answer_message").attr({"row" : 3});
+    });
+</script>
+{% include 'products/includes/qty_input_btn_script.html' %}
 {% endblock %}
