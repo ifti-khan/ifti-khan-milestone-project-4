@@ -41,8 +41,11 @@
                     {{ form.review_message|as_crispy_field }}
                 </div>
                 <!-- Form submit button -->
-                <input type="submit" class="btn btn-dark custom-bg rounded-0 float-lg-end d-block mx-auto mx-lg-0 mb-4"
+                <div class="text-center float-lg-end mb-3">
+                <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-0">Go Back</a>
+                <input type="submit" class="btn btn-dark custom-bg rounded-0"
                     value="Update Review">
+                </div>
             </form>
         </div>
     </div>
