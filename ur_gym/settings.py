@@ -142,8 +142,19 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-# This line of code logs new account confirmation emails to the console
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# Deployed email settings
+if 'EMAIL_HOST_USER' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+else:
+    # Development email settings
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'info@urgym.com'
 
 """
 This block of code allows users to login via username or email
@@ -270,6 +281,3 @@ STRIPE_WH_SECRET = myenv("STRIPE_WH_SECRET")
 
 # Google Maps API
 GMAPS_API_KEY = myenv('GMAPS_API_KEY')
-
-# Default Email Address
-DEFAULT_FROM_EMAIL = 'info@urgym.com'
