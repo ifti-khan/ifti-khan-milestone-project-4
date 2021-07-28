@@ -222,11 +222,12 @@
 {% block postloadjs %}
 {{ block.super }}
 <!-- This is to remove the class called is-invalid from the product review textarea
-which was causing validation issues -->
+which was causing validation to show up all the time, even when the form was not filled in -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('.review-form-fields').removeClass('is-invalid');
         $("#id_review_rating").attr({"max" : 5, "min" : 1});
+        $("#id_review_message").attr({"row" : 3});
     });
 </script>
 {% include 'products/includes/qty_input_btn_script.html' %}

@@ -40,10 +40,6 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         exclude = ('user', 'question', 'date_created', 'time_created')
 
-        # Setting the row attribute for the answer message
-        answer_message = forms.CharField(widget=forms.Textarea
-                                         (attrs={"rows": 3}),)
-
     def __init__(self, *args, **kwargs):
         """
         Adding placeholders and classes for answer

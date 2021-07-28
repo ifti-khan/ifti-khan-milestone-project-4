@@ -38,10 +38,6 @@ class ReviewForm(forms.ModelForm):
         model = Review
         exclude = ('product', 'user', 'date_created', 'time_created')
 
-        # Setting the row attribute for the textarea message
-        review_message = forms.CharField(widget=forms.Textarea
-                                         (attrs={"rows": 3}),)
-
     def __init__(self, *args, **kwargs):
         """
         Adding placeholders and classes for review form fields,
