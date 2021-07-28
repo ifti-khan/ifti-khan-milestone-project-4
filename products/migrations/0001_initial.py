@@ -15,24 +15,35 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=254)),
-                ('friendly_name', models.CharField(blank=True, max_length=254, null=True)),
+                ('friendly_name', models.CharField(
+                    blank=True, max_length=254, null=True)),
             ],
         ),
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('product_name', models.CharField(max_length=254)),
                 ('product_description', models.TextField()),
-                ('product_price', models.DecimalField(decimal_places=2, max_digits=6)),
-                ('product_rating', models.DecimalField(blank=True, decimal_places=2, max_digits=6, null=True)),
-                ('sku', models.CharField(blank=True, max_length=254, null=True)),
-                ('product_sizes', models.BooleanField(blank=True, default=False, null=True)),
-                ('product_image', models.ImageField(blank=True, null=True, upload_to='')),
-                ('product_image_url', models.URLField(blank=True, max_length=1024, null=True)),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='products.category')),
+                ('product_price', models.DecimalField(
+                    decimal_places=2, max_digits=6)),
+                ('product_rating', models.DecimalField(
+                    blank=True, decimal_places=2, max_digits=6, null=True)),
+                ('sku', models.CharField(
+                    blank=True, max_length=254, null=True)),
+                ('product_sizes', models.BooleanField(
+                    blank=True, default=False, null=True)),
+                ('product_image', models.ImageField(
+                    blank=True, null=True, upload_to='')),
+                ('product_image_url', models.URLField(
+                    blank=True, max_length=1024, null=True)),
+                ('category', models.ForeignKey(blank=True, null=True,
+                 on_delete=django.db.models.deletion.SET_NULL,
+                 to='products.category')),
             ],
         ),
     ]

@@ -14,7 +14,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='answer',
             name='question',
-            field=models.ForeignKey(default=2, on_delete=django.db.models.deletion.CASCADE, to='community.question'),
+            field=models.ForeignKey(
+                default=2, on_delete=django.db.models.deletion.CASCADE,
+                to='community.question'),
             preserve_default=False,
         ),
         migrations.AlterField(
