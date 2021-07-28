@@ -29,7 +29,7 @@ def community(request):
 @login_required
 def view_question(request, question_id):
     """
-    Viewing a question
+    Viewing questions from the db
     """
     # Getting question using question id
     question = get_object_or_404(Question, pk=question_id)
@@ -94,7 +94,7 @@ def add_question(request):
 
 @login_required
 def edit_question(request, question_id):
-    """A view to edit product reviews"""
+    """A view to edit questions"""
     # Getting a question using question id
     question = get_object_or_404(Question, pk=question_id)
 
@@ -149,3 +149,41 @@ def delete_question(request, question_id):
             has been successfully deleted')
 
     return redirect(reverse('community'))
+
+
+@login_required
+def add_answer(request, question_id):
+    """ Adding an answer to a question """
+    # Getting question
+    question = get_object_or_404(Question, pk=question_id)
+
+    # Checking if request is post and form is post and if it is
+    # check if the form is valid and then save the form.
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.message = request.POST["answer_message"]
+            data.user = request.user
+            data.question = question
+            data.save()
+            # Message informing the user using toasts,
+            # that there answer has been added and redirecting them.
+            messages.success(request, 'Thank you for leaving an answer')
+            return redirect(reverse('view_question', args=[question.id]))
+        else:
+            # Error message if answer fails to add
+            messages.error(
+                request, 'Failed to add your answer.')
+    else:
+
+        form = AnswerForm()
+
+    # context dictionary with keys and values to be
+    # used in the rendered html template
+    template = 'community/includes/add_answer.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
