@@ -187,3 +187,42 @@ def add_answer(request, question_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_answer(request, question_id, answer_id):
+    """A view to edit an answer"""
+    # Getting both questions and answers
+    question = get_object_or_404(Question, pk=question_id)
+    answer = get_object_or_404(Answer, question=question, pk=answer_id)
+
+    # Checking if request user and methods are post and form is post
+    # and if they are then check if the form is valid and then save the form.
+    if request.user == answer.user:
+        if request.method == "POST":
+            form = AnswerForm(request.POST, instance=answer)
+            if form.is_valid():
+                data = form.save(commit=False)
+                data.save()
+                # Message informing the user using toasts,
+                # that there answer has been updated and redirecting them.
+                messages.success(request, 'Your answer has been updated')
+                return redirect(reverse('view_question', args=[question.id]))
+            else:
+                # Error message if answer fails to update and redirecting them
+                messages.error(
+                    request, 'Failed to update answer.\
+                        Please ensure the form is valid.')
+                return redirect(reverse('view_question', args=[question.id]))
+        else:
+            form = AnswerForm(instance=answer)
+
+        # context dictionary with keys and values to be
+        # used in the rendered html template
+        template = 'community/edit_answer.html'
+        context = {
+            'form': form,
+        }
+        return render(request, template, context)
+    else:
+        return redirect(reverse('view_question', args=[question.id]))

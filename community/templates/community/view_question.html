@@ -105,7 +105,7 @@
                         <div class="row">
                             <div class="col text-center">
                                 <!-- Edit and delete buttons for user who left the review -->
-                                <a href=""
+                                <a href="{% url 'edit_answer' question.id answer.id %}"
                                     class="edit-review btn btn-sm px-3 rounded-0 btn-secondary">Edit</a>
                                 <a href=""
                                     class="delete-review btn btn-sm rounded-0 btn-secondary">Delete</a>
