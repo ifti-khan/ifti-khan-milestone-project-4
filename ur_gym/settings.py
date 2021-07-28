@@ -44,7 +44,7 @@ else:
 
 if 'HEROKU_HOSTNAME' in os.environ:
     # Deployment
-    ALLOWED_HOSTS = ['iftikhan-django-mini-project.herokuapp.com']
+    ALLOWED_HOSTS = ['iftikhan-ms4-project-urgym.herokuapp.com']
 else:
     # Development
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
