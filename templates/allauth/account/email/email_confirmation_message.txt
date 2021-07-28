@@ -1,3 +1,4 @@
+{% user_display user as user_display %}
 Hello and welcome to ur-gym
 
 You're receiving this e-mail because user {{ user_display }} has given us your e-mail address to sign up to our website.
