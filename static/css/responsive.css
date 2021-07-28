@@ -1,9 +1,9 @@
 /* This media query has been added
 for the top header container located
-in index.html */
+in all html files*/
 @media (min-width: 992px) {
     .top-head-container {
-        padding-top: 200px;
+        padding-top: 205px;
     }
 
 }
@@ -15,16 +15,21 @@ in index.html */
         top: 205px;
         right: 5px;
     }
+
+    /* Top header container */
+    .top-head-container {
+        padding-top: 201px;
+    }
 }
 
 /* This media query has been added
 for the top header container located
-in index.html */
+in all html files */
 @media (max-width: 991px) {
 
-    /* Header container in index.html */
+    /* Top header container */
     .top-head-container {
-        padding-top: 190px;
+        padding-top: 220px;
     }
 
     .carousel img {
@@ -52,6 +57,11 @@ in index.html */
     .order-hr {
         width: 50% !important;
     }
+
+    /* Top header container */
+    .top-head-container {
+        padding-top: 215px;
+    }
 }
 
 /* Large Smartphones */
@@ -73,9 +83,9 @@ in index.html */
         right: 5px;
     }
 
-    /* Header container in index.html */
+    /* Top header container */
     .top-head-container {
-        padding-top: 182px;
+        padding-top: 207px;
     }
 
     /* Index carousel captions */
@@ -115,9 +125,9 @@ in index.html */
         right: 5px;
     }
 
-    /* Header container in index.html */
+    /* Top header container */
     .top-head-container {
-        padding-top: 167px;
+        padding-top: 194px;
     }
 
     /* Index carousel captions */
@@ -169,9 +179,9 @@ in index.html */
         right: 5px;
     }
 
-    /* Header container in index.html */
+    /* Top header container */
     .top-head-container {
-        padding-top: 162px;
+        padding-top: 188px;
     }
 
     /* Free delivery banner */
