@@ -38,7 +38,7 @@ def profile(request):
         # This populates the profile form with the currents user profile
         # info. Also getting all the order history associated with the user
         form = UserProfileForm(instance=profile)
-        orders = profile.orders.all()
+    orders = profile.orders.all()
 
     # setting the template url and returning var to
     # be rendered into the template
