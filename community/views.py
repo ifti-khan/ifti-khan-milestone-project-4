@@ -226,3 +226,21 @@ def edit_answer(request, question_id, answer_id):
         return render(request, template, context)
     else:
         return redirect(reverse('view_question', args=[question.id]))
+
+
+@login_required
+def delete_answer(request, question_id, answer_id):
+    """A view to delete an answer"""
+    # Getting both questions and answers
+    question = get_object_or_404(Question, pk=question_id)
+    answer = get_object_or_404(Answer, question=question, pk=answer_id)
+
+    # Checking if the user logged in is the user that left the answer
+    # and if true then the answer will be deleted.
+    if request.user == answer.user:
+        answer.delete()
+        # Message using toasts to inform user that they
+        # have deleted there answer
+        messages.success(request, 'Your answer has successfully been deleted')
+
+    return redirect(reverse('view_question', args=[question.id]))
