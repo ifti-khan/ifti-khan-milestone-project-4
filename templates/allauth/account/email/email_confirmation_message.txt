@@ -1,9 +1,15 @@
-{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+Hello and welcome to ur-gym
 
-You're receiving this e-mail because user {{ user_display }} has given yours as an e-mail address to connect their account.
+You're receiving this e-mail because user {{ user_display }} has given us your e-mail address to sign up to our website.
 
-To confirm this is correct, go to {{ activate_url }}
-{% endblocktrans %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from {{ site_name }}!
-{{ site_domain }}{% endblocktrans %}
-{% endautoescape %}
+To confirm this is correct, please click the url below, or copy and paste the url into your web browser address bar.
+
+{{ activate_url }}
+
+If you have any further question please visit our website and use or contact from.
+https://iftikhan-ms4-project-urgym.herokuapp.com/contact/
+
+Or send us a direct email to the email address below.
+ifti5426@gmail.com
+
+Thank you for signing up to ur-gym
