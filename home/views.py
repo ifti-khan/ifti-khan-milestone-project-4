@@ -94,8 +94,10 @@ def send_contact_email(request):
 
 
 def error_404_not_found(request, exception):
+    """This custom handler is for 404 page not found errors"""
     return render(request, 'home/errors/error_404.html')
 
 
 def error_500_server_error(request):
+    """This custom handler is for 500 internal server errors"""
     return render(request, 'home/errors/error_500.html')
