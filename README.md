@@ -285,6 +285,10 @@ All Memberships images were created by me using [Sketchbook](https://www.sketchb
 
 ### Image URLs Document -> [Visit Document](/writeup_files/images/image_urls.md)
 
+Here below you will find the products URLs
+
+### Products URLs Document -> [Visit Document](/writeup_files/documents/products_urls.md)
+
 ## Code
 Here I have listed all of the external URLs that helped me during the development of my project.
 
