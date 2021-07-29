@@ -229,9 +229,13 @@ def checkout_complete(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully completed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email_address}.')
+            messages.success(request, f'Order successfully completed! \
+                Your order number is {order_number}. A confirmation \
+                email will be sent to {order.email_address}.')
+        else:
+            messages.success(request, f'Order successfully completed! \
+                Your order number is {order_number}. A confirmation \
+                email will be sent to {order.email_address}.')
 
     # Deleting users shopping trolley session
     if 'trolley' in request.session:
