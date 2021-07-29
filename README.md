@@ -1,8 +1,8 @@
 # Ifti Khan Milestone Project 4 - Fullstack Frameworks with Django
 
-[Click Here To Visit My Deployed Project Site](#)
+[Click Here To Visit My Deployed Project Site](https://iftikhan-ms4-project-urgym.herokuapp.com/)
 
-![Image of Project](#)
+![Image of Project](writeup_files/images/responsive_website_img.jpg)
 
 ## Project Title - UR-GYM
 
@@ -116,11 +116,7 @@ The second font I have chosen is also from Google Fonts and it is called [Nunito
 ## Imagery
 All the images for this project will be relevant to the website, the images will consist gym clothing, supplements, vitamins and powders as well as other supporting gym images. Icons will also be used in the appropriate locations and Font awesome will be used for this.
 
-The majority bulk of clothing images have come directly from the Sports Direct website. The protein, vitamin, tablets and snacks have come from the My Protein website, URLs can be found within the document below.
-
-All Memberships images were created by me using [Sketchbook](https://www.sketchbook.com/) as well as the favicon image. The gym membership barbel and bicep URLs can be found in the image url document below.
-
-### Image URL Document -> [Visit Document](/writeup_files/images/image_urls.md)
+The majority bulk of clothing images have come directly from the Sports Direct website. The protein, vitamin, tablets and snacks have come from the My Protein website.
 
 # Wireframes
 ### Home Page -> [View PDF](/writeup_files/wireframes/home-page-all-devices.pdf)
@@ -211,11 +207,17 @@ Here is a list of programming languages that I used to create this project along
 * Paint 3D -> [Visit Site](https://www.microsoft.com/en-gb/p/paint-3d/9nblggh5fv99?activetab=pivot:overviewtab)
     * Paint 3D was used to crop screenshot images and then saved to an appropriate image format.
 
+* Sketchbook -> [Visit Site](https://www.sketchbook.com/)
+    * Sketchbook was used to create my favicon and gym membership images.
+
 * Google Chrome & Chrome Dev Tools -> [Visit Site](https://support.google.com/chrome/answer/95346?co=GENIE.Platform%3DDesktop&hl=en)
     * Google Chrome and Chrome Dev Tools was used to help create my project as well as testing it using the developer tools.
 
 * Markdown Table Generator -> [Visit Site](https://www.tablesgenerator.com/markdown_tables)
     * This online tool helped me to create the markdown tables for testing section of my readme file.
+
+* Favicon Generator -> [Visit Site](https://www.favicon-generator.org/)
+    * This online tool was used to help me convert my favicon image into favicon format
 
 * Django Secret Key Generator -> [Visit Site](https://miniwebtool.com/django-secret-key-generator/)
     * This online tool was used to help generate a secure key for Django secret key variable within my project.
@@ -229,8 +231,11 @@ Here is a list of programming languages that I used to create this project along
 * Python Tutor -> [Visit Site](http://pythontutor.com/)
     * I used this online tool to help me be better understand my python code because it allowed me to see my code visually run step by step.
 
-* Bootstrap Cheat sheet -> [Visit Site](https://hackerthemes.com/bootstrap-cheatsheet/)
-    * This website was used to help with the calling of my bootstrap classes within my HTML and CSS. 
+* Bootstrap 5 Cheat Sheet -> [Visit Site](https://bootstrap-cheatsheet.themeselection.com/)
+    * This website was used to help with the calling of my bootstrap 5 classes within my HTML.
+
+* Markdown Cheat Sheet -> [Visit Site](https://www.markdownguide.org/cheat-sheet/)
+    * This website was used to help with the markdown syntax for this README file. 
 
 # Validation
 In this section I have used a few different validation tools to thoroughly check and make sure my project code is fully compliant and accessible. If there is any non-compliant code or warnings within the project I will document it and then fix it and this will be the first step of my testing and debugging.
@@ -265,12 +270,38 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 
 # Credits
 
-## Content
+## Content & Media
+All products and images within this web application were used for educational purpose to demonstrate my Django, MySQL, HTML5, CSS3, JavaScript and jQuery skills. I thought it would be best at the time to choose the most popular products and images to better show and demonstrate the core concept of my web application.
 
-## Media
+[Font Awesome Icon](https://fontawesome.com/) - These have been used throughout the entire project and can be seen throughout the web application. 
 
-## Code 
+[Sport Direct](https://www.sportsdirect.com/) - After doing some research I found that the products and images I have chosen from this website were very popular gym attire and this is the reason why i chose them.  
 
-### External URL Document -> [Visit Document](writeup_files/documents/ext_url_document.md)
+[My Protein](https://www.myprotein.com/) - After doing some research on healthy snacks, vitamins and protein powders, this website was chosen because they had all three categories that I wanted. Like the clothing I chose the most popular items to display within my project.
+
+[Unsplash Photos](https://unsplash.com/s/photos/gym) - After doing some research for free high resolution gym images, this website I came across was amazing, not only free but high resolution and a huge range of gym images.
+
+All Memberships images were created by me using [Sketchbook](https://www.sketchbook.com/) as well as the favicon image. The gym membership barbel and bicep URLs can be found in the image url document below as well as the other images urls.
+
+### Image URLs Document -> [Visit Document](/writeup_files/images/image_urls.md)
+
+## Code
+Here I have listed all of the external URLs that helped me during the development of my project.
+
+I would like to reference here that the biggest source of help throughout this project has been from The Code Institutes Django Boutiques Ado Mini Project. Following the videos and looking at the code helped me get a better understanding of how powerful Django really is. 
+
+The code used within this project was taken, broken down and then modified to suit my needs. There are a few sections within the code e.g. the stripe section where code will be the same as the Django mini project with small differences, but I analysed the code and commented on the code throughout to help be understand it. 
+
+Below in the URLs document you will find the URLs to several website which I used to help me develop my project. Snippets were taken from these websites and then modified and commented on, in the document below i acknowledged them and reference them.
+
+### External URLs Document -> [Visit Document](writeup_files/documents/ext_url_document.md)
 
 ## Acknowledgements
+I want to acknowledge my student mentor Adegbenga Adeye for his helpful advice and guidance throughout the whole project. I would also like to thank The Code Institute for the course lessons, 
+challenges, video tutorials they supplied and a special thanks to the Django Boutiques Ado Mini Project and The Code Institute member of staff who did all the Django mini projects video tutorials. 
+
+Lastly I would like to thank, Sports Direct, My Protein, Unsplash for the images, Stack Overflow, W3C School, Bootstrap 5, jQuery, the slack community and the other URL links that helped me develop my project.
+
+The reason I chose to base my project on an e-commerce website is that I wanted to challenge myself and because it was one of the recommended project idea. The Overall development of this project was a challenge throughout but it was exciting at some points and frustrating as well but who doesn't like a challenge. 
+
+I learnt a lot from developing this project and learnt just how powerful and useful Python, Django, MySQL and Bootstrap 5 can be.
