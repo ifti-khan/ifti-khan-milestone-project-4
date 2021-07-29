@@ -9,7 +9,7 @@
 ### Introduction
 This repository is showcasing my fourth and final milestone project for The Code Institute.
 
-For this project I have chosen to do an ecommerce website for a gym that I have made up called UR-GYM. This web application will also users to register, login and purchase gym merchandise as well as gym memberships and also ask for advice. 
+For this project I have chosen to do an ecommerce website for a gym that I have made up called UR-GYM. This web application will allow users to purchase gym merchandise as well as gym memberships, they will also have the option to register, login, and ask for advice on a community message board. 
 
 The reason I have chosen to do this as my fourth and final milestone project is that it will allow me to showcase the new Django skills learnt from The Code Institute and my previous skills from other projects. The key skills being showcased here are the Django framework, MySQL database and the Bootstrap framework 
 
@@ -18,9 +18,9 @@ The reason I have chosen to do this as my fourth and final milestone project is 
 The project will be designed for enthusiastic gym users who want to find and purchase gym merchandise online as well as gym memberships and seeking advice from other gym users. 
 
 ## The What?
-The project will be aimed users who want to find and purchase a gym membership ranging from one month to twelve months. It will also allow them to find and purchase gym merchandise which will include clothing items, supplements, and protein powders. 
+The project will be aimed users who want to find and purchase a gym membership ranging from one month to twelve months. It will also allow them to find and purchase gym merchandise which will include clothing items, supplements, vitamins and protein powders. 
 
-Once they have found what they are looking for, the user can then purchase items by filling in the relevant information and make the purchase. The Project will also allow users to connect with other gym users by allowing them to create posts on a message board asking other users for advice on certain subject, which will create an online social community. 
+Once they have found what they are looking for, the user can then purchase items by filling in the relevant information and make a purchase. The Project will also allow users to connect with other gym users by allowing them to create posts on a message board asking other users for advice on certain subject, which will create an online social community. 
 
 ## The How?
 I will be using a variety of different technologies and techniques to create this project, the first is the Django framework, along with the Bootstrap framework and a MySQL database to store product information. 
@@ -67,7 +67,10 @@ The web application will allow all users to find and make a purchase, but regist
 * As a user, I want to have the option to amend my shopping trolley, so that I can decide whether I would like to remove or update the product quantity of a certain item before purchasing. 
 
 * As a user, I want to be able to enter my card details, so that I can purchase the said items in my shopping trolley. 
-* As a user, I want to be able to see an order confirmation once a purchase has been made, so that I can see a visual confirmation of my purchase order. 
+
+* As a user, I want to be able to see an order confirmation once a purchase has been made, so that I can see a visual confirmation of my purchase order.
+
+* As a user, I want to receive an order confirmation sent via email once a purchase has been made, so that I can have a record of it. 
 
 * As a user, I want there to be some kind of contact form, so that I can get in contact with the site owner in regard to an issue, product or order.
 
@@ -82,23 +85,28 @@ The web application will allow all users to find and make a purchase, but regist
 
 * As a user, I want to be able to delete a product, so that I can remove it from the store if no stock is available.
 
-* As a user, I want the ability to delete messages, so that I can remove rude or offensive messages from the message board. 
-
 * As a user, I want to be able to receive emails from other users when they fill out the contact form, so that I can reply to them in regards to their message subject. 
 
 # Design 
 The overall look of the entire project will be simple and sleek, drawing the user’s attention to the products for sale and not bombarding the user with too much information and images. 
 
 ## Framework
-The design framework I have chosen to use for this project is Bootstrap, the reason I have chosen to use bootstrap is because of it is flexibility and that it’s easy to work with. Also because of its responsive design capabilities, wide range of built in components that can be called within the HTML and its browser compatibility.  
+The design framework I have chosen to use for this project is Bootstrap 5, the reason I have chosen to use Bootstrap 5 is because of it is flexibility, extensive documentation, responsive design capabilities, wide range of built in components that can be called within the HTML and its browser compatibility.
 
 ## Colour Scheme
-The colour scheme of the entire website will consist of web safe colours, it will have a mixture of white, black and different shades of blue. All colours selected will be validated first to check if they compliant and pass web accessibility standards. 
+The colour scheme of the entire website will consist of web safe colours, it will have a mixture of white, black, different shades of grey and bootstrap colours. All colours selected will be validated first to check if they compliant and pass web accessibility standards. 
 
 * White - Hex: #000000
 * Black - Hex: #FFFFFF
-* Blue Colour 1 - Hex: #003366
-* Blue Colour 2 - Hex: #003399
+* Dark Grey - Hex: #595959
+* Light Grey - Hex: #e6e6e6
+
+These colours were mainly used for my message toasts borders
+* Bootstrap Secondary - Hex: #6c757d
+* Bootstrap Success - Hex: #28a745
+* Bootstrap Danger - Hex: #dc3545
+* Bootstrap Warning - Hex: #ffc107
+* Bootstrap Info - Hex: #17a2b8
  
 ## Typography
 For this project I have chosen two fonts from Google Fonts, the first font I have chosen is called [Poiret One](https://fonts.google.com/specimen/Poiret+One). I have chosen this font because of it sleek and simple design and stylish look and it will be used in the navigation and headings. 
@@ -106,7 +114,13 @@ For this project I have chosen two fonts from Google Fonts, the first font I hav
 The second font I have chosen is also from Google Fonts and it is called [Nunito](https://fonts.google.com/specimen/Nunito). This font will be used for the main descriptions and bulk text areas.
 
 ## Imagery
-All the images for this project will be relevant to the website, the images will consist gym clothing, supplements and powders as well as other supporting gym images. Icons will also be used in the appropriate locations and Font awesome will be used for this.
+All the images for this project will be relevant to the website, the images will consist gym clothing, supplements, vitamins and powders as well as other supporting gym images. Icons will also be used in the appropriate locations and Font awesome will be used for this.
+
+The majority bulk of clothing images have come directly from the Sports Direct website. The protein, vitamin, tablets and snacks have come from the My Protein website, URLs can be found within the document below.
+
+All Memberships images were created by me using [Sketchbook](https://www.sketchbook.com/) as well as the favicon image. The gym membership barbel and bicep URLs can be found in the image url document below.
+
+### Image URL Document -> [Visit Document](/writeup_files/images/image_urls.md)
 
 # Wireframes
 ### Home Page -> [View PDF](/writeup_files/wireframes/home-page-all-devices.pdf)
