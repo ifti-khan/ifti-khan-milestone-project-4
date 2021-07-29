@@ -29,3 +29,6 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('community/', include('community.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'home.views.error_404_not_found'
+handler500 = 'home.views.error_500_server_error'

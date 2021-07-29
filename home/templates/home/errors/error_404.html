@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    <!-- Required meta tags -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block corecss %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Google Font Link For Font Nunito -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <!-- Google Font Link For Font Poiret One -->
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <!-- Project Base CSS and Responsive CSS File Link -->
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+    <!-- Fontawesome Icons Kit JS -->
+    <script src="https://kit.fontawesome.com/993516308f.js" crossorigin="anonymous"></script>
+    <!-- JQuery v3.6.0 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <!-- Project Base JS file link -->
+    <script src="{% static 'js/base.js' %}"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <title>UR-GYM {% block extra_title %}{% endblock %}</title>
+    <!--This is for the favicon-->
+    <link rel="shortcut icon" type="image/png" href="{% static 'icons/favicon-logo.png' %}" />
+</head>
+
+<body>
+<!-- 404 Error page container, with a small message caption and 
+two navigation links for user who enter a incorrect URL-->
+    <div class="container text-center mt-5 pt-5">
+        <div class="row">
+            <div class="col-12">
+                <h1><i class="fas fa-bug"></i> 404</h1>
+                <h2>File Not Found</h2>
+                <h4>We're sorry but the page you have requested could not be found.<br><br>
+                    Please go back to the homepage or contact support</h4>
+
+                <!--Home button-->
+                <a href="{% url 'home' %}" class="btn btn-dark custom-bg rounded-0 mt-3">Home</a>
+
+                <!--Contact button-->
+                <a href="{% url 'contact' %}" class="btn btn-dark custom-bg rounded-0 mt-3">Contact</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

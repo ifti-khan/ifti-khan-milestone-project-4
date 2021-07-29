@@ -91,3 +91,11 @@ def send_contact_email(request):
         messages.error(
             request, 'Failed to send message to admin')
         return redirect(reverse('contact'))
+
+
+def error_404_not_found(request, exception):
+    return render(request, 'home/errors/error_404.html')
+
+
+def error_500_server_error(request):
+    return render(request, 'home/errors/error_500.html')
