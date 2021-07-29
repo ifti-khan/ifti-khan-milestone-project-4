@@ -3,7 +3,7 @@ for the top header container located
 in all html files*/
 @media (min-width: 992px) {
     .top-head-container {
-        padding-top: 205px;
+        padding-top: 204px;
     }
 
 }
@@ -19,6 +19,10 @@ in all html files*/
     /* Top header container */
     .top-head-container {
         padding-top: 201px;
+    }
+
+    .carousel-caption {
+        bottom: 150px;
     }
 }
 
@@ -60,7 +64,11 @@ in all html files */
 
     /* Top header container */
     .top-head-container {
-        padding-top: 215px;
+        padding-top: 214px;
+    }
+
+    .carousel-caption {
+        bottom: 150px;
     }
 }
 
@@ -92,6 +100,10 @@ in all html files */
     .custom-captions,
     .custom-captions-white {
         font-size: 22px;
+    }
+
+    .carousel-caption {
+        bottom: 125px;
     }
 
     /* Toasts */
@@ -127,7 +139,7 @@ in all html files */
 
     /* Top header container */
     .top-head-container {
-        padding-top: 194px;
+        padding-top: 192px;
     }
 
     /* Index carousel captions */
@@ -138,7 +150,7 @@ in all html files */
 
     /* Free delivery banner */
     .free-delivery-ban p {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .free-delivery-ban {
