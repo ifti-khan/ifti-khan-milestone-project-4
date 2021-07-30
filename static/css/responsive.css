@@ -5,7 +5,6 @@ in all html files*/
     .top-head-container {
         padding-top: 204px;
     }
-
 }
 
 /* Small Laptops */
@@ -21,8 +20,9 @@ in all html files*/
         padding-top: 201px;
     }
 
+    /* Carousel caption */
     .carousel-caption {
-        bottom: 150px;
+        height: calc(100vh - 650px);
     }
 }
 
@@ -39,6 +39,11 @@ in all html files */
     .carousel img {
         height: calc(94vh - 190px);
         object-fit: cover;
+    }
+
+    /* Carousel caption */
+    .carousel-caption {
+        height: calc(100vh - 600px);
     }
 
     /* Toasts */
@@ -102,8 +107,9 @@ in all html files */
         font-size: 22px;
     }
 
+    /* Carousel caption */
     .carousel-caption {
-        bottom: 125px;
+        height: calc(100vh - 675px);
     }
 
     /* Toasts */
@@ -146,6 +152,11 @@ in all html files */
     .custom-captions,
     .custom-captions-white {
         font-size: 24px;
+    }
+
+    /* Carousel caption */
+    .carousel-caption {
+        height: calc(100vh - 650px);
     }
 
     /* Free delivery banner */
@@ -215,6 +226,11 @@ in all html files */
     /* Checkout Complete btn */
     .checkout-complete-btn {
         margin-top: 16px;
+    }
+
+    /* Carousel caption */
+    .carousel-caption {
+        height: calc(100vh - 650px);
     }
 
 }
