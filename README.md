@@ -264,6 +264,28 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 
 # Known Issues and Solutions
 
+* My checkout app kept failing to make a purchases because of a Django if statement within my qty-form.html that contained a hidden input element. The issue was that I mistakenly in the if statement put if product_size, but it should have been if product_sizes. The solution was that I was missing the letter s and this took me a few hours to figured out. 
+
+* Another issues that I was having was with another Django if statement which was for the product images. The if statement was to check if the product had an image or not and if it did, then display the image and if no image is found then display a default no image.
+
+     The error was within the href source attribute of the default no image and inside of it was a Django template variable. The solution was to remove the variable that was linking it to the product name within the product model.
+
+* This issue I was having was me making a simple mistake, I set a default on product_sizes in the products model and the default was set to true. Then during the deployment I migrated my models to Postgres and loaded my fixtures which caused non sized products to have sizes when deployed. 
+
+    The solution was to removed the default from the product_sizes and manually changed non sized products back to false within the admin side of my project.
+
+* My Crispy forms within the product details and view question html had the bootstraps is-invalid class with the class attribute and it kept show my product review form and question answer form invalid even when the page was just loaded. The solution to this was to use a little jQuery remove the is-invalid class from the class attribute.
+
+* When I first deployed my project and got all static and media folder uploaded to AWS, my carousel images did not display on the homepage. The solution was to add the Media URL tag to my carousel images within the HTML on the homepage.
+
+* This issue was found during the testing stage of my deployed web application. The save delivery information check button even tho it was not checked it would still save a logged in user delivery and personal information. The solution to this was that the if statement within the checkout views app was missing the else part of the if statement.
+
+* This here is an app flaw which does have a solution but yet not implemented and it was flagged by my student mentor. It has to do with deleting a product from the database, when a product is deleted it removes all traces of it an even from all users order history. The solution to this is to implement something called soft deleting and this was told to me by my student mentor.
+
+* This issue was a tricky one but a solution was found. The carousel caption within the carousel on the homepage by default are at the bottom, but I wanted them to be higher up on the images. Once I changed the default CSS bottom, the captions moved up but when on different device screen sizes, the position of the captions were too high. 
+
+    The solution to this was implementing a height calculation in the responsive CSS file using the view height minus a certain amount of pixel, to get the captions to the positions I wanted them. 
+
 # Deployment
 
 # Local Clone
@@ -275,7 +297,7 @@ All products and images within this web application were used for educational pu
 
 [Font Awesome Icon](https://fontawesome.com/) - These have been used throughout the entire project and can be seen throughout the web application. 
 
-[Sport Direct](https://www.sportsdirect.com/) - After doing some research I found that the products and images I have chosen from this website were very popular gym attire and this is the reason why i chose them.  
+[Sport Direct](https://www.sportsdirect.com/) - After doing some research I found that the products and images I have chosen from this website were very popular gym attire and this is the reason why I chose them.  
 
 [My Protein](https://www.myprotein.com/) - After doing some research on healthy snacks, vitamins and protein powders, this website was chosen because they had all three categories that I wanted. Like the clothing I chose the most popular items to display within my project.
 
@@ -296,7 +318,7 @@ I would like to reference here that the biggest source of help throughout this p
 
 The code used within this project was taken, broken down and then modified to suit my needs. There are a few sections within the code e.g. the stripe section where code will be the same as the Django mini project with small differences, but I analysed the code and commented on the code throughout to help be understand it. 
 
-Below in the URLs document you will find the URLs to several website which I used to help me develop my project. Snippets were taken from these websites and then modified and commented on, in the document below i acknowledged them and reference them.
+Below in the URLs document you will find the URLs to several website which I used to help me develop my project. Snippets were taken from these websites and then modified and commented on, in the document below I acknowledged them and reference them.
 
 ### External URLs Document -> [Visit Document](writeup_files/documents/ext_url_document.md)
 
