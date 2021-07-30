@@ -75,6 +75,16 @@ def all_products(request):
             queries = Q(product_name__icontains=query) | Q(
                 product_description__icontains=query)
             products = products.filter(queries)
+            # This checks the search query length and if zero a error toast
+            # message will inform user no results found
+            if len(products) == 0:
+                messages.error(
+                    request, 'No search results founds')
+            else:
+                # else if search query length is not zero a success toast
+                # message will inform user about there search results
+                messages.success(
+                    request, f'{len(query)}: Results found for ({query})')
 
     current_sorting = f'{sort}_{direction}'
 
