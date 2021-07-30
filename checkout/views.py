@@ -233,7 +233,8 @@ def checkout_complete(request, order_number):
                 Your order number is {order_number}. A confirmation \
                 email will be sent to {order.email_address}.')
         else:
-            messages.success(request, f'Order successfully completed! \
+            if not save_del_info:
+                messages.success(request, f'Order successfully completed! \
                 Your order number is {order_number}. A confirmation \
                 email will be sent to {order.email_address}.')
 
