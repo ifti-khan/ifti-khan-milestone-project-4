@@ -55,3 +55,5 @@ Here you will find a list of URLs that I also used to develop my project. Code a
 [This bit of jQuery was used to remove the Bootstrap is-invalid class on page load from my write a review and write an answer form](https://stackoverflow.com/questions/28570852/removeclass-addclass-when-page-load)
 
 [Django sorting objects via date and time, this was used for my product reviews and question answers](https://stackoverflow.com/questions/39550997/django-queryset-order-by-dates-near-today/39551190)
+
+[Python len() method used for product search improvements](https://stackoverflow.com/questions/16483481/python-if-lenstring-1-how-to-print-the-word-codeacademy)

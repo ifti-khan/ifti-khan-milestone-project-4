@@ -137,10 +137,138 @@ The majority bulk of clothing images have come directly from the Sports Direct w
 # Features
 
 ## Existing Features 
-Coming soon
 
-## Future Features to Implement
-Coming soon
+## Base Template
+
+### Top navigation bar
+* The top navigation bar is available for all users, it contains an information banner about spending over £50 to get free delivery. It also contains navigation link to the contact and about page. A feature that I also implemented for this navigation bar is when on smaller screen device the contact and about navigation links disappear and appear in the footer of the page.
+
+### Logo home link
+* The logo in the main navigation if clicked will take the user back to the homepage of the web application. 
+
+### Product search bar
+* This feature is available to all users and it allows users to search for a specific product using any keywords and with a successful search users will see a success toast with there search phrase. But if no result are found a toast message will inform user that no results were found. Also if nothing is entered into the search bar and a search is done a user will see an error toast message informing users to type something to search.
+
+### Navigation bar dropdown boxes and navigation links
+* For a non logged in user they will be able to see the account, community and trolley navigation links. When the account nav link is clicked a dropdown box will appear and for non logged in users and they will see two navigation links one to login and another to register.
+
+* For logged in users they will see the same as non logged in users but the account dropdown box will contain a my profile and logout link.
+
+* For superusers who are logged in they will see the same as logged in users but in the account dropdown they will see the administrator link as well as the my profile and logout link
+
+* Trolly icons displays a final total of £0.00 if trolley is empty, but if a product or products are in the trolley a final total displays to all users. 
+
+### Product navigation
+This will be available to all users, the product navigation dropdown contains a link to see all products. There are also other links within the dropdown and they are price, rating and category and these are filtered product links. The three other navigation links are clothing, supplements and memberships. The clothing and supplements navigation have both got dropdown boxes which contain filtered links but this time to specific product categories like hoodies, t-shirt, snack, vitamins and more. 
+
+### Social links in footer
+* This feature will be available for all users and will contain social media icon links to Facebook, Twitter, Instagram. The footer will also contain a copyright caption which is also an external link to my personal portfolio, if a user clicks on the link a new tab will open for any of the social media icons and my personal portfolio link. 
+
+### Responsive web design
+* The entire web application is fully responsive and can be viewed on a variety of different screen sizes. e.g. 320px. 375px, 425px, 768px and 1024px.
+
+### Django allauth
+* This feature was installed at the beginning of the project to handle all of the user authentications for example the login logic and form, registration logic and form. It also contains logout logic and other supporting additional features like password reset if a user forgets there password and email verification when registering to the web application. 
+
+### Login form
+* This feature will be available for non-logged in users and this will allow them to login into the web application from the account dropdown box located in the main navigation bar. Once the user is logged in, the login navigation link will disappear and the logout navigation link will appear in the account dropdown box. The form it self is associated with Django allauth which was installed at the start of the project to handle user authentication, some styling was applied to the form make it look better. 
+
+### Registration form
+* This feature will be available to non-registered users and will be located in the main navigation bar in the account dropdown box. The form it self is associated with Django allauth. The form contains a Django allauth built in authentication system as well as validation checks to see if the email is already taken by another user, email confirmation and email match, username check to see if its taken by another user, password matching as well as password strength.
+
+### Contact form
+* A contact form has been created for all users to get in contact with the site admin to help with any issues they are having. For non logged in users they will have to fill in the entire form manually, but for logged in users it will pull there info like there username, full name, email address and pre-fill the form and all they have to do is fill in the rest. 
+
+## Homepage
+* A carousel that cycles thorough 4 gym related images, each image has a carousel caption with a button that is linked to all category of the parent category e.g. all products, all clothing, all supplements and all memberships
+
+### User profile page
+* This page is only available to user who are logged in, when a user is on this page they have the ability to add or update there personal info and there delivery information and also view their order history. So when it comes to the checkout page just before they enter there payment details the order form will be pre-filled with the users profile information.
+
+### Product page
+* This page will be available for all users and will display all products within a modified card format. 
+
+* Any user also has the option to sort items by price low to high and high to low. Rating low to high and high to low, Name A to Z and Z to A and finally category A - Z and Z - A.
+
+
+### Add/edit/delete products only for admin users
+* For the admin to add a product, they have to click on the administrator nav link located in the users dropdown. Which will take them to the add product form.
+
+* The admin user when logged in has the option to edit and delete a product from the all products page. 
+
+## Product details 
+* This is available for all users to see and once on this page they will have the option to choose a size if the product has sizes or not.
+
+* A user also has the option to choose a quantity of that item before they make a purchase. 
+
+* All users can see product reviews left by other users. 
+
+### Add/edit/delete product reviews
+* Only logged in users have the option to write a product review for a specific product. 
+
+* A logged in user also has the ability to edit a review that they have left on a product and the same thing goes with deleting a product review, they can only delete their own product review.
+
+### Shopping Trolley page
+* This page is available for all users and if they go to this page without a product being in the trolley, they will see a message informing them that the shopping trolley is empty. 
+
+* If a product or multiple products are in the shopping trolley a user will be able to adjust the product quantity for single and multiple products as well as removing that product or multiple products from the shopping trolley. 
+
+* A shopping trolley summary will also be available for users to see and this is a breakdown of the trolley total, delivery charge and a final total. A delivery message will appear at the bottom if the user is spending less than the free delivery limit. 
+
+### Checkout page and complete page
+* This page is available for all users and will display to them an order summary and a checkout order form.
+
+* A stripe payment element will be available to all users to enter their payment details. 
+
+* When a purchase is made all users will be taken to checkout complete page which will display to them a order summary containing order information, products ordered, delivery information and billing information, 
+
+### Order history
+* This is available for logged in users only who have made a purchase and this can be found in their profile page. If the user click on the order number they will be taken to there order summary page which is the checkout complete page.
+
+### Community page
+* This page is available to all users and on this page a user can see questions that have been asked by other users.
+
+### View question page
+* This page can only be accessed by logged in users and from here a user can view the asked question in detail and see answers left by other users as well as leaving an answer if they choose to. 
+
+### Add/edit/delete community questions
+* Only logged in users can add a question as well as editing their own questions and the same thing goes for deleting their questions.
+
+### Add/edit/delete community answers
+* Only logged in users can leave an answer to a asked question, they can also edit there answer as well as deleting their own answer. 
+
+### Toast messages
+* Within the web application there are a series of toast messages and these toast messages range from success messages, error messages, info messages and warning messages. Here below you find a few toast message examples. 
+
+* These can be seen throughout, so when a user logs in they will see a success login toast message and when they logout they will see a logout success message. 
+
+* When a user adds a product to the shopping trolley they will see a success toast message containing the shopping trolley list. 
+
+* Also if a user clicks on the search bar icon without entering a search query and error message will appear informing the user that they need to type something to search. 
+
+### Custom error pages 
+* A 404 Error html page will be created, a 404 error indicates that the resource requested cannot be found.
+
+* A 500 Error html page will be created, a 500 error indicates that the server has encountered an issue and cannot perform the request made by the user. 
+
+## Future Features To Implement
+
+* A community search bar needs to be implemented.
+
+* A community message board filtering and sorting needs to be implemented.
+
+* A community instant chat service so that users can chat with one another.
+
+* An admin adding a product categories form, as well as editing a category and deleting a category.
+
+* Implementing a social account login with Django allauth.
+
+* Product pagination for the all products page, displaying 12 images per page.
+
+* A better product delete called soft deleting that was pointed out to me by my mentor. 
+
+## Technologies Used
+Here is a list of programming languages that I used to create this project along with a list of database storage, software, frameworks, libraries and tools I also used to create this project.
 
 # Database Structure
 Here you will find my database structure for my entire project. During the development stage of my project I used sqlite3 for my database storage, but when came time to fully deploy my project I then used a postgres addon within Heroku for my database.
@@ -278,7 +406,7 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 
 * When I first deployed my project and got all static and media folder uploaded to AWS, my carousel images did not display on the homepage. The solution was to add the Media URL tag to my carousel images within the HTML on the homepage.
 
-* This issue was found during the testing stage of my deployed web application. The save delivery information check button even tho it was not checked it would still save a logged in user delivery and personal information. The solution to this was that the if statement within the checkout views app was missing the else part of the if statement.
+* This issue was found during the testing stage of my deployed web application. The save delivery information check button even tho it was not checked it would still save a logged in user delivery and personal information. The solution to this was that the if statement within the checkout views app was missing the else part of the if statement. A interesting issues with this is that the localhost web application does not save the delivery info but the deployed version does, if with the code adjustment. 
 
 * This here is an app flaw which does have a solution but yet not implemented and it was flagged by my student mentor. It has to do with deleting a product from the database, when a product is deleted it removes all traces of it an even from all users order history. The solution to this is to implement something called soft deleting and this was told to me by my student mentor.
 
