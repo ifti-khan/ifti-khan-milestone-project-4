@@ -387,6 +387,8 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 
 # UX - User Story Testing
 
+Here in this section I will provide a user story scenario with screenshot examples with steps if necessary to test my project against my user story.
+
 ### UX User Story Testing Document -> [Visit Document](writeup_files/uxstories/user_story_testing.md)
 
 # Further Testing
