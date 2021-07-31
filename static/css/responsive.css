@@ -183,7 +183,7 @@ in all html files */
 /* Small Smartphones */
 @media (max-width: 320px) {
     .nav-link {
-        padding: 0px, 4px;
+        padding: 0px 4px;
         font-size: 13px;
     }
 
