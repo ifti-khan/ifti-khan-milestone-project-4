@@ -365,6 +365,9 @@ Here is a list of programming languages that I used to create this project along
 * Markdown Cheat Sheet -> [Visit Site](https://www.markdownguide.org/cheat-sheet/)
     * This website was used to help with the markdown syntax for this README file. 
 
+* DB Diagram -> [Visit Site](https://dbdiagram.io/home)
+    * This website was used to help me create my DB relationship diagram. 
+
 # Validation
 In this section I have used a few different validation tools to thoroughly check and make sure my project code is fully compliant and accessible. If there is any non-compliant code or warnings within the project I will document it and then fix it and this will be the first step of my testing and debugging.
 
