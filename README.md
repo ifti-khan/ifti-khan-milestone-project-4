@@ -119,6 +119,7 @@ All the images for this project will be relevant to the website, the images will
 The majority bulk of clothing images have come directly from the Sports Direct website. The protein, vitamin, tablets and snacks have come from the My Protein website.
 
 # Wireframes
+These are all the core wireframes
 ### Home Page -> [View PDF](/writeup_files/wireframes/home-page-all-devices.pdf)
 ### Registration Page -> [View PDF](/writeup_files/wireframes/registration-page-all-devices.pdf)
 ### Login Page -> [View PDF](/writeup_files/wireframes/login-page-all-devices.pdf)
@@ -327,7 +328,7 @@ Here is a list of programming languages that I used to create this project along
     * I used this online development environment because of its integration within GitHub. With a click of a button within any repo or browser extension, Gitpod will open up and I am ready to code without installing any physical programs on my laptop.  
 
 * Visual Studio Code -> [Visit Site](https://code.visualstudio.com/)
-    * I used this code editor as well but this was mainly used as a backup, because of Gitpods 50 hour usage limit per month. I chose VSCode because Gitpod utilises VSCode so I was familiar with it. Another reason is because of it built in Git functions, which allowed me to clone my repositories easily and pull, commit and push to my repositories.    
+    * I used this code editor as well but this was mainly used as a backup, because of Gitpods 50 hour usage limit per month. I chose VSCode because Gitpod utilizes VSCode so I was familiar with it. Another reason is because of it built in Git functions, which allowed me to clone my repositories easily and pull, commit and push to my repositories.    
 
 * Balsamiq Desktop -> [Visit Site](https://balsamiq.com/wireframes/desktop/)
     * Balsamiq was used in the design stage where I created my wireframes for my project to help me get visual representation of what my project could look like.
@@ -386,6 +387,7 @@ Python Validation -> [Visit Site](http://pep8online.com/)
 # Testing
 
 # UX - User Story Testing
+When it came to testing my web application, I found that it is best practice to test and debug during the development stage as I went along. After the deployment of the web application I carried on testing debugging the web application and found some very minor issues as well as critical issues that had been address and fixed. This can be seen in my git commit messages labeled fix. In this section I have done a very thorough testing against my users stories as well as listing known issues and how I solved them.
 
 Here in this section I will provide a user story scenario with screenshot examples with steps if necessary to test my project against my user story.
 
@@ -393,7 +395,9 @@ Here in this section I will provide a user story scenario with screenshot exampl
 
 # Further Testing
 
-### Further Testing Document -> [Visit Document](writeup_files/testing/further_testing.md)
+Also when it came to testing my web application I decided to further test my project by testing all of the features implemented as seen in my user story testing and more. I tested my project in a variety of different browser to ensure it is fully compatible. The browsers I have chosen are Google Chrome, Microsoft Edge, Firefox and Opera. Another crucial test is to make sure that the project is fully responsive on a wide range of device sizes. 
+
+Throughout the whole project I developed my project on my Dell Inspiron 15inch Laptop and my Acer 24inch Monitor. I also used Chrome Dev tools whilst developing my project and used the responsive tool to simulate different device screen sizes. I also did some physical testing on my personal devices such as my Samsung Galaxy S21 Ultra, Samsung Galaxy Tab S7.
 
 # Known Issues and Solutions
 
@@ -413,7 +417,7 @@ Here in this section I will provide a user story scenario with screenshot exampl
 
 * This issue was found during the testing stage of my deployed web application. The save delivery information check button even tho it was not checked it would still save a logged in user delivery and personal information. The solution to this was that the if statement within the checkout views app was missing the else part of the if statement. A interesting issues with this is that the localhost web application does not save the delivery info but the deployed version does, if with the code adjustment. 
 
-* This here is an app flaw which does have a solution but yet not implemented and it was flagged by my student mentor. It has to do with deleting a product from the database, when a product is deleted it removes all traces of it an even from all users order history. The solution to this is to implement something called soft deleting and this was told to me by my student mentor.
+* This here is an app flaw which does have a solution but yet not implemented due to timing constraint and it was flagged by my student mentor. It has to do with deleting a product from the database, when a product is deleted it removes all traces of it an even from all users order history. The solution to this is to implement something called soft deleting and this was told to me by my student mentor.
 
 * This issue was a tricky one but a solution was found. The carousel caption within the carousel on the homepage by default are at the bottom, but I wanted them to be higher up on the images. Once I changed the default CSS bottom, the captions moved up but when on different device screen sizes, the position of the captions were too high. 
 
