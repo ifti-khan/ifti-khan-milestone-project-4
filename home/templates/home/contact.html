@@ -28,7 +28,7 @@
                 {% if request.user.is_authenticated %}
                 <!-- Username -->
                 <div class="mb-3">
-                    <input type="text" class="form-control rounded-0" id="contact-username" name="contact-username" placeholder="Full Name"
+                    <input type="text" class="form-control rounded-0" id="contact-username" name="contact-username" placeholder="Username"
                         value="{% if request.user.is_authenticated %}{{ user }}{% endif %}" required>
                 </div>
                 {% endif %}
