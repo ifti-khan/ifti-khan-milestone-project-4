@@ -369,6 +369,10 @@ Here is a list of programming languages that I used to create this project along
 * DB Diagram -> [Visit Site](https://dbdiagram.io/home)
     * This website was used to help me create my DB relationship diagram. 
 
+This document here contains a list of all the packages that I installed during the development of my project. These can also be found in the requirements.txt file. 
+
+### Installed Packages -> [Visit Document](writeup_files/documents/installed_packages.md)
+
 # Validation
 In this section I have used a few different validation tools to thoroughly check and make sure my project code is fully compliant and accessible. If there is any non-compliant code or warnings within the project I will document it and then fix it and this will be the first step of my testing and debugging.
 
