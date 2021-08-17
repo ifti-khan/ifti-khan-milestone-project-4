@@ -95,8 +95,16 @@ def add_question(request):
 @login_required
 def edit_question(request, question_id):
     """A view to edit questions"""
+
     # Getting a question using question id
     question = get_object_or_404(Question, pk=question_id)
+
+    # If that checks to see if the logged in user is the
+    # user that has asked the question
+    if not request.user == question.user:
+        messages.warning(
+            request, 'Only users that have asked the question, can edit')
+        return redirect(reverse('community'))
 
     # Checking if request user, methods and form are post
     # and if they are then check if the form is valid, if so
@@ -140,6 +148,14 @@ def delete_question(request, question_id):
 
     # Getting question using question id
     question = get_object_or_404(Question, pk=question_id)
+
+    # If that checks to see if the logged in user is the
+    # user that has asked the question
+    if not request.user == question.user:
+        messages.warning(
+            request, 'Only users that have asked the question, can delete')
+        return redirect(reverse('community'))
+
     # Deleting question
     question.delete()
     # Success message to user using toasts informing them that the question
@@ -196,6 +212,13 @@ def edit_answer(request, question_id, answer_id):
     question = get_object_or_404(Question, pk=question_id)
     answer = get_object_or_404(Answer, question=question, pk=answer_id)
 
+    # If that checks to see if the logged in user is the
+    # user that has asked the question
+    if not request.user == answer.user:
+        messages.warning(
+            request, 'Only users that have answered the question, can edit')
+        return redirect(reverse('community'))
+
     # Checking if request user and methods are post and form is post
     # and if they are then check if the form is valid and then save the form.
     if request.user == answer.user:
@@ -234,6 +257,13 @@ def delete_answer(request, question_id, answer_id):
     # Getting both questions and answers
     question = get_object_or_404(Question, pk=question_id)
     answer = get_object_or_404(Answer, question=question, pk=answer_id)
+
+    # If that checks to see if the logged in user is the
+    # user that has asked the question
+    if not request.user == answer.user:
+        messages.warning(
+            request, 'Only users that have answered the question, can delete')
+        return redirect(reverse('community'))
 
     # Checking if the user logged in is the user that left the answer
     # and if true then the answer will be deleted.
