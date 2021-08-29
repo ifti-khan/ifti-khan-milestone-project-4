@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Product, Category, Review
 from .forms import ProductForm, ReviewForm
+from django.db.models import Avg
 
 
 def all_products(request):
@@ -115,11 +116,21 @@ def product_details(request, product_id):
         product=product_id).order_by('-date_created', '-time_created')
     form = ReviewForm(request.POST)
 
+    # This video tutorial helped with this
+    # https://www.youtube.com/watch?v=tz4Z2eOSU28&ab_channel=Onthir
+    review_average = reviews.aggregate(
+        Avg("review_rating"))["review_rating__avg"]
+    if review_average is None:
+        review_avg = 0
+    else:
+        review_avg = round(review_average, 0)
+
     template = 'products/product_details.html'
     context = {
         'product': product,
         'reviews': reviews,
         'form': form,
+        'review_avg': review_avg,
     }
 
     return render(request, template, context)

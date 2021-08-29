@@ -44,7 +44,7 @@
                 {% if product.product_rating %}
                 <div class="mb-2">
                     <small class="text-muted"><i class="fas fa-star mr-1"></i>
-                        {{ product.product_rating|floatformat:0 }} / 5 
+                        {{ review_avg }} / 5 
                         <a href="#product-reviews">({{reviews.count}})</a>
                         <a href="#write-review">Write a review</a></small>
                 </div>

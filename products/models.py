@@ -39,7 +39,7 @@ class Product(models.Model):
     product_description = models.TextField()
     product_price = models.DecimalField(max_digits=6, decimal_places=2)
     product_rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+        max_digits=1, decimal_places=0, null=True, blank=True)
     sku = models.CharField(
         max_length=254, null=True, blank=True)
     product_sizes = models.BooleanField(null=True, blank=True)
@@ -62,7 +62,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review_title = models.CharField(max_length=250)
     review_rating = models.DecimalField(
-        max_digits=2, decimal_places=1)
+        max_digits=1, decimal_places=0)
     review_message = models.TextField(max_length=1000)
     date_created = models.DateField(auto_now_add=True)
     time_created = models.TimeField(auto_now_add=True)

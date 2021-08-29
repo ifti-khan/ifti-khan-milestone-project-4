@@ -11,7 +11,32 @@
                 <!-- Left info col -->
                 <div class="col-12 col-lg-6 tex-center text-lg-start custom-bg-2 px-4 py-3">
                     <p class="m-0"><strong>Left by:</strong> {{ review.user.username }}</p>
-                    <p class="m-0"><strong>Rating:</strong> {{ review.review_rating|floatformat:1 }} / 5</p>
+
+                    <p class="m-0"><strong>Rating:</strong>
+                    {% if review.review_rating == 5 %}
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i> {{ review.review_rating }} / 5
+                    {% elif review.review_rating == 4 %}
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i> {{ review.review_rating }} / 5
+                    {% elif review.review_rating == 3 %}
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i> {{ review.review_rating }} / 5
+                    {% elif review.review_rating == 2 %}
+                    <i class="fas fa-star mr-1"></i>
+                    <i class="fas fa-star mr-1"></i> {{ review.review_rating }} / 5
+                    {% elif review.review_rating == 1 %}
+                    <i class="fas fa-star mr-1"></i> {{ review.review_rating }} / 5
+                    {% else %}
+                    <small class="text-muted">No Rating</small>
+                    {% endif %}
+                </p>
                     <p class="m-0"><strong>Date:</strong> {{ review.date_created }}</p>
                     <p class="m-0"><strong>Time:</strong> {{ review.time_created }}</p>
                 </div>
@@ -21,7 +46,7 @@
                     <p class="m-0">{{ review.review_message }}</p>
                 </div>
             </div>
-            
+
             <!-- Django if to check if the user logged in is the user that left the review
             and if it is they will be able to edit and delete there review -->
             {% if request.user == review.user %}
@@ -40,7 +65,7 @@
     <hr class="w-50 mx-auto">
     {% endfor %}
     {% else %}
-        <!-- No review message -->
-        <p>There are no reviews for this product.</p>
+    <!-- No review message -->
+    <p>There are no reviews for this product.</p>
     {% endif %}
 </div>
