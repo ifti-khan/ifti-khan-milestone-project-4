@@ -96,7 +96,7 @@ def all_products(request):
         'products': products,
         'product_search': query,
         'current_categories': categories,
-        'current_sorting': current_sorting
+        'current_sorting': current_sorting,
     }
 
     return render(request, template, context)
@@ -125,12 +125,17 @@ def product_details(request, product_id):
     else:
         review_avg = round(review_average, 0)
 
+    user = request.user
+    admin = request.user.is_superuser
+
     template = 'products/product_details.html'
     context = {
         'product': product,
         'reviews': reviews,
         'form': form,
         'review_avg': review_avg,
+        'user': user,
+        'admin': admin,
     }
 
     return render(request, template, context)
@@ -298,7 +303,7 @@ def edit_review(request, product_id, review_id):
 
     # Checking if request user and methods are post and form is post
     # and if they are then check if the form is valid and then save the form.
-    if request.user == review.user:
+    if request.user == review.user or request.user.is_superuser:
         if request.method == "POST":
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
@@ -325,6 +330,8 @@ def edit_review(request, product_id, review_id):
         }
         return render(request, template, context)
     else:
+        messages.error(request, 'Access Denied!, Only users who wrote\
+            the review can edit.')
         return redirect(reverse('product_details', args=[product.id]))
 
 
@@ -337,10 +344,12 @@ def delete_review(request, product_id, review_id):
 
     # Checking if the user logged in is the user that left the review
     # and if true then the review will be deleted.
-    if request.user == review.user:
+    if request.user == review.user or request.user.is_superuser:
         review.delete()
         # Message using toasts to inform user that they
         # have deleted there review
         messages.success(request, 'Your review has successfully been deleted')
-
+    else:
+        messages.error(request, 'Access Denied!, Only users who wrote\
+            the review can delete.')
     return redirect(reverse('product_details', args=[product.id]))
