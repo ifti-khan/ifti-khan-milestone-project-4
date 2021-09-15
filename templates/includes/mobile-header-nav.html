@@ -6,7 +6,11 @@
         aria-haspopup="true" aria-expanded="false">
             <div class="text-center d-block d-lg-none">
                 <div><i class="fas fa-user fa-lg"></i></div>
-                <p class="my-0">Account</p>
+                {% if request.user.is_authenticated %}
+                    <p class="mb-0 white-text">{{ request.user }}</p>
+                {% else %}
+                    <p class="mb-0 white-text">Account <i class="fas fa-angle-down"></i></p>
+                {% endif %}
             </div>
         </a>
         <!-- This block of code is the dropdown menu for my user account options -->

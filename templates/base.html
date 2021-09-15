@@ -58,7 +58,7 @@
 
 <body>
     <!-- This block of code is for the main header for all pages -->
-    <header class="container-fluid fixed-top main-heading shadow-lg px-lg-0">
+    <header class="container-fluid fixed-top main-heading shadow-lg px-lg-0" id="main-head">
         <div class="row">
             <!-- Free delivery banner in top nav bar -->
             <div id="free-delivery-banner" class="col-12 col-lg-6 free-delivery-ban">
@@ -116,7 +116,11 @@
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fas fa-user fa-lg white-text"></i></div>
-                                <p class="my-0 white-text">Account</p>
+                                {% if request.user.is_authenticated %}
+                                        <p class="mb-0 white-text">{{ request.user }}</p>
+                                    {% else %}
+                                        <p class="mb-0 white-text">Account <i class="fas fa-angle-down"></i></p>
+                                    {% endif %}
                             </div>
                         </a>
                         <!-- This block of code is the dropdown menu for my user account options -->
@@ -124,10 +128,11 @@
                             <!-- Django if statement checking if the user is authenticated, meaning logged in and
                             will display the appropriate account links. Also another Django if statement checking 
                             to see if the logged in user is a super user meaning an admin and will display the 
-                            appropriate account links. -->
+                            appropriate account links. --> 
                             {% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <a href="{% url 'add_product' %}" class="dropdown-item">Administrator</a>
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">Admin Home</a>
+                            <a href="{% url 'add_product' %}" class="dropdown-item">Add Product</a>
                             {% endif %}
                             <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -301,7 +306,30 @@
                 animation: true,
                 delay: 10000,
             }).show()
-        })
+        });
+
+        let mainHeader = document.getElementById("main-head");
+        let mainHeaderHeight = mainHeader.offsetHeight;
+        let mainHeaderWidth = mainHeader.offsetWidth;
+        let mainHeaderTabletHeight = mainHeader.offsetHeight + 24;
+        let mainHeaderLargePhone = mainHeader.offsetHeight + 3;
+        let mainHeaderMediumPhone = mainHeader.offsetHeight + 3;
+        let mainHeaderSmallPhone = mainHeader.offsetHeight + 1;
+
+        console.log(mainHeaderHeight);	
+        console.log(mainHeaderWidth);
+
+        if (mainHeaderWidth == 768) {
+            document.getElementById("top-head-con").style.paddingTop = `${mainHeaderTabletHeight}px`;
+        } else if (mainHeaderWidth == 425) {
+            document.getElementById("top-head-con").style.paddingTop = `${mainHeaderLargePhone}px`;
+        } else if (mainHeaderWidth == 375) {
+            document.getElementById("top-head-con").style.paddingTop = `${mainHeaderMediumPhone}px`;
+        } else if (mainHeaderWidth == 320) {
+            document.getElementById("top-head-con").style.paddingTop = `${mainHeaderSmallPhone}px`;
+        } else {
+            document.getElementById("top-head-con").style.paddingTop = `${mainHeaderHeight}px`;
+        }
     </script>
     {% endblock %}
 

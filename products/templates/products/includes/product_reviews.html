@@ -49,7 +49,7 @@
 
             <!-- Django if to check if the user logged in is the user that left the review
             and if it is they will be able to edit and delete there review -->
-            {% if request.user == review.user %}
+            {% if user == review.user or admin %}
             <div class="row">
                 <div class="col text-center">
                     <!-- Edit and delete buttons for user who left the review -->

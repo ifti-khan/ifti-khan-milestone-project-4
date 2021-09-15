@@ -2,9 +2,7 @@
 for the top header container located
 in all html files*/
 @media (min-width: 992px) {
-    .top-head-container {
-        padding-top: 204px;
-    }
+
 }
 
 /* Small Laptops */
@@ -13,11 +11,6 @@ in all html files*/
     .message-container {
         top: 205px;
         right: 5px;
-    }
-
-    /* Top header container */
-    .top-head-container {
-        padding-top: 201px;
     }
 
     /* Carousel caption */
@@ -30,11 +23,6 @@ in all html files*/
 for the top header container located
 in all html files */
 @media (max-width: 991px) {
-
-    /* Top header container */
-    .top-head-container {
-        padding-top: 220px;
-    }
 
     .carousel img {
         height: calc(94vh - 190px);
@@ -67,11 +55,6 @@ in all html files */
         width: 50% !important;
     }
 
-    /* Top header container */
-    .top-head-container {
-        padding-top: 214px;
-    }
-
     .carousel-caption {
         bottom: 150px;
     }
@@ -94,11 +77,6 @@ in all html files */
     #back-to-top-btn {
         bottom: 125px;
         right: 5px;
-    }
-
-    /* Top header container */
-    .top-head-container {
-        padding-top: 207px;
     }
 
     /* Index carousel captions */
@@ -141,11 +119,6 @@ in all html files */
     #back-to-top-btn {
         bottom: 120px;
         right: 5px;
-    }
-
-    /* Top header container */
-    .top-head-container {
-        padding-top: 192px;
     }
 
     /* Index carousel captions */
@@ -200,11 +173,6 @@ in all html files */
     #back-to-top-btn {
         bottom: 115px;
         right: 5px;
-    }
-
-    /* Top header container */
-    .top-head-container {
-        padding-top: 188px;
     }
 
     /* Free delivery banner */

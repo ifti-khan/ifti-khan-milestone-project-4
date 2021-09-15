@@ -4,7 +4,7 @@
 {% block page_header %}
 <!-- This is needed to push the content down
     under the navigation bar  -->
-<div class="container top-head-container">
+<div class="container top-head-container" id="top-head-con">
     <div class="row">
         <div class="col"></div>
     </div>
@@ -125,14 +125,14 @@
                                         </a>
                                     </p>
                                     {% endif %}
-                                    <!-- Django if statement checking to see if the product has a rating and then display
-                                    under the product category, if no rating then display text saying no rating -->
-                                    {% if product.product_rating %}
-                                    <small class="text-muted"><i class="fas fa-star"></i>
-                                        {{ product.product_rating|floatformat:0 }} / 5</small>
-                                    {% else %}
-                                    <small class="text-muted">No Rating</small>
-                                    {% endif %}
+                {% if product.product_rating %}
+                <div class="mb-2">
+                    <small class="text-muted"><i class="fas fa-star mr-1"></i>
+                        {{ review_avg }} / 5</small>
+                </div>
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
                                     {% if request.user.is_superuser %}
                                     <div class="row">
                                         <div class="col mt-2">
