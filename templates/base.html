@@ -111,15 +111,15 @@
             <div class="col-12 col-lg-4 my-auto">
                 <ul class="nav custom-font-head text-uppercase justify-content-center justify-content-lg-end">
                     <!-- Account dropdown-->
-                    <li class="list-inline-item dropdown mx-0">
+                    <li class="list-inline-item dropdown mx-0" onclick="changeAccIcon()">
                         <a class="text-black nav-link" href="" id="user-options" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fas fa-user fa-lg white-text"></i></div>
                                 {% if request.user.is_authenticated %}
-                                        <p class="mb-0 white-text">{{ request.user }}</p>
+                                        <p class="mb-0 white-text ts-2">{{ request.user }} <i class="fas fa-angle-down" id="dropdownAccIcon"></i></p>
                                     {% else %}
-                                        <p class="mb-0 white-text">Account <i class="fas fa-angle-down"></i></p>
+                                        <p class="mb-0 white-text ts-4-4">Account <i class="fas fa-angle-down" id="dropdownIcon"></i></p>
                                     {% endif %}
                             </div>
                         </a>
@@ -330,7 +330,13 @@
         } else {
             document.getElementById("top-head-con").style.paddingTop = `${mainHeaderHeight}px`;
         }
-    </script>
+
+        function changeAccIcon(){
+            let icon = document.getElementById("dropdownAccIcon")
+            icon.classList.toggle("fa-angle-up");
+        }
+</script>
+
     {% endblock %}
 
 </body>

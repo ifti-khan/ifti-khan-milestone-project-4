@@ -35,18 +35,21 @@ main {
     color: #ffffff !important;
 }
 
-.text-spacing {
+.ts-4 {
     letter-spacing: 4px;
 }
 
-.text-spacing-1 {
+.ts-1 {
     letter-spacing: 1px;
 }
 
-.text-spacing-2 {
-    letter-spacing: 10px;
+.ts-2 {
+    letter-spacing: 2px;
 }
 
+.ts-10 {
+    letter-spacing: 10px;
+}
 .custom-bg {
     background-color: #595959;
 }

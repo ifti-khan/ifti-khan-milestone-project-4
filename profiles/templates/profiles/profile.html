@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col text-center">
             <!-- Profile header with horizontal rule -->
-            <h2 class="custom-font-head fw-bold text-uppercase text-spacing mt-5 my-lg-4">My Profile</h2>
+            <h2 class="custom-font-head fw-bold text-uppercase ts-4 mt-5 my-lg-4">My Profile</h2>
             <hr>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 {% csrf_token %}
                 <!-- Personal info -->
                 <fieldset class="personal-info-section">
-                    <legend class="small fw-bold text-spacing-1 ps-3">Personal Information</legend>
+                    <legend class="small fw-bold ts-1 ps-3">Personal Information</legend>
                     {{ form.default_full_name | as_crispy_field }}
                     {{ form.default_email_address | as_crispy_field }}
                     {{ form.default_phone_number | as_crispy_field }}
@@ -41,7 +41,7 @@
                     
                     <!-- Delivery info -->
                     <fieldset class="delivery-info-section">
-                    <legend class="small fw-bold text-spacing-1 ps-3 mt-3">Delivery Information</legend>
+                    <legend class="small fw-bold ts-1 ps-3 mt-3">Delivery Information</legend>
                     {{ form.default_address_line1 | as_crispy_field }}
                     {{ form.default_address_line2 | as_crispy_field }}
                     {{ form.default_town_or_city | as_crispy_field }}
@@ -56,7 +56,7 @@
         <!-- Order history -->
         <div class="col-12 col-lg-10 offset-lg-1 mt-3">
             <!-- Order history heading -->
-            <p class="text-center fs-4 text-spacing custom-font-head fw-bold text-uppercase my-2">Order History</p>
+            <p class="text-center fs-4 ts-4 custom-font-head fw-bold text-uppercase my-2">Order History</p>
             <!-- Responsive order history table -->
             <div class="order-history table-responsive d-none d-md-block">
                 <table class="table table-sm table-borderless">

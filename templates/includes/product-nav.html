@@ -2,9 +2,9 @@
 <div class="collapse navbar-collapse text-center justify-content-lg-end" id="product-nav">
     <ul class="navbar-nav">
         <!-- Products dropdown list navigation -->
-        <li class="nav-item dropdown mobile-nav-head pt-1">
+        <li class="nav-item dropdown mobile-nav-head pt-1" onclick="changeProductIcon()">
             <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="all-products-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products <i class="fas fa-angle-down" id="dropdownProductIcon"></i></a>
             <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="all-products-link">
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
                 <a href="{% url 'products' %}?sort=product_price&direction=asc" class="dropdown-item">By Price</a>
@@ -14,9 +14,9 @@
         </li>
 
         <!-- Clothing dropdown list navigation -->
-        <li class="nav-item dropdown mobile-nav-head pt-1">
+        <li class="nav-item dropdown mobile-nav-head pt-1" onclick="changeClothingIcon()">
             <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="clothing-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clothing</a>
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clothing <i class="fas fa-angle-down" id="dropdownClothingIcon"></i></a>
             <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="clothing-link">
                 <a href="{% url 'products' %}?category=t_shirts,vest,hoodies,tops,joggers" class="dropdown-item">All Clothing</a>
                 <a href="{% url 'products' %}?category=t_shirts" class="dropdown-item ">T-Shirts</a>
@@ -28,9 +28,9 @@
         </li>
 
         <!-- Supplements dropdown list navigation -->
-        <li class="nav-item dropdown mobile-nav-head pt-1">
+        <li class="nav-item dropdown mobile-nav-head pt-1" onclick="changeSupplementIcon()">
             <a class="white-text text-decoration-none text-uppercase fw-bold nav-link" href="#" id="supplements-link"
-                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Supplements</a>
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Supplements <i class="fas fa-angle-down" id="dropdownSupplementIcon"></i></a>
             <div class="dropdown-menu border-0 rounded-0 mt-0 text-center" aria-labelledby="supplements-link">
                 <a href="{% url 'products' %}?category=powders,vitamins,snacks" class="dropdown-item">All Supplements</a>
                 <a href="{% url 'products' %}?category=powders" class="dropdown-item">Powders</a>
@@ -45,3 +45,22 @@
         </li>
     </ul>
 </div>
+
+{% block postloadjs %}
+<script type="text/javascript">
+    function changeProductIcon(){
+        let icon = document.getElementById("dropdownProductIcon")
+        icon.classList.toggle("fa-angle-up");
+    }
+
+    function changeClothingIcon(){
+        let icon = document.getElementById("dropdownClothingIcon")
+        icon.classList.toggle("fa-angle-up");
+    }
+
+    function changeSupplementIcon(){
+        let icon = document.getElementById("dropdownSupplementIcon")
+        icon.classList.toggle("fa-angle-up");
+    }
+</script>
+{% endblock %}

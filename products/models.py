@@ -37,9 +37,9 @@ class Product(models.Model):
         'Category', null=True, blank=True, on_delete=models.SET_NULL)
     product_name = models.CharField(max_length=254)
     product_description = models.TextField()
-    product_price = models.DecimalField(max_digits=6, decimal_places=2)
-    product_rating = models.DecimalField(
-        max_digits=1, decimal_places=0, null=True, blank=True)
+    product_price = models.DecimalField(
+        max_digits=6, decimal_places=2)
+    product_rating = models.IntegerField(null=True, blank=True)
     sku = models.CharField(
         max_length=254, null=True, blank=True)
     product_sizes = models.BooleanField(null=True, blank=True)

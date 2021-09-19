@@ -125,14 +125,14 @@
                                         </a>
                                     </p>
                                     {% endif %}
-                {% if product.product_rating %}
+                <!-- {% if product.product_rating %}
                 <div class="mb-2">
                     <small class="text-muted"><i class="fas fa-star mr-1"></i>
-                        {{ review_avg }} / 5</small>
+                        {{ product.product_rating }} / 5</small>
                 </div>
                 {% else %}
                 <small class="text-muted">No Rating</small>
-                {% endif %}
+                {% endif %} -->
                                     {% if request.user.is_superuser %}
                                     <div class="row">
                                         <div class="col mt-2">
