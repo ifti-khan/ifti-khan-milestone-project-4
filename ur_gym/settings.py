@@ -35,14 +35,14 @@ else:
     SECRET_KEY = myenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'DEVELOPMENT' in os.environ:
+if 'DEBUG' in os.environ:
     # Status Deployed
     DEBUG = False
 else:
     # Status Development
     DEBUG = True
 
-if ' RENDER_HOSTNAME' in os.environ:
+if ' ALLOWED_HOSTNAME' in os.environ:
     # Deployment
     ALLOWED_HOSTS = ['iftikhan-urgym.onrender.com']
 else:
@@ -178,7 +178,7 @@ WSGI_APPLICATION = 'ur_gym.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Database if statement to check environment variables
-if not 'DATABASE_URL' in os.environ:
+if 'DEVELOPMENT' in os.environ:
     # Deployed environment variable
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
