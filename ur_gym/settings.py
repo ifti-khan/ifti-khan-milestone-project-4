@@ -178,7 +178,7 @@ WSGI_APPLICATION = 'ur_gym.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Database if statement to check environment variables
-if 'DEVELOPMENT' in os.environ:
+if 'DEBUG' in os.environ:
     # Deployed environment variable
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
