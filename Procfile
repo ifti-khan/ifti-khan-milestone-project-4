@@ -1,1 +1,0 @@
-web: gunicorn ur_gym.wsgi:application

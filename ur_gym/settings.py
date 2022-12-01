@@ -42,9 +42,9 @@ else:
     # Status Development
     DEBUG = True
 
-if 'HEROKU_HOSTNAME' in os.environ:
+if ' RENDER_HOSTNAME' in os.environ:
     # Deployment
-    ALLOWED_HOSTS = ['iftikhan-urgym.herokuapp.com']
+    ALLOWED_HOSTS = ['iftikhan-urgym.onrender.com']
 else:
     # Development
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
@@ -178,7 +178,7 @@ WSGI_APPLICATION = 'ur_gym.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # Database if statement to check environment variables
-if 'DATABASE_URL' in os.environ:
+if not 'DATABASE_URL' in os.environ:
     # Deployed environment variable
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
