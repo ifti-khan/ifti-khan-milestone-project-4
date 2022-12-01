@@ -42,9 +42,9 @@ else:
     # Status Development
     DEBUG = True
 
-if ' ALLOWED_HOSTNAME' in os.environ:
+if 'RENDER_HOSTNAME' in os.environ:
     # Deployment
-    ALLOWED_HOSTS = ['iftikhan-urgym.onrender.com']
+    ALLOWED_HOSTS = [os.environ.get('RENDER_HOSTNAME')]
 else:
     # Development
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
