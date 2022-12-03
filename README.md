@@ -1,8 +1,8 @@
 # Ifti Khan Milestone Project 4 - Fullstack Frameworks with Django
 
-[Click Here To Visit My Deployed Project Site](https://iftikhan-ms4-project-urgym.herokuapp.com/)
+[Click Here To Visit Site](https://iftikhan-urgym.onrender.com/)
 
-![Image of Project](writeup_files/images/responsive_website_img.jpg)
+![Image of Project](static/images/urgym-multi-device-img.png)
 
 ## Project Title - UR-GYM
 
